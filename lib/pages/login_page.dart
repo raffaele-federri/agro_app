@@ -1,6 +1,10 @@
+import 'package:agro_app/bloc/cubit/update_dial.dart';
 import 'package:agro_app/constants/default_text_style.dart';
+import 'package:agro_app/widgets/border_container.dart';
+import 'package:agro_app/widgets/text_form_field.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,19 +16,12 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  // final TextEditingController _textEditingController = TextEditingController();
-  // late CountryCode selectedCode;
-
   final countryPicker = const FlCountryCodePicker();
-
-  /// With custom params.
   final countryPickerWithParams = const FlCountryCodePicker(
-    localize: true,
-    showDialCode: true,
-    showSearchBar: true,
-  );
-  late CountryCode selectedCode =
-      CountryCode(name: 'Uzbekistan', code: 'UZ', dialCode: '+998');
+      localize: true, showDialCode: true, showSearchBar: true);
+  final numberFocus = FocusNode();
+  final passwordFocus = FocusNode();
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +38,7 @@ class _SignInPageState extends State<SignInPage> {
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    DefaultText(
+                    PrimaryTextStyle(
                       text: 'Welcome',
                       size: 40,
                       weight: FontWeight.w800,
@@ -49,97 +46,68 @@ class _SignInPageState extends State<SignInPage> {
                   ],
                 ),
                 SizedBox(height: 83.h),
-                Column(
-                  children: [
-                    const Row(
+                BlocBuilder<UpdateDialCubit, CountryCode>(
+                  builder: (context, state) {
+                    return  Column(
                       children: [
-                        DefaultText(
-                          text: 'Phone Number',
-                          size: 12,
-                          weight: FontWeight.w700,
-                          color: Color(0xff187CD3),
-                        )
-                      ],
-                    ),
-                    SizedBox(height: 8.h),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 7,
-                        vertical: 2,
-                      ),
-                      height: 40.h,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.red
-                            // color: const Color(0xffEBEFF2),
+                        const Row(
+                          children: [
+                            PrimaryTextStyle(
+                              text: 'Phone Number',
+                              size: 12,
+                              weight: FontWeight.w700,
+                              color: Color(0xff187CD3),
+                            )
+                          ],
+                        ),
+                        SizedBox(height: 8.h),
+                        BorderContainer(
+                          focus: numberFocus,
+                          rowChildren: [
+                            Container(
+                              height: 26,
+                              width: 27,
+                              clipBehavior: Clip.antiAlias,
+                              decoration: BoxDecoration(
+                                // color: Colors.red,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: state.flagImage(fit: BoxFit.cover),
                             ),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(4)),
-                      ),
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 26,
-                            width: 27,
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.circular(5),
+                            InkWell(
+                              onTap: () async {
+                                final code = await countryPicker.showPicker(
+                                    context: context);
+                                if (code != null && context.mounted) {
+                                  context
+                                      .read<UpdateDialCubit>()
+                                      .updateCountryCode(code);
+                                }
+                              },
+                              child: const Icon(Icons.arrow_drop_down),
                             ),
-                            child: Image.network(
-                              selectedCode.flagUri,
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          // CountryCodePicker(
-                          //   onChanged: (code) {
-                          //     setState(() {
-                          //       _selectedCode = code;
-                          //     });
-                          //   },
-                          //   flagDecoration: BoxDecoration(
-                          //     borderRadius: BorderRadius.circular(5),
-                          //   ),
-                          //   flagWidth: 50,
-                          //   initialSelection: 'UZ',
-                          //   favorite: const ['+998'
-                          //       ''],
-                          //   showCountryOnly: false,
-                          //   showOnlyCountryWhenClosed: false,
-                          //   alignLeft: false,
-                          // ),
-                          // SizedBox(width: 10.w),
-                          InkWell(
-                            onTap: () async {
-                              final code = await countryPicker.showPicker(
-                                  context: context);
-                              if (code != null) {
-                                setState(() {
-                                  selectedCode = code;
-                                });
-                                print('=======> CT CODE  ${code?.dialCode}');
-                              }
-                            },
-                            child: const Icon(Icons.arrow_drop_down),
-                          ),
-                          Text(selectedCode.dialCode),
-                          Flexible(
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                border: InputBorder.none,
+                            Flexible(
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 18),
+                                child: TextFormFieldCT(
+                                  state: state,
+                                  dial: state.dialCode,
+                                  textInputType: TextInputType.number,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                          ],
+                        ),
+                      ],
+                    );
+                  },
                 ),
                 const SizedBox(height: 15),
                 Column(
                   children: [
                     const Row(
                       children: [
-                        DefaultText(
+                        PrimaryTextStyle(
                           text: 'Password',
                           size: 12,
                           weight: FontWeight.w700,
@@ -148,35 +116,23 @@ class _SignInPageState extends State<SignInPage> {
                       ],
                     ),
                     SizedBox(height: 8.h),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(7),
-                      height: 40.h,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.red
-                            // color: const Color(0xffEBEFF2),
-                            ),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(4)),
-                      ),
-                      child: Row(
-                        children: [
-                          Flexible(
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                border: InputBorder.none,
-                              ),
-                            ),
+                    BorderContainer(
+                      focus: passwordFocus,
+                      rowChildren: [
+                        Flexible(
+                          child: TextFormFieldCT(
+                            isCodeField: true,
+
                           ),
-                          const Icon(Icons.visibility)
-                        ],
-                      ),
+                        ),
+                        const Icon(Icons.visibility)
+                      ],
                     ),
                     SizedBox(height: 7.h),
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        DefaultText(
+                        PrimaryTextStyle(
                           text: 'Forgot password ?',
                           size: 12,
                           color: Color(0xff187CD3),

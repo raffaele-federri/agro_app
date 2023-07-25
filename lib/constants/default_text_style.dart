@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DefaultText extends StatelessWidget {
+class PrimaryTextStyle extends StatelessWidget {
   final String text;
   final double? size;
   final Color? color;
   final FontWeight? weight;
-  const DefaultText(
+  const PrimaryTextStyle(
       {super.key, required this.text, this.size, this.color, this.weight});
 
   @override
