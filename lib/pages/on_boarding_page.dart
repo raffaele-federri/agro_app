@@ -1,8 +1,6 @@
 import 'package:agro_app/widgets/custom_text.dart';
 import 'package:agro_app/widgets/page_indicator_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -58,9 +56,9 @@ class OnBoardingPage extends StatelessWidget {
               Container(
                 height: 18.38.h,
                 width: 69.69.w,
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: const [
+                  children: [
                     PageIndicatorContainer(rotate: 0.76),
                     PageIndicatorContainer(),
                     PageIndicatorContainer(),
