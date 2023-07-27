@@ -9,6 +9,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../constants/app_colors.dart';
+import 'gender_and_name_page_dart.dart';
+
+class SignInWrapper extends StatelessWidget {
+  const SignInWrapper({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => UpdateDialCubit(),
+        ),
+      ],
+      child: const SignInPage(),
+    );
+  }
+}
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -34,7 +51,6 @@ class _SignInPageState extends State<SignInPage> {
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: BlocBuilder<UpdateDialCubit, CountryCode>(
-
               builder: (context, state) {
                 return Column(
                   children: [
@@ -64,38 +80,48 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                         SizedBox(height: 8.h),
                         TextFormFieldCT(
-
                           state: state,
                           textInputType: TextInputType.number,
                           hintText: 'Enter your phone number',
-                          prefixRow: [
-                            Container(
-                              height: 26,
-                              width: 27,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: BoxDecoration(
-                                // color: Colors.red,
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              child: state.flagImage(fit: BoxFit.cover),
+                          prefixRow: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 7),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Container(
+                                  height: 26,
+                                  width: 27,
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(
+                                    // color: Colors.red,
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
+                                  child: state.flagImage(fit: BoxFit.cover),
+                                ),
+                                InkWell(
+                                  onTap: () async {
+                                    final code = await countryPicker
+                                        .showPicker(context: context);
+                                    if (code != null && context.mounted) {
+                                      context
+                                          .read<UpdateDialCubit>()
+                                          .updateCountryCode(code);
+                                    }
+                                  },
+                                  child: Icon(
+                                    Icons.arrow_drop_down,
+                                    color: Colors.grey.shade400,
+                                  ),
+                                ),
+                                Text(
+                                  state.dialCode,
+                                  style: const TextStyle(
+                                      fontSize: 16, color: Colors.black),
+                                ),
+                              ],
                             ),
-                            InkWell(
-                              onTap: () async {
-                                final code = await countryPicker.showPicker(
-                                    context: context);
-                                if (code != null && context.mounted) {
-                                  context
-                                      .read<UpdateDialCubit>()
-                                      .updateCountryCode(code);
-                                }
-                              },
-                              child: const Icon(Icons.arrow_drop_down),
-                            ),
-                            Text(
-                              state.dialCode,
-                              style: const TextStyle(fontSize: 16),
-                            ),
-                          ],
+                          ),
                         ),
                       ],
                     ),
@@ -115,8 +141,7 @@ class _SignInPageState extends State<SignInPage> {
                         SizedBox(height: 8.h),
                         TextFormFieldCT(
                           isCodeField: true,
-                          hintText: 'Enter your password',
-                          //   suffixRow: [Icon(Icons.visibility),]
+                          hintText: 'Enter your name',
                         ),
                         SizedBox(height: 7.h),
                         const Row(
@@ -136,7 +161,12 @@ class _SignInPageState extends State<SignInPage> {
                       width: double.infinity,
                       height: 50,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const GenderAndNamePage(),
+                          ),
+                        );},
                         style: const ButtonStyle(),
                         child: Text(
                           'Login',
@@ -161,11 +191,7 @@ class _SignInPageState extends State<SignInPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (_) =>
-                                    BlocProvider.value(
-                                      value: context.read<UpdateDialCubit>(),
-                                      child: SignUpPage(),
-                                    ),
+                                builder: (_) => const SignUpWrapper(),
                               ),
                             );
                           },

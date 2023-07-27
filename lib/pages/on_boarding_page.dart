@@ -1,6 +1,9 @@
+import 'package:agro_app/bloc/cubit/update_dial.dart';
 import 'package:agro_app/widgets/custom_text.dart';
 import 'package:agro_app/widgets/page_indicator_container.dart';
+import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -53,7 +56,7 @@ class OnBoardingPage extends StatelessWidget {
                 color: AppColors.mainTextColor,
               ),
               SizedBox(height: 50.h),
-              Container(
+              SizedBox(
                 height: 18.38.h,
                 width: 69.69.w,
                 child: const Row(
@@ -71,7 +74,8 @@ class OnBoardingPage extends StatelessWidget {
                 height: 76.h,
                 width: 76,
                 decoration: BoxDecoration(
-                  border: Border.all(color: const Color(0xffCCE5FF), width: 2),
+                  border: Border.all(
+                      color: const Color(0xffCCE5FF), width: 2),
                   borderRadius: BorderRadius.circular(38),
                   // color: Colors.amber,
                 ),
@@ -83,7 +87,7 @@ class OnBoardingPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const SignInPage(),
+                        builder: (_) => const SignInWrapper(),
                       ),
                     );
                   },

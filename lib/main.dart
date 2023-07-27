@@ -1,4 +1,7 @@
+import 'package:agro_app/pages/age_page.dart';
+import 'package:agro_app/pages/gender_and_name_page_dart.dart';
 import 'package:agro_app/pages/login_page.dart';
+import 'package:agro_app/pages/on_boarding_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +14,7 @@ import 'bloc/cubit/update_dial.dart';
 void main() {
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -36,16 +40,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: MultiBlocProvider(
-            providers: [
-              BlocProvider(
-                create: (context) => UpdateDialCubit(),
-              ),
-            ],
-            child: Builder(builder: (context) {
-              return const SignInPage();
-            }),
-          ),
+          home: const AgePage(),
         );
       },
     );

@@ -1,3 +1,4 @@
+import 'package:agro_app/constants/app_colors.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -8,7 +9,7 @@ class TextFormFieldCT extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType? textInputType;
   final CountryCode? state;
-  final List<Widget>? prefixRow;
+  final Widget? prefixRow;
   final List<Widget>? suffixRow;
 
   TextFormFieldCT({
@@ -40,21 +41,13 @@ class TextFormFieldCT extends StatelessWidget {
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
         hintText: hintText,
+        hintStyle: TextStyle(fontSize: 12 , color: Colors.grey.shade400),
         contentPadding: const EdgeInsets.symmetric(vertical: 7, horizontal: 7),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
-        prefix: Padding(
-          padding: const EdgeInsets.only(right: 6),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: prefixRow ?? [],
-          ),
-        ),
-        suffix: Padding(
-          padding: const EdgeInsets.only(left: 6),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: suffixRow ?? [],
-          ),
+        prefixIcon: prefixRow ,
+        suffix: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: suffixRow ?? [],
         ),
       ),
     );
