@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../bloc/cubit/update_dial.dart';
 import '../constants/default_text_style.dart';
+import '../widgets/back_button_on_boarding.dart';
 import '../widgets/text_form_field.dart';
 
 class SignUpWrapper extends StatelessWidget {
@@ -46,25 +47,8 @@ class SignUpPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          height: 34.h,
-                          width: 34.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(3),
-                            border: Border.all(
-                              color: AppColors.lightGrey,
-                              width: 1,
-                              style: BorderStyle.solid,
-                            ),
-                          ),
-                          child: MaterialButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Icon(Icons.arrow_back),
-                          ),
-                        ),
-                        Container(
+                        const CustomBackButton(),
+                        SizedBox(
                           height: 90,
                           width: 90,
                           child: Image.asset(

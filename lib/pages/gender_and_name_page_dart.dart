@@ -3,9 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../constants/app_colors.dart';
 import '../constants/default_text_style.dart';
+import '../widgets/back_button_on_boarding.dart';
 import '../widgets/gender_picker.dart';
 import '../widgets/page_indicator_container.dart';
 import '../widgets/text_form_field.dart';
+import 'age_page.dart';
 
 class GenderAndNamePage extends StatelessWidget {
   const GenderAndNamePage({super.key});
@@ -18,26 +20,9 @@ class GenderAndNamePage extends StatelessWidget {
           padding:  EdgeInsets.symmetric(horizontal: 30 , vertical: 30.h),
           child: Column(
             children: [
-              Row(
+              const Row(
                 children: [
-                  Container(
-                    height: 34.h,
-                    width: 34.w,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(3),
-                      border: Border.all(
-                        color: AppColors.lightGrey,
-                        width: 1,
-                        style: BorderStyle.solid,
-                      ),
-                    ),
-                    child: MaterialButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Icon(Icons.arrow_back),
-                    ),
-                  ),
+                  CustomBackButton(),
                 ],
               ),
               Row(
@@ -121,12 +106,12 @@ class GenderAndNamePage extends StatelessWidget {
                       highlightElevation: 0,
                       elevation: 0,
                       onPressed: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => const _(),
-                        //   ),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const AgePage(),
+                          ),
+                        );
                       },
                       child: const Icon(Icons.arrow_forward)
                     ),

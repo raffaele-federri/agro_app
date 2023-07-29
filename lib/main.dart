@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (builder, child) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           supportedLocales: flc.supportedLocales.map((e) => Locale(e)),
           locale: const Locale('en'),
           localizationsDelegates: const [
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: const AgePage(),
+          home: const OnBoardingPage(),
         );
       },
     );
