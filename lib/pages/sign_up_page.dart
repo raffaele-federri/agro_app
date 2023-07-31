@@ -35,6 +35,8 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawerEnableOpenDragGesture: false,
+
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
@@ -44,28 +46,26 @@ class SignUpPage extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const CustomBackButton(),
-                        SizedBox(
-                          height: 90,
-                          width: 90,
-                          child: Image.asset(
-                            'assets/images/user_reg.png',
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 34.h,
-                          width: 34.w,
-                        )
+                        CustomBackButton(),
                       ],
+                    ),
+                    SizedBox(
+                      height: 60.h,
+                      width: 60.w,
+                      child: Image.asset(
+                        'assets/images/user_reg.png',
+                        fit: BoxFit.fill,
+                      ),
                     ),
                     SizedBox(height: 39.h),
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+
+
                         PrimaryTextStyle(
                           text: 'Registration',
                           size: 30,

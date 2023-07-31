@@ -1,3 +1,4 @@
+import 'package:agro_app/pages/address_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -110,12 +111,12 @@ class _AgePageState extends State<AgePage> {
                         highlightElevation: 0,
                         elevation: 0,
                         onPressed: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => const _(),
-                          //   ),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const AddressPage(),
+                            ),
+                          );
                         },
                         child: const Icon(Icons.arrow_forward)),
                   ),

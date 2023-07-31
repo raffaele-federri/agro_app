@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../constants/app_colors.dart';
 
-class CustomBackButton  extends StatelessWidget {
-  const CustomBackButton ({super.key});
+class CustomBackButton extends StatelessWidget {
+  const CustomBackButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +19,19 @@ class CustomBackButton  extends StatelessWidget {
           style: BorderStyle.solid,
         ),
       ),
-      child: MaterialButton(
+      child: ElevatedButton(
+        style: ButtonStyle(
+          padding: MaterialStateProperty.all(EdgeInsets.zero),
+          backgroundColor: MaterialStateProperty.all(Colors.transparent),
+          elevation: MaterialStateProperty.all(0),
+        ),
         onPressed: () {
           Navigator.pop(context);
         },
-        child: const Icon(Icons.arrow_back),
+        child: const Icon(
+          Icons.arrow_back,
+          color: Color(0xff707683),
+        ),
       ),
     );
   }

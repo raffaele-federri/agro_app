@@ -9,8 +9,4 @@ class UpdateDialCubit extends Cubit<CountryCode> {
   Future<void> updateCountryCode(CountryCode newDial) async {
     emit(newDial);
   }
-
-  void printShit(){
-    print('SHIT');
-  }
 }

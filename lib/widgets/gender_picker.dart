@@ -1,36 +1,48 @@
+import 'package:agro_app/bloc/cubit/gender_chooser.dart';
+import 'package:agro_app/constants/app_colors.dart';
+import 'package:agro_app/widgets/gender_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../constants/default_text_style.dart';
-
 class GenderPicker extends StatelessWidget {
-  final String text;
-  final String asset;
-
-  const GenderPicker({super.key, required this.text, required this.asset});
+  const GenderPicker({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 135.h,
-      width: 132.w,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color: const Color(0xff00416A),
-        ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          PrimaryTextStyle(
-            text: text,
-            size: 24,
-            weight: FontWeight.w700,
-          ),
-          SizedBox(height: 14.h),
-          Image.asset(asset)
-        ],
+    return BlocProvider(
+      create: (context) => GenderChooser(),
+      child: BlocBuilder<GenderChooser, int?>(
+        builder: (context, state) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              InkWell(
+                onTap: () {
+                  context.read<GenderChooser>().changeTab(0);
+                },
+                child: GenderWidget(
+                  text: 'Male',
+                  asset: 'assets/images/male.png',
+                  color:
+                      state == 0 ? AppColors.activeColor : AppColors.lightGrey,
+                ),
+              ),
+              SizedBox(width: 20.w),
+              InkWell(
+                onTap: () {
+                  context.read<GenderChooser>().changeTab(1);
+                },
+                child: GenderWidget(
+                  text: 'Female',
+                  asset: 'assets/images/female.png',
+                  color:
+                      state == 1 ? AppColors.activeColor : AppColors.lightGrey,
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
