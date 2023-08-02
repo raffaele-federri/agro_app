@@ -47,8 +47,8 @@ class _AgePageState extends State<AgePage> {
                         height: 32.h,
                       ),
                       SizedBox(
-                        height: 90,
-                        width: 90,
+                        height: 60.h,
+                        width: 60.w,
                         child: Image.asset(
                           'assets/images/calendar_reg.png',
                           fit: BoxFit.fill,
@@ -86,7 +86,7 @@ class _AgePageState extends State<AgePage> {
                   shape: BoxShape.circle,
                 ),
               ),
-              const Expanded(child: SizedBox()),
+
               Row(
                 children: [
                   SizedBox(

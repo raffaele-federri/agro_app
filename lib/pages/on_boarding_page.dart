@@ -1,9 +1,9 @@
-import 'package:agro_app/bloc/cubit/update_dial.dart';
+
 import 'package:agro_app/widgets/custom_text.dart';
 import 'package:agro_app/widgets/page_indicator_container.dart';
-import 'package:fl_country_code_picker/fl_country_code_picker.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
