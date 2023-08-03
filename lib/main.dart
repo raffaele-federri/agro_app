@@ -1,3 +1,4 @@
+import 'package:agro_app/pages/address_page.dart';
 import 'package:agro_app/pages/age_page.dart';
 import 'package:agro_app/pages/gender_and_name_page_dart.dart';
 import 'package:agro_app/pages/login_page.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: OnBoardingPage(),
+          home: AddressPage(),
         );
       },
     );

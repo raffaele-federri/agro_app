@@ -1,3 +1,4 @@
+import 'package:agro_app/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -8,8 +9,24 @@ import '../widgets/bottom_nav_bar_auth.dart';
 import '../widgets/page_indicator_container.dart';
 import '../widgets/text_form_field.dart';
 
-class AddressPage extends StatelessWidget {
-  AddressPage({super.key});
+class AddressPage extends StatefulWidget {
+  const AddressPage({super.key});
+
+  @override
+  State<AddressPage> createState() => _AddressPageState();
+}
+
+class _AddressPageState extends State<AddressPage> {
+  String? valueChoose;
+  List listItem = [
+    'Item 1',
+    'Item 2',
+    'Item 3',
+    'Item 4',
+    'Item 5',
+    'Item 6',
+    'Item 7',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +37,8 @@ class AddressPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
           child: Column(
             children: [
-              Row(
-                children: const [
+              const Row(
+                children: [
                   CustomBackButton(),
                 ],
               ),
@@ -51,8 +68,8 @@ class AddressPage extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                children: const [
+              const Row(
+                children: [
                   PrimaryTextStyle(
                     text: 'Full name',
                     size: 12,
@@ -65,8 +82,41 @@ class AddressPage extends StatelessWidget {
               TextFormFieldCT(
                 hintText: 'Enter your name',
               ),
-              Container(
-                decoration: BoxDecoration(border: Border.all()),
+              SizedBox(height: 15.h),
+              const Row(
+                children: [
+                  PrimaryTextStyle(
+                    text: 'Country',
+                    size: 12,
+                    weight: FontWeight.w700,
+                    color: Color(0xff187CD3),
+                  ),
+                ],
+              ),
+              // padding: const EdgeInsets.symmetric(horizontal: 6),
+              //                 decoration: BoxDecoration(
+              //                   borderRadius: BorderRadius.circular(4),
+              //                   border: Border.all(color: AppColors.lightGrey, width: 2),
+              //                 ),
+              SizedBox(height: 8.h),
+              DropdownButtonFormField(
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+                borderRadius: BorderRadius.circular(4),
+                isExpanded: true,
+                value: valueChoose,
+                onChanged: (newValue) {
+                  setState(() {
+                    valueChoose = newValue as String;
+                  });
+                },
+                items: listItem.map((valueItem) {
+                  return DropdownMenuItem(
+                    value: valueItem,
+                    child: Text(valueItem),
+                  );
+                }).toList(),
               ),
             ],
           ),

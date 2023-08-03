@@ -13,9 +13,9 @@ class _TestState extends State<Test> {
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(height: 300),
+          const SizedBox(height: 200),
           TextFormField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               prefix: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -25,6 +25,7 @@ class _TestState extends State<Test> {
               ),
             ),
           ),
+
         ],
       ),
     );

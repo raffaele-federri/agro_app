@@ -30,6 +30,9 @@ class TextFormFieldCT extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      print('*** ${context.size}');
+    });
     return TextFormField(
       keyboardType: textInputType,
       inputFormatters:
