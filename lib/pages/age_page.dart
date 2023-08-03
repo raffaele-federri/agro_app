@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 import '../constants/app_colors.dart';
 import '../constants/default_text_style.dart';
 import '../widgets/age_picker.dart';
 import '../widgets/back_button_on_boarding.dart';
+import '../widgets/bottom_nav_bar_auth.dart';
 import '../widgets/page_indicator_container.dart';
 
 class AgePage extends StatefulWidget {
-  const AgePage({super.key});
+  AgePage({super.key});
 
   @override
   State<AgePage> createState() => _AgePageState();
@@ -23,16 +23,18 @@ class _AgePageState extends State<AgePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const BottomNavBarAuth(index: 2),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30.h),
           child: Column(
             children: [
-              const Row(
-                children: [
+              Row(
+                children: const [
                   CustomBackButton(),
                 ],
               ),
+              SizedBox(height: 20.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -47,8 +49,8 @@ class _AgePageState extends State<AgePage> {
                         height: 32.h,
                       ),
                       SizedBox(
-                        height: 60.h,
-                        width: 60.w,
+                        height: 60,
+                        width: 60,
                         child: Image.asset(
                           'assets/images/calendar_reg.png',
                           fit: BoxFit.fill,
@@ -85,42 +87,6 @@ class _AgePageState extends State<AgePage> {
                   ),
                   shape: BoxShape.circle,
                 ),
-              ),
-
-              Row(
-                children: [
-                  SizedBox(
-                    height: 18.38.h,
-                    width: 69.69.w,
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-
-                        PageIndicatorContainer(),
-                        PageIndicatorContainer(rotate: 0.76),
-                        PageIndicatorContainer(),
-                        PageIndicatorContainer(),
-                      ],
-                    ),
-                  ),
-                  const Expanded(child: SizedBox()),
-                  SizedBox(
-                    height: 60.h,
-                    width: 60.h,
-                    child: FloatingActionButton(
-                        highlightElevation: 0,
-                        elevation: 0,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const AddressPage(),
-                            ),
-                          );
-                        },
-                        child: const Icon(Icons.arrow_forward)),
-                  ),
-                ],
               ),
             ],
           ),

@@ -12,7 +12,7 @@ import '../constants/app_colors.dart';
 import 'gender_and_name_page_dart.dart';
 
 class SignInWrapper extends StatelessWidget {
-  const SignInWrapper({super.key});
+  SignInWrapper({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +22,13 @@ class SignInWrapper extends StatelessWidget {
           create: (context) => UpdateDialCubit(),
         ),
       ],
-      child: const SignInPage(),
+      child: SignInPage(),
     );
   }
 }
 
 class SignInPage extends StatefulWidget {
-  const SignInPage({super.key});
+  SignInPage({super.key});
 
   @override
   State<SignInPage> createState() => _SignInPageState();
@@ -55,10 +55,10 @@ class _SignInPageState extends State<SignInPage> {
                 return Column(
                   children: [
                     SizedBox(height: 39.h),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        PrimaryTextStyle(
+                        const PrimaryTextStyle(
                           text: 'Welcome',
                           size: 40,
                           weight: FontWeight.w800,
@@ -68,9 +68,9 @@ class _SignInPageState extends State<SignInPage> {
                     SizedBox(height: 83.h),
                     Column(
                       children: [
-                        const Row(
+                        Row(
                           children: [
-                            PrimaryTextStyle(
+                            const PrimaryTextStyle(
                               text: 'Phone Number',
                               size: 12,
                               weight: FontWeight.w700,
@@ -84,8 +84,7 @@ class _SignInPageState extends State<SignInPage> {
                           textInputType: TextInputType.number,
                           hintText: 'Enter your phone number',
                           prefixRow: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 7),
+                            padding: const EdgeInsets.symmetric(horizontal: 7),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -101,8 +100,8 @@ class _SignInPageState extends State<SignInPage> {
                                 ),
                                 InkWell(
                                   onTap: () async {
-                                    final code = await countryPicker
-                                        .showPicker(context: context);
+                                    final code = await countryPicker.showPicker(
+                                        context: context);
                                     if (code != null && context.mounted) {
                                       context
                                           .read<UpdateDialCubit>()
@@ -128,9 +127,9 @@ class _SignInPageState extends State<SignInPage> {
                     const SizedBox(height: 15),
                     Column(
                       children: [
-                        const Row(
+                        Row(
                           children: [
-                            PrimaryTextStyle(
+                            const PrimaryTextStyle(
                               text: 'Password',
                               size: 12,
                               weight: FontWeight.w700,
@@ -144,10 +143,10 @@ class _SignInPageState extends State<SignInPage> {
                           hintText: 'Enter your name',
                         ),
                         SizedBox(height: 7.h),
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            PrimaryTextStyle(
+                            const PrimaryTextStyle(
                               text: 'Forgot password ?',
                               size: 12,
                               color: Color(0xff187CD3),
@@ -161,12 +160,14 @@ class _SignInPageState extends State<SignInPage> {
                       width: double.infinity,
                       height: 50,
                       child: ElevatedButton(
-                        onPressed: () {Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const GenderAndNamePage(),
-                          ),
-                        );},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => GenderAndNamePage(),
+                            ),
+                          );
+                        },
                         style: const ButtonStyle(),
                         child: Text(
                           'Login',
@@ -191,7 +192,7 @@ class _SignInPageState extends State<SignInPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (_) => const SignUpWrapper(),
+                                builder: (_) => SignUpWrapper(),
                               ),
                             );
                           },

@@ -16,6 +16,7 @@ class PrimaryTextStyle extends StatelessWidget {
       style: GoogleFonts.lato(
         fontSize: size ?? 16,
         fontWeight: weight ?? FontWeight.normal,
+        letterSpacing: 0.001,
         color: color ?? const Color(0xff00416A),
       ),
     );

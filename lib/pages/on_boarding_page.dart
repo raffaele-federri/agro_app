@@ -1,4 +1,3 @@
-
 import 'package:agro_app/widgets/custom_text.dart';
 import 'package:agro_app/widgets/page_indicator_container.dart';
 
@@ -11,7 +10,7 @@ import '../constants/app_colors.dart';
 import 'login_page.dart';
 
 class OnBoardingPage extends StatelessWidget {
-  const OnBoardingPage({super.key});
+  OnBoardingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -59,13 +58,13 @@ class OnBoardingPage extends StatelessWidget {
               SizedBox(
                 height: 18.38.h,
                 width: 69.69.w,
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    PageIndicatorContainer(rotate: 0.76),
-                    PageIndicatorContainer(),
-                    PageIndicatorContainer(),
-                    PageIndicatorContainer(),
+                    const PageIndicatorContainer(rotate: 0.76),
+                    const PageIndicatorContainer(),
+                    const PageIndicatorContainer(),
+                    const PageIndicatorContainer(),
                   ],
                 ),
               ),
@@ -74,8 +73,7 @@ class OnBoardingPage extends StatelessWidget {
                 height: 76.h,
                 width: 76,
                 decoration: BoxDecoration(
-                  border: Border.all(
-                      color: const Color(0xffCCE5FF), width: 2),
+                  border: Border.all(color: const Color(0xffCCE5FF), width: 2),
                   borderRadius: BorderRadius.circular(38),
                   // color: Colors.amber,
                 ),
@@ -87,7 +85,7 @@ class OnBoardingPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => const SignInWrapper(),
+                        builder: (_) => SignInWrapper(),
                       ),
                     );
                   },

@@ -1,4 +1,3 @@
-import 'package:agro_app/constants/app_colors.dart';
 import 'package:agro_app/pages/gender_and_name_page_dart.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
@@ -7,12 +6,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../bloc/cubit/update_dial.dart';
+
+import '../constants/app_colors.dart';
 import '../constants/default_text_style.dart';
 import '../widgets/back_button_on_boarding.dart';
 import '../widgets/text_form_field.dart';
 
 class SignUpWrapper extends StatelessWidget {
-  const SignUpWrapper({super.key});
+  SignUpWrapper({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +23,13 @@ class SignUpWrapper extends StatelessWidget {
           create: (context) => UpdateDialCubit(),
         ),
       ],
-      child: const SignUpPage(),
+      child: SignUpPage(),
     );
   }
 }
 
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+  SignUpPage({super.key});
 
   final countryPicker = const FlCountryCodePicker();
 
@@ -36,7 +37,6 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawerEnableOpenDragGesture: false,
-
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
@@ -46,26 +46,24 @@ class SignUpPage extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
+                      children: const [
                         CustomBackButton(),
                       ],
                     ),
                     SizedBox(
-                      height: 60.h,
-                      width: 60.w,
+                      height: 60,
+                      width: 60,
                       child: Image.asset(
                         'assets/images/user_reg.png',
                         fit: BoxFit.fill,
                       ),
                     ),
                     SizedBox(height: 39.h),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-
-
+                      children: const [
                         PrimaryTextStyle(
                           text: 'Registration',
                           size: 30,
@@ -73,11 +71,11 @@ class SignUpPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 83.h),
+                    SizedBox(height: 34.h),
                     Column(
                       children: [
-                        const Row(
-                          children: [
+                        Row(
+                          children: const [
                             PrimaryTextStyle(
                               text: 'Phone Number',
                               size: 12,
@@ -135,8 +133,8 @@ class SignUpPage extends StatelessWidget {
                     const SizedBox(height: 15),
                     Column(
                       children: [
-                        const Row(
-                          children: [
+                        Row(
+                          children: const [
                             PrimaryTextStyle(
                               text: 'Password',
                               size: 12,
@@ -152,23 +150,13 @@ class SignUpPage extends StatelessWidget {
                           isCodeField: true,
                           //   suffixRow: [Icon(Icons.visibility),]
                         ),
-                        SizedBox(height: 7.h),
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            PrimaryTextStyle(
-                              text: 'Forgot password ?',
-                              size: 12,
-                              color: Color(0xff187CD3),
-                            ),
-                          ],
-                        )
                       ],
                     ),
+                    const SizedBox(height: 15),
                     Column(
                       children: [
-                        const Row(
-                          children: [
+                        Row(
+                          children: const [
                             PrimaryTextStyle(
                               text: 'Confirm password',
                               size: 12,
@@ -185,7 +173,7 @@ class SignUpPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 125.h),
+                    SizedBox(height: 50.h),
                     SizedBox(
                       width: double.infinity,
                       height: 50,
@@ -194,7 +182,7 @@ class SignUpPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => const GenderAndNamePage(),
+                              builder: (_) => GenderAndNamePage(),
                             ),
                           );
                         },

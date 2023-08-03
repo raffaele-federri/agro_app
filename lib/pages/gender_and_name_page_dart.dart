@@ -1,4 +1,4 @@
-
+import 'package:agro_app/widgets/bottom_nav_bar_auth.dart';
 import 'package:agro_app/widgets/gender_picker.dart';
 
 import 'package:flutter/material.dart';
@@ -17,16 +17,18 @@ class GenderAndNamePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawerEnableOpenDragGesture: false,
+      bottomNavigationBar: const BottomNavBarAuth(index: 1),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
           child: Column(
             children: [
-              const Row(
-                children: [
+              Row(
+                children: const [
                   CustomBackButton(),
                 ],
               ),
+              SizedBox(height: 20.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -41,8 +43,8 @@ class GenderAndNamePage extends StatelessWidget {
                         height: 32.h,
                       ),
                       SizedBox(
-                        height: 60.h,
-                        width: 60.w,
+                        height: 60,
+                        width: 60,
                         child: Image.asset(
                           'assets/images/user_reg.png',
                           fit: BoxFit.fill,
@@ -53,8 +55,8 @@ class GenderAndNamePage extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 47.h),
-              const Row(
-                children: [
+              Row(
+                children: const [
                   PrimaryTextStyle(
                     text: 'Full name',
                     size: 12,
@@ -69,41 +71,6 @@ class GenderAndNamePage extends StatelessWidget {
               ),
               SizedBox(height: 32.h),
               const GenderPicker(),
-
-              Row(
-                children: [
-                  SizedBox(
-                    height: 18.38.h,
-                    width: 69.69.w,
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        PageIndicatorContainer(rotate: 0.76),
-                        PageIndicatorContainer(),
-                        PageIndicatorContainer(),
-                        PageIndicatorContainer(),
-                      ],
-                    ),
-                  ),
-                  const Expanded(child: SizedBox()),
-                  SizedBox(
-                    height: 60.h,
-                    width: 60.h,
-                    child: FloatingActionButton(
-                        highlightElevation: 0,
-                        elevation: 0,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const AgePage(),
-                            ),
-                          );
-                        },
-                        child: const Icon(Icons.arrow_forward)),
-                  ),
-                ],
-              ),
             ],
           ),
         ),

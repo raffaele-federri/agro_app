@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Test extends StatefulWidget {
-  const Test({super.key});
+  Test({super.key});
 
   @override
   State<Test> createState() => _TestState();
@@ -13,9 +13,9 @@ class _TestState extends State<Test> {
     return Scaffold(
       body: Column(
         children: [
-          const SizedBox(height: 300),
+          SizedBox(height: 300),
           TextFormField(
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               prefix: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -33,7 +33,7 @@ class _TestState extends State<Test> {
 // import 'package:flutter/material.dart';
 //
 // class MyHomePage extends StatefulWidget {
-//   const MyHomePage({super.key});
+//      MyHomePage({super.key});
 //
 //   @override
 //   _MyHomePageState createState() => _MyHomePageState();
@@ -89,7 +89,7 @@ class _TestState extends State<Test> {
 // import 'package:flutter/material.dart';
 //
 // class MyHomePage extends StatefulWidget {
-//   const MyHomePage({super.key});
+//      MyHomePage({super.key});
 //
 //   @override
 //   _MyHomePageState createState() => _MyHomePageState();
@@ -123,7 +123,7 @@ class _TestState extends State<Test> {
 //         title: Text("Change color on focus"),
 //       ),
 //       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
+//         padding:    EdgeInsets.all(16.0),
 //         child: Column(
 //           children: [
 //             TextFormField(focusNode: myFocusNode,),
