@@ -3,6 +3,7 @@ import 'package:agro_app/pages/age_page.dart';
 import 'package:agro_app/pages/gender_and_name_page_dart.dart';
 import 'package:agro_app/pages/login_page.dart';
 import 'package:agro_app/pages/on_boarding_page.dart';
+import 'package:agro_app/pages/working_status_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: AddressPage(),
+          home:  OnBoardingPage(),
         );
       },
     );

@@ -13,6 +13,7 @@ class PrimaryTextStyle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+      maxLines: 2,
       style: GoogleFonts.lato(
         fontSize: size ?? 16,
         fontWeight: weight ?? FontWeight.normal,

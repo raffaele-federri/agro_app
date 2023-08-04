@@ -1,5 +1,6 @@
 import 'package:agro_app/pages/address_page.dart';
 import 'package:agro_app/pages/gender_and_name_page_dart.dart';
+import 'package:agro_app/pages/working_status_page.dart';
 import 'package:agro_app/widgets/page_indicator_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -18,9 +19,10 @@ class BottomNavBarAuth extends StatelessWidget {
       padding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
       child: Row(
         children: [
-          SizedBox(
+          AnimatedContainer(
             height: 18.38.h,
             width: 69.69.w,
+            duration:Duration(milliseconds:100 ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -53,7 +55,14 @@ class BottomNavBarAuth extends StatelessWidget {
                         builder: (context) => AddressPage(),
                       ),
                     );
-                  } else if (index == 3) {}
+                  } else if (index == 3) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => WorkingStatusPage(),
+                      ),
+                    );
+                  }
                 },
                 child: const Icon(Icons.arrow_forward)),
           ),
