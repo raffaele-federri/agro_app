@@ -1,17 +1,27 @@
 import 'package:agro_app/pages/address_page.dart';
 import 'package:agro_app/pages/gender_and_name_page_dart.dart';
 import 'package:agro_app/pages/working_status_page.dart';
+import 'package:agro_app/routes/app_router.gr.dart';
 import 'package:agro_app/widgets/page_indicator_container.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../bloc/cubit/sign_up/sign_up_cubit.dart';
 import '../pages/age_page.dart';
 
 class BottomNavBarAuth extends StatelessWidget {
   final int index;
-  const BottomNavBarAuth({super.key, required this.index});
+  final void Function()? onPressed;
+
+  const BottomNavBarAuth({
+    super.key,
+    required this.index,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +32,7 @@ class BottomNavBarAuth extends StatelessWidget {
           AnimatedContainer(
             height: 18.38.h,
             width: 69.69.w,
-            duration:Duration(milliseconds:100 ),
+            duration: const Duration(milliseconds: 100),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -40,30 +50,18 @@ class BottomNavBarAuth extends StatelessWidget {
             child: FloatingActionButton(
                 highlightElevation: 0,
                 elevation: 0,
-                onPressed: () {
-                  if (index == 1) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AgePage(),
-                      ),
-                    );
-                  } else if (index == 2) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AddressPage(),
-                      ),
-                    );
-                  } else if (index == 3) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => WorkingStatusPage(),
-                      ),
-                    );
-                  }
-                },
+                onPressed: onPressed,
+                // onPressed: () {
+                //   if (index == 1) {
+                //     context.router.push(AgeRoute());
+                //   } else if (index == 2) {
+                //     context.router.push(const AddressRoute());
+                //   } else if (index == 3) {
+                //     context.router.push(WorkingStatusRoute());
+                //   } else if (index == 4) {
+                //     context.router.push(const MainRoute());
+                //   }
+                // },
                 child: const Icon(Icons.arrow_forward)),
           ),
         ],

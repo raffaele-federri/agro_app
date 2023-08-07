@@ -1,14 +1,18 @@
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../constants/default_text_style.dart';
 
+import '../routes/app_router.gr.dart';
 import '../widgets/dropdown_form_field.dart';
 import '../widgets/back_button_on_boarding.dart';
 import '../widgets/bottom_nav_bar_auth.dart';
 
 import '../widgets/text_form_field.dart';
 
+@RoutePage()
 class AddressPage extends StatefulWidget {
   const AddressPage({super.key});
 
@@ -44,28 +48,33 @@ class _AddressPageState extends State<AddressPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawerEnableOpenDragGesture: false,
-      bottomNavigationBar: const BottomNavBarAuth(index: 3),
+      appBar: AppBar(
+        elevation: 0 ,
+        scrolledUnderElevation: 0,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.transparent,
+        title: const Row(
+          children: [
+            CustomBackButton(),
+          ],
+        ),
+      ),
+      bottomNavigationBar:  BottomNavBarAuth(index: 3, onPressed: () { context.router.push(WorkingStatusRoute()); },),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const Row(
-                  children: [
-                    CustomBackButton(),
-                  ],
-                ),
-                SizedBox(height: 20.h),
                 Column(
                   children: [
                     const PrimaryTextStyle(
-                      text: '    What\'s your \n working status ?' ,
+                      text: 'Where are you \n          from?' ,
                       size: 40,
                       weight: FontWeight.w800,
                     ),
                     SizedBox(
-                      height: 34.h,
+                      height: 30.h,
                     ),
                     SizedBox(
                       height: 60,
@@ -77,7 +86,7 @@ class _AddressPageState extends State<AddressPage> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 33),
+                const SizedBox(height: 25),
                 const Row(
                   children: [
                     PrimaryTextStyle(

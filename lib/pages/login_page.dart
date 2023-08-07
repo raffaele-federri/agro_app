@@ -1,7 +1,9 @@
 import 'package:agro_app/bloc/cubit/update_dial.dart';
 import 'package:agro_app/constants/default_text_style.dart';
-import 'package:agro_app/pages/sign_up_page.dart';
+import 'package:agro_app/routes/app_router.gr.dart';
 import 'package:agro_app/widgets/text_form_field.dart';
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +13,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../constants/app_colors.dart';
 import 'gender_and_name_page_dart.dart';
 
+@RoutePage()
 class SignInWrapper extends StatelessWidget {
   SignInWrapper({super.key});
 
@@ -161,12 +164,7 @@ class _SignInPageState extends State<SignInPage> {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => GenderAndNamePage(),
-                            ),
-                          );
+                         context.router.push(const MainRoute());
                         },
                         style: const ButtonStyle(),
                         child: Text(
@@ -189,12 +187,7 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => SignUpWrapper(),
-                              ),
-                            );
+                     context.router.push(SignUpWrapper());
                           },
                           child: const PrimaryTextStyle(
                             text: 'Sign up',

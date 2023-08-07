@@ -1,4 +1,6 @@
-import 'package:agro_app/pages/gender_and_name_page_dart.dart';
+import 'package:agro_app/bloc/cubit/sign_up/sign_up_cubit.dart';
+import 'package:agro_app/routes/app_router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,12 +10,15 @@ import 'package:google_fonts/google_fonts.dart';
 import '../bloc/cubit/update_dial.dart';
 
 import '../constants/app_colors.dart';
+import '../core/extensions.dart';
 import '../constants/default_text_style.dart';
+import '../widgets/app_bar_back.dart';
 import '../widgets/back_button_on_boarding.dart';
 import '../widgets/text_form_field.dart';
 
+@RoutePage()
 class SignUpWrapper extends StatelessWidget {
-  SignUpWrapper({super.key});
+  const SignUpWrapper({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +26,9 @@ class SignUpWrapper extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => UpdateDialCubit(),
+        ),
+        BlocProvider(
+          create: (context) => SignUpCubit(),
         ),
       ],
       child: SignUpPage(),
@@ -31,27 +39,36 @@ class SignUpWrapper extends StatelessWidget {
 class SignUpPage extends StatelessWidget {
   SignUpPage({super.key});
 
+  final controllerPassword = TextEditingController();
   final countryPicker = const FlCountryCodePicker();
+  final _numberKey = GlobalKey<FormState>();
+  final _passwordKey = GlobalKey<FormState>();
+  final _passwordCheckKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawerEnableOpenDragGesture: false,
+      appBar: AppBar(
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.transparent,
+        title: const Row(
+          children: [
+            CustomBackButton(),
+          ],
+        ),
+      ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: BlocBuilder<UpdateDialCubit, CountryCode>(
             builder: (context, state) {
               return SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        CustomBackButton(),
-                      ],
-                    ),
                     SizedBox(
                       height: 60,
                       width: 60,
@@ -61,9 +78,9 @@ class SignUpPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 39.h),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         PrimaryTextStyle(
                           text: 'Registration',
                           size: 30,
@@ -74,8 +91,8 @@ class SignUpPage extends StatelessWidget {
                     SizedBox(height: 34.h),
                     Column(
                       children: [
-                        Row(
-                          children: const [
+                        const Row(
+                          children: [
                             PrimaryTextStyle(
                               text: 'Phone Number',
                               size: 12,
@@ -85,47 +102,62 @@ class SignUpPage extends StatelessWidget {
                           ],
                         ),
                         SizedBox(height: 8.h),
-                        TextFormFieldCT(
-                          state: state,
-                          textInputType: TextInputType.number,
-                          hintText: 'Enter your phone number',
-                          prefixRow: Padding(
-                            padding: const EdgeInsets.only(left: 7),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Container(
-                                  height: 26,
-                                  width: 27,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
-                                    // color: Colors.red,
-                                    borderRadius: BorderRadius.circular(6),
+                        Form(
+                          key: _numberKey,
+                          child: TextFormFieldCT(
+                            validator: (val) {
+                              if (!val!.isValidPhone) {
+                                return 'Enter valid number';
+                              }
+                            },
+                            state: state,
+                            textInputType: TextInputType.number,
+                            hintText: 'Enter your phone number',
+                            prefixRow: Padding(
+                              padding: const EdgeInsets.only(left: 7),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Container(
+                                    height: 26,
+                                    width: 27,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                      // color: Colors.red,
+                                      borderRadius: BorderRadius.circular(6),
+                                    ),
+                                    child: state.flagImage(fit: BoxFit.cover),
                                   ),
-                                  child: state.flagImage(fit: BoxFit.cover),
-                                ),
-                                InkWell(
-                                  onTap: () async {
-                                    final code = await countryPicker.showPicker(
-                                        context: context);
-                                    if (code != null && context.mounted) {
-                                      context
-                                          .read<UpdateDialCubit>()
-                                          .updateCountryCode(code);
-                                    }
-                                  },
-                                  child: Icon(
-                                    Icons.arrow_drop_down,
-                                    color: Colors.grey.shade400,
+                                  InkWell(
+                                    onTap: () async {
+                                      final code = await countryPicker
+                                          .showPicker(context: context);
+                                      if (code != null && context.mounted) {
+                                        context
+                                            .read<UpdateDialCubit>()
+                                            .updateCountryCode(code);
+                                      }
+                                    },
+                                    child: Icon(
+                                      Icons.arrow_drop_down,
+                                      color: Colors.grey.shade400,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  state.dialCode,
-                                  style: const TextStyle(
-                                      fontSize: 16, color: Colors.black),
-                                ),
-                              ],
+                                  Text(
+                                    state.dialCode,
+                                    style: const TextStyle(
+                                        fontSize: 16, color: Colors.black),
+                                  ),
+                                ],
+                              ),
                             ),
+                            onChanged: (text) {
+                              if (_numberKey.currentState!.validate()) {
+                                context.read<SignUpCubit>().setPhone(text);
+                              } else {
+                                context.read<SignUpCubit>().setPhone('');
+                              }
+                            },
                           ),
                         ),
                       ],
@@ -133,8 +165,8 @@ class SignUpPage extends StatelessWidget {
                     const SizedBox(height: 15),
                     Column(
                       children: [
-                        Row(
-                          children: const [
+                        const Row(
+                          children: [
                             PrimaryTextStyle(
                               text: 'Password',
                               size: 12,
@@ -144,19 +176,30 @@ class SignUpPage extends StatelessWidget {
                           ],
                         ),
                         SizedBox(height: 8.h),
-                        TextFormFieldCT(
-                          hintText: 'Enter your password',
-
-                          isCodeField: true,
-                          //   suffixRow: [Icon(Icons.visibility),]
+                        Form(
+                          key: _passwordKey,
+                          child: TextFormFieldCT(
+                            controller: controllerPassword,
+                            hintText: 'Enter your password',
+                            textInputType: TextInputType.text,
+                            validator: (value) {
+                              if (!value!.isValidPassword) {
+                                return 'At least 8 characters and one number or symbol';
+                              }
+                            },
+                            isCodeField: true,
+                            onChanged: (text) {
+                              _passwordKey.currentState!.validate();
+                            },
+                          ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 15),
                     Column(
                       children: [
-                        Row(
-                          children: const [
+                        const Row(
+                          children: [
                             PrimaryTextStyle(
                               text: 'Confirm password',
                               size: 12,
@@ -166,36 +209,55 @@ class SignUpPage extends StatelessWidget {
                           ],
                         ),
                         SizedBox(height: 8.h),
-                        TextFormFieldCT(
-                          hintText: 'Confirm your password',
-                          state: state,
-                          textInputType: TextInputType.number,
+                        Form(
+                          key: _passwordCheckKey,
+                          child: TextFormFieldCT(
+                            validator: (val) {
+                              if (val != controllerPassword.text) {
+                                return 'Password did not match';
+                              }
+                            },
+                            hintText: 'Confirm your password',
+                            textInputType: TextInputType.text,
+                            onChanged: (text) {
+                              if (_passwordCheckKey.currentState!.validate()) {
+                                context.read<SignUpCubit>().setPassword(text);
+                              } else {
+                                context.read<SignUpCubit>().setPassword('');
+                              }
+                            },
+                          ),
                         ),
                       ],
                     ),
                     SizedBox(height: 50.h),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 50,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => GenderAndNamePage(),
+                    BlocBuilder<SignUpCubit, SignUpState>(
+                      builder: (context, state) {
+                        return SizedBox(
+                          width: double.infinity,
+                          height: 50,
+                          child: ElevatedButton(
+                            onPressed: state.whenOrNull(
+                              settingUp: (data) => data.isFirstStepFilled
+                                  ? () {
+                                      context.router.push(GenderAndNameRoute(
+                                        cubit: context.read<SignUpCubit>(),
+                                      ));
+                                    }
+                                  : null,
                             ),
-                          );
-                        },
-                        style: const ButtonStyle(),
-                        child: Text(
-                          'Proceed',
-                          style: GoogleFonts.openSans(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white,
+                            style: const ButtonStyle(),
+                            child: Text(
+                              'Proceed',
+                              style: GoogleFonts.openSans(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
+                        );
+                      },
                     ),
                     SizedBox(height: 24.h),
                     Row(

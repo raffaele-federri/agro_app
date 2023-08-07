@@ -1,14 +1,18 @@
 import 'package:agro_app/constants/app_colors.dart';
 import 'package:agro_app/widgets/custom_text.dart';
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../constants/default_text_style.dart';
+import '../routes/app_router.gr.dart';
 import '../widgets/bottom_nav_bar_auth.dart';
 import '../widgets/dropdown_form_field.dart';
 import '../widgets/back_button_on_boarding.dart';
 import '../widgets/text_form_field.dart';
 
+@RoutePage()
 class WorkingStatusPage extends StatelessWidget {
   WorkingStatusPage({super.key});
 
@@ -20,19 +24,29 @@ class WorkingStatusPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const BottomNavBarAuth(index: 4),
+      appBar: AppBar(
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.transparent,
+        title: const Row(
+          children: [
+            CustomBackButton(),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomNavBarAuth(
+        index: 4,
+        onPressed: () {
+          context.router.push(const MainRoute());
+        },
+      ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const Row(
-                  children: [
-                    CustomBackButton(),
-                  ],
-                ),
-                SizedBox(height: 20.h),
                 Column(
                   children: [
                     const PrimaryTextStyle(
@@ -88,7 +102,7 @@ class WorkingStatusPage extends StatelessWidget {
                 const CustomText(
                   text:
                       "The list of professions associated with the agro-industrial sector allows us to offer specialized guidance and support based on the specific challenges and interests of different roles. It enables us to provide targeted information, such as agricultural best practices, legal regulations, market trends, or technological advancements that are most relevant to the user's field of work. \n \nBy collecting this information, we aim to enhance the user experience by offering customized recommendations, industry-specific updates, and networking opportunities that can foster collaboration and growth within the agricultural community. ",
-                color: AppColors.textGrey,
+                  color: AppColors.textGrey,
                   size: 12,
                 ),
               ],

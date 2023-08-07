@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../bloc/cubit/sign_up/sign_up_cubit.dart';
+
 class GenderPicker extends StatelessWidget {
   const GenderPicker({super.key});
 
@@ -14,6 +16,10 @@ class GenderPicker extends StatelessWidget {
       create: (context) => GenderChooser(),
       child: BlocBuilder<GenderChooser, int?>(
         builder: (context, state) {
+          if(state != null) {
+            context.read<SignUpCubit>().setGenderId(state!);
+            print("GENDER ID IS : $state");
+          }
           return Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

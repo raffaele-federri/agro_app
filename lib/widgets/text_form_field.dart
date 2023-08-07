@@ -11,6 +11,8 @@ class TextFormFieldCT extends StatelessWidget {
   final CountryCode? state;
   final Widget? prefixRow;
   final List<Widget>? suffixRow;
+  final void Function(String)? onChanged;
+  final String? Function(String?)? validator;
 
   TextFormFieldCT({
     super.key,
@@ -21,6 +23,8 @@ class TextFormFieldCT extends StatelessWidget {
     this.prefixRow,
     this.suffixRow,
     required this.hintText,
+    this.onChanged,
+    this.validator,
   });
 
   final maskFormatter = MaskTextInputFormatter(
@@ -30,10 +34,13 @@ class TextFormFieldCT extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_){
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       print('*** ${context.size}');
     });
     return TextFormField(
+      controller: controller,
+      validator: validator,
+      onChanged: onChanged,
       keyboardType: textInputType,
       inputFormatters:
           isCodeField == false && state != null && state!.code == 'UZ'
@@ -44,10 +51,10 @@ class TextFormFieldCT extends StatelessWidget {
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: TextStyle(fontSize: 12 , color: Colors.grey.shade400),
+        hintStyle: TextStyle(fontSize: 12, color: Colors.grey.shade400),
         contentPadding: const EdgeInsets.symmetric(vertical: 7, horizontal: 7),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
-        prefixIcon: prefixRow ,
+        prefixIcon: prefixRow,
         suffix: Row(
           mainAxisSize: MainAxisSize.min,
           children: suffixRow ?? [],
@@ -56,3 +63,4 @@ class TextFormFieldCT extends StatelessWidget {
     );
   }
 }
+

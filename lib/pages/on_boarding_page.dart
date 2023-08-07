@@ -1,5 +1,8 @@
+import 'package:agro_app/routes/app_router.gr.dart';
 import 'package:agro_app/widgets/custom_text.dart';
 import 'package:agro_app/widgets/page_indicator_container.dart';
+
+import 'package:auto_route/auto_route.dart';
 
 import 'package:flutter/material.dart';
 
@@ -7,10 +10,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../constants/app_colors.dart';
-import 'login_page.dart';
 
+@RoutePage()
 class OnBoardingPage extends StatelessWidget {
-  OnBoardingPage({super.key});
+  const OnBoardingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -82,12 +85,7 @@ class OnBoardingPage extends StatelessWidget {
                   highlightElevation: 0,
                   elevation: 0,
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => SignInWrapper(),
-                      ),
-                    );
+                    context.router.push(SignInWrapper());
                   },
                   child: Image.asset(
                     'assets/icons/play.png',
