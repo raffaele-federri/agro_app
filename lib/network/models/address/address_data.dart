@@ -1,22 +1,52 @@
 import 'package:agro_app/network/models/address/region.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-
-
-part 'address_data.freezed.dart';
 part 'address_data.g.dart';
 
-@freezed
-class AddressData with _$AddressData {
-  const factory AddressData({
-    @JsonKey(name: 'name_en') required String? nameEn,
-    @JsonKey(name: 'name_ru') required String? nameRu,
-    @JsonKey(name: 'name_uz') required String? nameUz,
-    required int? id,
-    required List<Region>? regions,
+@JsonSerializable()
+class AddressData {
+  @JsonKey(name: 'name_en')
+  final String? nameEn;
+  @JsonKey(name: 'name_ru')
+  final String? nameRu;
+  @JsonKey(name: 'name_uz')
+  final String? nameUz;
+  final int? id;
+  final List<Region>? regions;
 
-  }) = _AddressData;
+  bool get isValid =>
+      nameUz != null &&
+      nameEn != null &&
+      nameRu != null &&
+      id != null &&
+      regions != null;
 
-  factory AddressData.fromJson(Map<String, Object?> json) =>
+  AddressData get validRAddressData {
+    List<Region> validRegions = [];
+    for (var region in regions!) {
+      if (region.isValid) {
+        validRegions.add(region.validRegion);
+      }
+
+    }
+
+    return AddressData(
+      id: id,
+      nameEn: nameEn,
+      nameRu: nameRu,
+      nameUz: nameUz,
+      regions: validRegions,
+    );
+  }
+
+  AddressData({
+    required this.nameEn,
+    required this.nameRu,
+    required this.nameUz,
+    required this.id,
+    required this.regions,
+  });
+
+  factory AddressData.fromJson(Map<String, dynamic> json) =>
       _$AddressDataFromJson(json);
 }

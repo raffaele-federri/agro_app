@@ -15,13 +15,17 @@ class CustomText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: GoogleFonts.lato(
-        fontSize: size?.h ?? 16,
-        fontWeight: weight ?? FontWeight.w400,
-        color: color,
-      ),
+    return Column(
+      children: [
+        Text(
+          text,
+          style: GoogleFonts.lato(
+            fontSize: size?.h ?? 16,
+            fontWeight: weight ?? FontWeight.w400,
+            color: color,
+          ),
+        ),
+      ],
     );
   }
 }

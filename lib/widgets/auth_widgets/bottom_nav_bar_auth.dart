@@ -2,7 +2,7 @@ import 'package:agro_app/pages/address_page.dart';
 import 'package:agro_app/pages/gender_and_name_page_dart.dart';
 import 'package:agro_app/pages/working_status_page.dart';
 import 'package:agro_app/routes/app_router.gr.dart';
-import 'package:agro_app/widgets/page_indicator_container.dart';
+import 'package:agro_app/widgets/auth_widgets/page_indicator_container.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -10,8 +10,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../bloc/cubit/sign_up/sign_up_cubit.dart';
-import '../pages/age_page.dart';
+import '../../bloc/cubit/sign_up/sign_up_cubit.dart';
+import '../../pages/age_page.dart';
 
 class BottomNavBarAuth extends StatelessWidget {
   final int index;

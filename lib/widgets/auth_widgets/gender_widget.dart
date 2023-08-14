@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../constants/default_text_style.dart';
+import '../../constants/default_text_style.dart';
 
 class GenderWidget extends StatelessWidget {
   final String text;

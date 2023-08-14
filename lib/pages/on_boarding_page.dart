@@ -1,6 +1,5 @@
 import 'package:agro_app/routes/app_router.gr.dart';
 import 'package:agro_app/widgets/custom_text.dart';
-import 'package:agro_app/widgets/page_indicator_container.dart';
 
 import 'package:auto_route/auto_route.dart';
 
@@ -10,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../constants/app_colors.dart';
+import '../widgets/auth_widgets/page_indicator_container.dart';
 
 @RoutePage()
 class OnBoardingPage extends StatelessWidget {

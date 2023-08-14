@@ -1,7 +1,6 @@
 import 'package:agro_app/bloc/cubit/update_dial.dart';
 import 'package:agro_app/constants/default_text_style.dart';
 import 'package:agro_app/routes/app_router.gr.dart';
-import 'package:agro_app/widgets/text_form_field.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
@@ -11,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../constants/app_colors.dart';
+import '../widgets/auth_widgets/text_form_field.dart';
 import 'gender_and_name_page_dart.dart';
 
 @RoutePage()
@@ -187,7 +187,7 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                         TextButton(
                           onPressed: () {
-                     context.router.push(SignUpWrapper());
+                     context.router.push(const SignUpWrapper());
                           },
                           child: const PrimaryTextStyle(
                             text: 'Sign up',

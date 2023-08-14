@@ -13,9 +13,8 @@ import '../bloc/cubit/update_dial.dart';
 import '../constants/app_colors.dart';
 import '../core/extensions.dart';
 import '../constants/default_text_style.dart';
-import '../widgets/app_bar_back.dart';
-import '../widgets/back_button_on_boarding.dart';
-import '../widgets/text_form_field.dart';
+import '../widgets/auth_widgets/back_button_on_boarding.dart';
+import '../widgets/auth_widgets/text_form_field.dart';
 
 @RoutePage()
 class SignUpWrapper extends StatelessWidget {

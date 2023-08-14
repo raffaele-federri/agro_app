@@ -13,7 +13,7 @@ class _ApiClient implements ApiClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://dev24ws.tengebank.uz/';
+    baseUrl ??= 'https://agro-system.onrender.com/';
   }
 
   final Dio _dio;
@@ -21,7 +21,7 @@ class _ApiClient implements ApiClient {
   String? baseUrl;
 
   @override
-  Future<AddressResponse> getAddress(String username) async {
+  Future<AddressResponse> getAddress() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -34,7 +34,7 @@ class _ApiClient implements ApiClient {
     )
             .compose(
               _dio.options,
-              'ws-user/api/v2/users/settings/${username}',
+              'countries/list',
               queryParameters: queryParameters,
               data: _data,
             )

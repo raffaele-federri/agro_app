@@ -25,10 +25,14 @@ abstract class $AppRouter extends _i9.RootStackRouter {
 
   @override
   final Map<String, _i9.PageFactory> pagesMap = {
-    AddressRoute.name: (routeData) {
+    AddressWrapper.name: (routeData) {
+      final args = routeData.argsAs<AddressWrapperArgs>();
       return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.AddressPage(),
+        child: _i1.AddressWrapper(
+          key: args.key,
+          cubit: args.cubit,
+        ),
       );
     },
     AgeRoute.name: (routeData) {
@@ -89,17 +93,41 @@ abstract class $AppRouter extends _i9.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.AddressPage]
-class AddressRoute extends _i9.PageRouteInfo<void> {
-  const AddressRoute({List<_i9.PageRouteInfo>? children})
-      : super(
-          AddressRoute.name,
+/// [_i1.AddressWrapper]
+class AddressWrapper extends _i9.PageRouteInfo<AddressWrapperArgs> {
+  AddressWrapper({
+    _i10.Key? key,
+    required _i11.SignUpCubit cubit,
+    List<_i9.PageRouteInfo>? children,
+  }) : super(
+          AddressWrapper.name,
+          args: AddressWrapperArgs(
+            key: key,
+            cubit: cubit,
+          ),
           initialChildren: children,
         );
 
-  static const String name = 'AddressRoute';
+  static const String name = 'AddressWrapper';
 
-  static const _i9.PageInfo<void> page = _i9.PageInfo<void>(name);
+  static const _i9.PageInfo<AddressWrapperArgs> page =
+      _i9.PageInfo<AddressWrapperArgs>(name);
+}
+
+class AddressWrapperArgs {
+  const AddressWrapperArgs({
+    this.key,
+    required this.cubit,
+  });
+
+  final _i10.Key? key;
+
+  final _i11.SignUpCubit cubit;
+
+  @override
+  String toString() {
+    return 'AddressWrapperArgs{key: $key, cubit: $cubit}';
+  }
 }
 
 /// generated route for

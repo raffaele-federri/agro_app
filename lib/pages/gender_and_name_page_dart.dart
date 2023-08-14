@@ -1,5 +1,5 @@
-import 'package:agro_app/widgets/bottom_nav_bar_auth.dart';
-import 'package:agro_app/widgets/gender_picker.dart';
+import 'package:agro_app/widgets/auth_widgets/bottom_nav_bar_auth.dart';
+import 'package:agro_app/widgets/auth_widgets/gender_picker.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -9,10 +9,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../bloc/cubit/sign_up/sign_up_cubit.dart';
 import '../constants/default_text_style.dart';
 import '../routes/app_router.gr.dart';
-import '../widgets/back_button_on_boarding.dart';
+import '../widgets/auth_widgets/back_button_on_boarding.dart';
 
-import '../widgets/page_indicator_container.dart';
-import '../widgets/text_form_field.dart';
+import '../widgets/auth_widgets/text_form_field.dart';
 import 'age_page.dart';
 
 @RoutePage()

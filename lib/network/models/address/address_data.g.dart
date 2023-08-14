@@ -6,8 +6,7 @@ part of 'address_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_AddressData _$$_AddressDataFromJson(Map<String, dynamic> json) =>
-    _$_AddressData(
+AddressData _$AddressDataFromJson(Map<String, dynamic> json) => AddressData(
       nameEn: json['name_en'] as String?,
       nameRu: json['name_ru'] as String?,
       nameUz: json['name_uz'] as String?,
@@ -17,7 +16,7 @@ _$_AddressData _$$_AddressDataFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$_AddressDataToJson(_$_AddressData instance) =>
+Map<String, dynamic> _$AddressDataToJson(AddressData instance) =>
     <String, dynamic>{
       'name_en': instance.nameEn,
       'name_ru': instance.nameRu,

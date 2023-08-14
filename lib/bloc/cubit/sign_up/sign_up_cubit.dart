@@ -13,6 +13,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     password: null,
     genderId: null,
     age: null,
+    regionId: null,
     districtId: null,
     address: null,
     statusId: null,
@@ -47,6 +48,10 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   void setDistrictId(int districtId) {
     _data = _data.copyWith(districtId: districtId);
+    _emitter();
+  }
+  void setRegionId(int regionId) {
+    _data = _data.copyWith(districtId: regionId);
     _emitter();
   }
 

@@ -5,12 +5,12 @@ import '../models/address/address_response.dart';
 
 part 'api_client.g.dart';
 
-@RestApi(baseUrl: "https://dev24ws.tengebank.uz/")
+@RestApi(baseUrl: "https://agro-system.onrender.com/")
 abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
 
-  @GET("ws-user/api/v2/users/settings/{username}")
-  Future<AddressResponse> getAddress(@Path() String username);
+  @GET("countries/list")
+  Future<AddressResponse> getAddress();
 
 
 }

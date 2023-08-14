@@ -1,11 +1,11 @@
 import 'package:agro_app/bloc/cubit/gender_chooser.dart';
 import 'package:agro_app/constants/app_colors.dart';
-import 'package:agro_app/widgets/gender_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../bloc/cubit/sign_up/sign_up_cubit.dart';
+import '../../bloc/cubit/sign_up/sign_up_cubit.dart';
+import 'gender_widget.dart';
 
 class GenderPicker extends StatelessWidget {
   const GenderPicker({super.key});

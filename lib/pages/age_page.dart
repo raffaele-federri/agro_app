@@ -1,4 +1,3 @@
-import 'package:agro_app/pages/address_page.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -9,15 +8,15 @@ import 'package:google_fonts/google_fonts.dart';
 import '../bloc/cubit/sign_up/sign_up_cubit.dart';
 import '../constants/default_text_style.dart';
 import '../routes/app_router.gr.dart';
-import '../widgets/age_picker.dart';
-import '../widgets/back_button_on_boarding.dart';
-import '../widgets/bottom_nav_bar_auth.dart';
+import '../widgets/auth_widgets/age_picker.dart';
+import '../widgets/auth_widgets/back_button_on_boarding.dart';
+import '../widgets/auth_widgets/bottom_nav_bar_auth.dart';
 
 @RoutePage()
 class AgePage extends StatefulWidget {
   final SignUpCubit cubit;
 
-  AgePage({super.key, required this.cubit});
+  const AgePage({super.key, required this.cubit});
 
   @override
   State<AgePage> createState() => _AgePageState();
@@ -50,7 +49,11 @@ class _AgePageState extends State<AgePage> {
                 onPressed: state.whenOrNull(
                   settingUp: (data) => data.isThirdStepFilled
                       ? () {
-                          context.router.push(const AddressRoute());
+                          context.router.push(
+                            AddressWrapper(
+                              cubit: context.read<SignUpCubit>(),
+                            ),
+                          );
                         }
                       : null,
                 ),

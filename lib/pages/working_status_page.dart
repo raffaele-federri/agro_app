@@ -1,16 +1,14 @@
 import 'package:agro_app/constants/app_colors.dart';
 import 'package:agro_app/widgets/custom_text.dart';
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../constants/default_text_style.dart';
 import '../routes/app_router.gr.dart';
-import '../widgets/bottom_nav_bar_auth.dart';
-import '../widgets/dropdown_form_field.dart';
-import '../widgets/back_button_on_boarding.dart';
-import '../widgets/text_form_field.dart';
+import '../widgets/auth_widgets/bottom_nav_bar_auth.dart';
+import '../widgets/auth_widgets/back_button_on_boarding.dart';
+import '../widgets/auth_widgets/working_status_drop.dart';
 
 @RoutePage()
 class WorkingStatusPage extends StatelessWidget {
@@ -80,7 +78,9 @@ class WorkingStatusPage extends StatelessWidget {
                 ),
                 SizedBox(height: 8.h),
                 DropdownFormFieldCT(
-                    listItem: listStatus, hint: 'Select working status'),
+                  listItem: listStatus,
+                  hint: 'Select working status',
+                ),
                 SizedBox(height: 15.h),
                 Row(
                   children: [
