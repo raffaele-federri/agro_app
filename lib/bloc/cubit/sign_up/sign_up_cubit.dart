@@ -51,7 +51,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     _emitter();
   }
   void setRegionId(int regionId) {
-    _data = _data.copyWith(districtId: regionId);
+    _data = _data.copyWith(regionId: regionId);
     _emitter();
   }
 
@@ -59,6 +59,12 @@ class SignUpCubit extends Cubit<SignUpState> {
     _data = _data.copyWith(statusId: statusId);
     _emitter();
   }
+
+  // void setStatusId(int statusId) {
+  //   _data = _data.copyWith(statusId: statusId);
+  //   _emitter();
+  // }
+
 
   void _emitter() {
     if (_data.isAllSet) {

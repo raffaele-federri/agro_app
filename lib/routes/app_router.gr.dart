@@ -9,14 +9,14 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:agro_app/bloc/cubit/sign_up/sign_up_cubit.dart' as _i11;
-import 'package:agro_app/pages/address_page.dart' as _i1;
-import 'package:agro_app/pages/age_page.dart' as _i2;
-import 'package:agro_app/pages/gender_and_name_page_dart.dart' as _i3;
-import 'package:agro_app/pages/login_page.dart' as _i6;
+import 'package:agro_app/pages/auth_pages/address_page.dart' as _i1;
+import 'package:agro_app/pages/auth_pages/age_page.dart' as _i2;
+import 'package:agro_app/pages/auth_pages/gender_and_name_page_dart.dart' as _i3;
+import 'package:agro_app/pages/auth_pages/login_page.dart' as _i6;
 import 'package:agro_app/pages/main_screen.dart' as _i4;
-import 'package:agro_app/pages/on_boarding_page.dart' as _i5;
-import 'package:agro_app/pages/sign_up_page.dart' as _i7;
-import 'package:agro_app/pages/working_status_page.dart' as _i8;
+import 'package:agro_app/pages/auth_pages/on_boarding_page.dart' as _i5;
+import 'package:agro_app/pages/auth_pages/sign_up_page.dart' as _i7;
+import 'package:agro_app/pages/auth_pages/working_status_page.dart' as _i8;
 import 'package:auto_route/auto_route.dart' as _i9;
 import 'package:flutter/material.dart' as _i10;
 
@@ -25,11 +25,11 @@ abstract class $AppRouter extends _i9.RootStackRouter {
 
   @override
   final Map<String, _i9.PageFactory> pagesMap = {
-    AddressWrapper.name: (routeData) {
-      final args = routeData.argsAs<AddressWrapperArgs>();
+    AddressRouteWrapper.name: (routeData) {
+      final args = routeData.argsAs<AddressRouteWrapperArgs>();
       return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i1.AddressWrapper(
+        child: _i1.AddressPageWrapper(
           key: args.key,
           cubit: args.cubit,
         ),
@@ -81,41 +81,43 @@ abstract class $AppRouter extends _i9.RootStackRouter {
         child: const _i7.SignUpWrapper(),
       );
     },
-    WorkingStatusRoute.name: (routeData) {
-      final args = routeData.argsAs<WorkingStatusRouteArgs>(
-          orElse: () => const WorkingStatusRouteArgs());
+    WorkingStatusWrapper.name: (routeData) {
+      final args = routeData.argsAs<WorkingStatusWrapperArgs>();
       return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i8.WorkingStatusPage(key: args.key),
+        child: _i8.WorkingStatusWrapper(
+          key: args.key,
+          cubit: args.cubit,
+        ),
       );
     },
   };
 }
 
 /// generated route for
-/// [_i1.AddressWrapper]
-class AddressWrapper extends _i9.PageRouteInfo<AddressWrapperArgs> {
-  AddressWrapper({
+/// [_i1.AddressPageWrapper]
+class AddressRouteWrapper extends _i9.PageRouteInfo<AddressRouteWrapperArgs> {
+  AddressRouteWrapper({
     _i10.Key? key,
     required _i11.SignUpCubit cubit,
     List<_i9.PageRouteInfo>? children,
   }) : super(
-          AddressWrapper.name,
-          args: AddressWrapperArgs(
+          AddressRouteWrapper.name,
+          args: AddressRouteWrapperArgs(
             key: key,
             cubit: cubit,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'AddressWrapper';
+  static const String name = 'AddressRouteWrapper';
 
-  static const _i9.PageInfo<AddressWrapperArgs> page =
-      _i9.PageInfo<AddressWrapperArgs>(name);
+  static const _i9.PageInfo<AddressRouteWrapperArgs> page =
+      _i9.PageInfo<AddressRouteWrapperArgs>(name);
 }
 
-class AddressWrapperArgs {
-  const AddressWrapperArgs({
+class AddressRouteWrapperArgs {
+  const AddressRouteWrapperArgs({
     this.key,
     required this.cubit,
   });
@@ -126,7 +128,7 @@ class AddressWrapperArgs {
 
   @override
   String toString() {
-    return 'AddressWrapperArgs{key: $key, cubit: $cubit}';
+    return 'AddressRouteWrapperArgs{key: $key, cubit: $cubit}';
   }
 }
 
@@ -278,30 +280,39 @@ class SignUpWrapper extends _i9.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i8.WorkingStatusPage]
-class WorkingStatusRoute extends _i9.PageRouteInfo<WorkingStatusRouteArgs> {
-  WorkingStatusRoute({
+/// [_i8.WorkingStatusWrapper]
+class WorkingStatusWrapper extends _i9.PageRouteInfo<WorkingStatusWrapperArgs> {
+  WorkingStatusWrapper({
     _i10.Key? key,
+    required _i11.SignUpCubit cubit,
     List<_i9.PageRouteInfo>? children,
   }) : super(
-          WorkingStatusRoute.name,
-          args: WorkingStatusRouteArgs(key: key),
+          WorkingStatusWrapper.name,
+          args: WorkingStatusWrapperArgs(
+            key: key,
+            cubit: cubit,
+          ),
           initialChildren: children,
         );
 
-  static const String name = 'WorkingStatusRoute';
+  static const String name = 'WorkingStatusWrapper';
 
-  static const _i9.PageInfo<WorkingStatusRouteArgs> page =
-      _i9.PageInfo<WorkingStatusRouteArgs>(name);
+  static const _i9.PageInfo<WorkingStatusWrapperArgs> page =
+      _i9.PageInfo<WorkingStatusWrapperArgs>(name);
 }
 
-class WorkingStatusRouteArgs {
-  const WorkingStatusRouteArgs({this.key});
+class WorkingStatusWrapperArgs {
+  const WorkingStatusWrapperArgs({
+    this.key,
+    required this.cubit,
+  });
 
   final _i10.Key? key;
 
+  final _i11.SignUpCubit cubit;
+
   @override
   String toString() {
-    return 'WorkingStatusRouteArgs{key: $key}';
+    return 'WorkingStatusWrapperArgs{key: $key, cubit: $cubit}';
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:equatable/equatable.dart';
 
 class UserData extends Equatable {
@@ -13,7 +11,7 @@ class UserData extends Equatable {
   final int? districtId;
   final int? statusId;
 
-  const UserData( {
+  const UserData({
     required this.username,
     required this.phoneNumber,
     required this.password,
@@ -46,7 +44,6 @@ class UserData extends Equatable {
       regionId: regionId ?? this.regionId,
       address: address ?? this.address,
       statusId: statusId ?? this.statusId,
-
     );
   }
 
@@ -57,6 +54,7 @@ class UserData extends Equatable {
     final isFirstStepFilled = isPhoneNumberSet && isPasswordSet;
     return isFirstStepFilled;
   }
+
   bool get isSecondStepFilled {
     final isUsernameSet = username != null && username!.isNotEmpty;
     final isGenderIdSet = genderId != null;
@@ -64,7 +62,21 @@ class UserData extends Equatable {
     final isSecondStepFilled = isUsernameSet && isGenderIdSet;
     return isSecondStepFilled;
   }
+
   bool get isThirdStepFilled {
+    final isAgeSet = age != null;
+    return isAgeSet;
+  }
+
+  bool get isFourthStepFilled {
+    final isRegionIdSet = regionId != null;
+    final isDistrictIdSet = districtId != null;
+
+    final isFourthStepFilled = isRegionIdSet && isDistrictIdSet;
+    return isFourthStepFilled;
+  }
+
+  bool get isFifthStepFilled {
     final isAgeSet = age != null;
     return isAgeSet;
   }
@@ -78,6 +90,7 @@ class UserData extends Equatable {
     final isAgeSet = age != null;
     final isDistrictIdSet = districtId != null;
     final isStatusIdSet = statusId != null;
+    final isRegionIdSet = regionId != null;
 
     final isAllSet = isUsernameSet &&
         isPhoneNumberSet &&
@@ -86,7 +99,8 @@ class UserData extends Equatable {
         isGenderIdSet &&
         isAgeSet &&
         isDistrictIdSet &&
-        isStatusIdSet;
+        isStatusIdSet &&
+        isRegionIdSet;
     return isAllSet;
   }
 
@@ -95,10 +109,16 @@ class UserData extends Equatable {
         username,
         phoneNumber,
         password,
-        genderId,
-        age,
-        districtId,
         address,
+        age,
+        genderId,
+        regionId,
+        districtId,
         statusId,
       ];
+
+  @override
+  String toString() {
+    return 'username = $username | phoneNumber = $phoneNumber | password = $password | genderId = $genderId | age = $age | districtId = $districtId | regionId = $regionId | address = $address | statusId = $statusId';
+  }
 }

@@ -4,12 +4,14 @@ class AddressDropdownView extends StatelessWidget {
   final List<AddressInfo> data;
   final String hint;
   final ValueNotifier<int> selectedId;
+  final Function(int)? onChanged;
 
   const AddressDropdownView({
     super.key,
     required this.data,
     required this.hint,
     required this.selectedId,
+    this.onChanged,
   });
 
   @override
@@ -27,7 +29,9 @@ class AddressDropdownView extends StatelessWidget {
       value: selectedId.value,
       onChanged: (newId) {
         if (newId != null) {
+
           selectedId.value = newId;
+          onChanged?.call(newId);
         }
       },
       items: data.map((d) {

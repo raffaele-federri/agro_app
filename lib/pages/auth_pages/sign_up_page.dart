@@ -8,13 +8,13 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../bloc/cubit/update_dial.dart';
+import '../../bloc/cubit/simple_cubits/update_dial.dart';
 
-import '../constants/app_colors.dart';
-import '../core/extensions.dart';
-import '../constants/default_text_style.dart';
-import '../widgets/auth_widgets/back_button_on_boarding.dart';
-import '../widgets/auth_widgets/text_form_field.dart';
+import '../../constants/app_colors.dart';
+import '../../core/extensions.dart';
+import '../../constants/default_text_style.dart';
+import '../../widgets/auth_widgets/back_button_on_boarding.dart';
+import '../../widgets/auth_widgets/text_form_field.dart';
 
 @RoutePage()
 class SignUpWrapper extends StatelessWidget {

@@ -1,11 +1,4 @@
-import 'package:agro_app/pages/address_page.dart';
-import 'package:agro_app/pages/age_page.dart';
-import 'package:agro_app/pages/gender_and_name_page_dart.dart';
-import 'package:agro_app/pages/login_page.dart';
-import 'package:agro_app/pages/on_boarding_page.dart';
-import 'package:agro_app/pages/working_status_page.dart';
 import 'package:agro_app/routes/app_router.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -13,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart' as flc;
 
 import 'bloc/bloc_observer.dart';
-import 'bloc/cubit/update_dial.dart';
 
 void main() {
   Bloc.observer = MyObserver();

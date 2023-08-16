@@ -1,16 +1,15 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../bloc/cubit/sign_up/sign_up_cubit.dart';
-import '../constants/default_text_style.dart';
-import '../routes/app_router.gr.dart';
-import '../widgets/auth_widgets/age_picker.dart';
-import '../widgets/auth_widgets/back_button_on_boarding.dart';
-import '../widgets/auth_widgets/bottom_nav_bar_auth.dart';
+import '../../bloc/cubit/sign_up/sign_up_cubit.dart';
+import '../../constants/default_text_style.dart';
+import '../../routes/app_router.gr.dart';
+import '../../widgets/auth_widgets/age_picker.dart';
+import '../../widgets/auth_widgets/back_button_on_boarding.dart';
+import '../../widgets/auth_widgets/bottom_nav_bar_auth.dart';
 
 @RoutePage()
 class AgePage extends StatefulWidget {
@@ -49,10 +48,10 @@ class _AgePageState extends State<AgePage> {
                 onPressed: state.whenOrNull(
                   settingUp: (data) => data.isThirdStepFilled
                       ? () {
+                    final cubit = context.read<SignUpCubit>();
+                    debugPrint('context sing in cubit is $cubit');
                           context.router.push(
-                            AddressWrapper(
-                              cubit: context.read<SignUpCubit>(),
-                            ),
+                            AddressRouteWrapper(cubit: cubit),
                           );
                         }
                       : null,

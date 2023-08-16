@@ -1,4 +1,4 @@
-import 'package:agro_app/bloc/cubit/gender_chooser.dart';
+import 'package:agro_app/bloc/cubit/simple_cubits/gender_chooser.dart';
 import 'package:agro_app/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
