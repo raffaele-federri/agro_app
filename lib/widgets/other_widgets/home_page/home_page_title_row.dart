@@ -9,7 +9,8 @@ class TitleRow extends StatelessWidget {
  final String asset;
  final String title;
  final bool see;
-  const TitleRow({super.key, required this.asset, required this.title, required this.see});
+ final void Function()? onPressed;
+  const TitleRow({super.key, required this.asset, required this.title, required this.see, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class TitleRow extends StatelessWidget {
         ),
         const Expanded(child: SizedBox()),
         see ? TextButton(
-          onPressed: () {},
+          onPressed: onPressed,
           child: const CustomText(
             text: 'See all',
             size: 16,

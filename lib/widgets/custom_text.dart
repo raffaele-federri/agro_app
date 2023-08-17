@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,6 +9,7 @@ class CustomText extends StatelessWidget {
   final FontWeight? weight;
   final Color? color;
   final int? maxLines;
+
 
   const CustomText(
       {super.key, required this.text, this.size, this.weight, this.color, this.maxLines});
@@ -22,7 +22,7 @@ class CustomText extends StatelessWidget {
 
           text,
 
-          maxLines: maxLines,
+          maxLines: maxLines ?? 1000,
           overflow: TextOverflow.ellipsis,
           style: GoogleFonts.lato(
             fontSize: size?.h ?? 16,

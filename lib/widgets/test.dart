@@ -1,32 +1,99 @@
+// import 'package:flutter/material.dart';
+//
+// class Test extends StatefulWidget {
+//   Test({super.key});
+//
+//   @override
+//   State<Test> createState() => _TestState();
+// }
+//
+// class _TestState extends State<Test> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Column(
+//         children: [
+//           const SizedBox(height: 200),
+//           TextFormField(
+//             decoration: const InputDecoration(
+//               prefix: Row(
+//                 mainAxisSize: MainAxisSize.min,
+//                 children: [
+//                   Icon(Icons.confirmation_num_sharp),
+//                   Text('Some Text Here'),
+//                 ],
+//               ),
+//             ),
+//           ),
+//
+//         ],
+//       ),
+//     );
+//   }
+// }
+import 'dart:math';
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-
-class Test extends StatefulWidget {
-  Test({super.key});
+@RoutePage()
+class MyForm extends StatefulWidget {
+  const MyForm({super.key});
 
   @override
-  State<Test> createState() => _TestState();
+  _MyFormState createState() => _MyFormState();
 }
 
-class _TestState extends State<Test> {
+class _MyFormState extends State<MyForm> {
+  final TextEditingController _controller = TextEditingController();
+  final ValueNotifier<bool> _isVisible = ValueNotifier<bool>(false);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          const SizedBox(height: 200),
-          TextFormField(
-            decoration: const InputDecoration(
-              prefix: Row(
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: TextFormField(
+            controller: _controller,
+            obscureText: !_isVisible.value,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              prefixIcon: const Row(
                 mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.confirmation_num_sharp),
-                  Text('Some Text Here'),
+                  Icon(Icons.phone),
+                  SizedBox(width: 8.0),
+                  Text(
+                    '+998 ',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0,
+                    ),
+                  ),
                 ],
               ),
+              suffixIcon: ValueListenableBuilder<bool>(
+                valueListenable: _isVisible,
+                builder: (context, isVisible, child) {
+                  return IconButton(
+                    icon: isVisible ? const Icon(Icons.visibility) : Icon(Icons.visibility_off),
+                    onPressed: () {
+                      _isVisible.value = !_isVisible.value;
+                    },
+                  );
+                },
+              ),
+              hintText: 'Enter your phone number',
+            ),
+            keyboardType: TextInputType.phone,
+            style: TextStyle(
+              fontSize: 16.0,
+              height: 1.5,
             ),
           ),
-
-        ],
+        ),
       ),
     );
   }

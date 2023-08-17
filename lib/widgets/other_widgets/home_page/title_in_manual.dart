@@ -5,7 +5,8 @@ import '../../custom_text.dart';
 
 class TitleInManuals extends StatelessWidget {
   final String title;
-  const TitleInManuals({super.key, required this.title});
+  final int? size;
+  const TitleInManuals({super.key, required this.title, this.size});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class TitleInManuals extends StatelessWidget {
       ),
       child:  CustomText(
         text: title,
-        size: 8,
+        size: size ?? 8,
         weight: FontWeight.w700,
         color: AppColors.primaryBlue,
       ),

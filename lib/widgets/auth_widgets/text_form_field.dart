@@ -1,4 +1,3 @@
-import 'package:agro_app/constants/app_colors.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -10,7 +9,7 @@ class TextFormFieldCT extends StatelessWidget {
   final TextInputType? textInputType;
   final CountryCode? state;
   final Widget? prefixRow;
-  final List<Widget>? suffixRow;
+  final Widget? suffixRow;
   final void Function(String)? onChanged;
   final String? Function(String?)? validator;
 
@@ -47,20 +46,24 @@ class TextFormFieldCT extends StatelessWidget {
               ? [maskFormatter]
               : null,
       obscureText: isCodeField,
-      style: const TextStyle(fontSize: 16),
+      obscuringCharacter: '❤',
+      // obscuringCharacter: '⚫'️️️,
+
+      style:  const TextStyle(fontSize: 16 , height: 1.185),
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(fontSize: 12, color: Colors.grey.shade400),
-        contentPadding: const EdgeInsets.symmetric(vertical: 7, horizontal: 7),
+        contentPadding: const EdgeInsets.symmetric(vertical: -1, horizontal: 7),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
         prefixIcon: prefixRow,
-        suffix: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: suffixRow ?? [],
-        ),
+        suffixIcon: suffixRow,
+
+
       ),
     );
   }
 }
+
+
 

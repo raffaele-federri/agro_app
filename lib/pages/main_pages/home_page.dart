@@ -1,12 +1,14 @@
 import 'package:agro_app/constants/app_colors.dart';
 import 'package:agro_app/widgets/custom_text.dart';
+import 'package:agro_app/widgets/other_widgets/home_page/hotline_box.dart';
 import 'package:agro_app/widgets/other_widgets/home_page/manuals_box.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../core/custom_shape.dart';
+import '../../bloc/cubit/simple_cubits/bottom_nav_bar_cubit.dart';
 
 import '../../widgets/other_widgets/home_page/home_page_title_row.dart';
 import '../../widgets/other_widgets/general/text_form_field.dart';
@@ -20,6 +22,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.mainScreenBackgroundColor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Row(
@@ -32,7 +35,7 @@ class HomePage extends StatelessWidget {
             ),
             SizedBox(width: 8.r),
             const CustomText(
-              text: 'Akmal',
+              text: 'Raffaele',
               size: 30,
               weight: FontWeight.w500,
               color: AppColors.primaryBlue,
@@ -56,9 +59,12 @@ class HomePage extends StatelessWidget {
               SizedBox(
                 height: 32.r,
               ),
-              const TitleRow(
+              TitleRow(
                 asset: 'assets/icons/manuals.svg',
                 title: 'Manuals',
+                onPressed: () {
+                  context.read<BottomNavBarCubit>().changeTab(1);
+                },
                 see: true,
               ),
               SizedBox(height: 20.r),
@@ -85,13 +91,25 @@ class HomePage extends StatelessWidget {
               SizedBox(height: 20.r),
               const NoComplainsWidget(),
               SizedBox(height: 20.r),
-              const TitleRow(
+              TitleRow(
                 asset: 'assets/icons/hotline.svg',
                 title: 'Hotline contacts',
+                onPressed: () {
+                  context.read<BottomNavBarCubit>().changeTab(2);
+                },
                 see: true,
               ),
-
-              const SizedBox(height: 200),
+              SizedBox(height: 20.r),
+              const HotlineBox(
+                  title: 'Federation of professional associations',
+                  number: '+ 998 93 553 07 17',
+                  address: '77905 Block Highway, Hudsonland'),
+              SizedBox(height: 10.r),
+              const HotlineBox(
+                  title: 'Labor exchange',
+                  number: '+ 998 93 553 07 17',
+                  address: '77905 Block Highway, Hudsonland'),
+              const SizedBox(height: 120),
             ],
           ),
         ),

@@ -87,8 +87,7 @@ class MainScreen extends StatelessWidget {
                     children: [
                       Container(
                         padding: const EdgeInsets.only(top: 4),
-                        height: 76.h,
-
+                        height: 60.h,
                         child: FittedBox(
                           child: FloatingActionButton(
                             backgroundColor: AppColors.mainTextColor,

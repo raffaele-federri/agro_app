@@ -17,6 +17,7 @@ class OnBoardingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('❤ ⚫️'.length);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -61,13 +62,13 @@ class OnBoardingPage extends StatelessWidget {
               SizedBox(
                 height: 18.38.h,
                 width: 69.69.w,
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    const PageIndicatorContainer(rotate: 0.76),
-                    const PageIndicatorContainer(),
-                    const PageIndicatorContainer(),
-                    const PageIndicatorContainer(),
+                    PageIndicatorContainer(rotate: 0.76),
+                    PageIndicatorContainer(),
+                    PageIndicatorContainer(),
+                    PageIndicatorContainer(),
                   ],
                 ),
               ),
