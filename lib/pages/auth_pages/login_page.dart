@@ -11,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../bloc/cubit/simple_cubits/update_dial.dart';
 import '../../constants/app_colors.dart';
 import '../../widgets/auth_widgets/text_form_field.dart';
+import '../../widgets/other_widgets/general/text_field_title.dart';
 import 'gender_and_name_page_dart.dart';
 
 @RoutePage()
@@ -72,16 +73,7 @@ class _SignInPageState extends State<SignInPage> {
                     SizedBox(height: 83.h),
                     Column(
                       children: [
-                        const Row(
-                          children: [
-                            PrimaryTextStyle(
-                              text: 'Phone Number',
-                              size: 12,
-                              weight: FontWeight.w700,
-                              color: Color(0xff187CD3),
-                            )
-                          ],
-                        ),
+                         const TextFieldTitle(title: 'Phone number'),
                         SizedBox(height: 8.h),
 
 
@@ -135,16 +127,7 @@ class _SignInPageState extends State<SignInPage> {
                     const SizedBox(height: 15),
                     Column(
                       children: [
-                        const Row(
-                          children: [
-                            PrimaryTextStyle(
-                              text: 'Password',
-                              size: 12,
-                              weight: FontWeight.w700,
-                              color: Color(0xff187CD3),
-                            ),
-                          ],
-                        ),
+                        const TextFieldTitle(title: 'Password'),
                         SizedBox(height: 8.h),
                         ValueListenableBuilder(
                           valueListenable: codeVisible,

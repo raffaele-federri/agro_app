@@ -12,6 +12,7 @@ import '../../routes/app_router.gr.dart';
 import '../../widgets/auth_widgets/back_button_on_boarding.dart';
 
 import '../../widgets/auth_widgets/text_form_field.dart';
+import '../../widgets/other_widgets/general/text_field_title.dart';
 import 'age_page.dart';
 
 @RoutePage()
@@ -89,16 +90,7 @@ class GenderAndNamePage extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 47.h),
-                    const Row(
-                      children: [
-                        PrimaryTextStyle(
-                          text: 'Full name',
-                          size: 12,
-                          weight: FontWeight.w700,
-                          color: Color(0xff187CD3),
-                        ),
-                      ],
-                    ),
+                    const TextFieldTitle(title: 'Full name'),
                     SizedBox(height: 8.h),
                     Form(
                       key: _nameKey,

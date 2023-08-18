@@ -12,6 +12,7 @@ class TextFormFieldCT extends StatelessWidget {
   final Widget? suffixRow;
   final void Function(String)? onChanged;
   final String? Function(String?)? validator;
+  final int? maxLenght;
 
   TextFormFieldCT({
     super.key,
@@ -23,7 +24,7 @@ class TextFormFieldCT extends StatelessWidget {
     this.suffixRow,
     required this.hintText,
     this.onChanged,
-    this.validator,
+    this.validator, this.maxLenght,
   });
 
   final maskFormatter = MaskTextInputFormatter(
@@ -36,7 +37,9 @@ class TextFormFieldCT extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       print('*** ${context.size}');
     });
+
     return TextFormField(
+      maxLength: state?.code != 'UZ' ?  maxLenght : null,
       controller: controller,
       validator: validator,
       onChanged: onChanged,

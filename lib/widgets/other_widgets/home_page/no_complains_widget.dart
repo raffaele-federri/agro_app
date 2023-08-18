@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../constants/app_colors.dart';
 import '../../custom_text.dart';
+import '../general/300_hug_button.dart';
 
 class NoComplainsWidget extends StatelessWidget {
   const NoComplainsWidget({super.key});
@@ -30,27 +31,7 @@ class NoComplainsWidget extends StatelessWidget {
             weight: FontWeight.w700,
             color: AppColors.activeColor,
           ),
-          SizedBox(
-            height: 50.r,
-            width: double.infinity,
-            child: ElevatedButton(
-              style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(
-                      AppColors.mainTextColor)),
-              onPressed: () {},
-              child:  const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CustomText(
-                    text: 'New complain',
-                    size: 16,
-                    weight: FontWeight.w700,
-                    color: Colors.white,
-                  ),
-                ],
-              ),
-            ),
-          ),
+          const HugButton(title: 'New complain'),
         ],
       ),
     );

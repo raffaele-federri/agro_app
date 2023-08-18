@@ -1,5 +1,6 @@
 import 'package:agro_app/bloc/cubit/sign_up/sign_up_cubit.dart';
 import 'package:agro_app/routes/app_router.gr.dart';
+import 'package:agro_app/widgets/other_widgets/general/text_field_title.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
@@ -102,16 +103,7 @@ class SignUpPage extends StatelessWidget {
                         SizedBox(height: 34.h),
                         Column(
                           children: [
-                            const Row(
-                              children: [
-                                PrimaryTextStyle(
-                                  text: 'Phone Number',
-                                  size: 12,
-                                  weight: FontWeight.w700,
-                                  color: Color(0xff187CD3),
-                                )
-                              ],
-                            ),
+                            const TextFieldTitle(title:'Phone Number'),
                             SizedBox(height: 8.h),
                             Form(
                               key: _numberKey,
@@ -178,16 +170,7 @@ class SignUpPage extends StatelessWidget {
                         const SizedBox(height: 15),
                         Column(
                           children: [
-                            const Row(
-                              children: [
-                                PrimaryTextStyle(
-                                  text: 'Password',
-                                  size: 12,
-                                  weight: FontWeight.w700,
-                                  color: Color(0xff187CD3),
-                                ),
-                              ],
-                            ),
+                         const TextFieldTitle(title: 'Password'),
                             SizedBox(height: 8.h),
                             Form(
                               key: _passwordKey,
@@ -222,16 +205,7 @@ class SignUpPage extends StatelessWidget {
                         const SizedBox(height: 15),
                         Column(
                           children: [
-                            const Row(
-                              children: [
-                                PrimaryTextStyle(
-                                  text: 'Confirm password',
-                                  size: 12,
-                                  weight: FontWeight.w700,
-                                  color: Color(0xff187CD3),
-                                ),
-                              ],
-                            ),
+                            const TextFieldTitle(title: 'Confirm password'),
                             SizedBox(height: 8.h),
                             Form(
                               key: _passwordCheckKey,

@@ -16,11 +16,13 @@ import '../../widgets/auth_widgets/text_form_field.dart';
 import '../../widgets/auth_widgets/back_button_on_boarding.dart';
 import '../../widgets/auth_widgets/bottom_nav_bar_auth.dart';
 import '../../widgets/custom_text.dart';
+import '../../widgets/other_widgets/general/text_field_title.dart';
 
 @RoutePage()
 class AddressPageWrapper extends StatelessWidget {
   final SignUpCubit cubit;
-   const AddressPageWrapper({super.key, required this.cubit});
+
+  const AddressPageWrapper({super.key, required this.cubit});
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +31,7 @@ class AddressPageWrapper extends StatelessWidget {
         BlocProvider(
           create: (context) => AddressDataFetchCubit()..getData(),
         ),
-        BlocProvider.value(
-            value: cubit
-        ),
+        BlocProvider.value(value: cubit),
       ],
       child: AddressPage(),
     );
@@ -109,9 +109,10 @@ class AddressPage extends StatelessWidget {
                       settingUp: (data) => data.isThirdStepFilled
                           ? () {
                               context.router.push(
-                                WorkingStatusWrapper(cubit: context.read<SignUpCubit>()
-                                  // cubit: context.read<SignUpCubit>(),
-                                ),
+                                WorkingStatusWrapper(
+                                    cubit: context.read<SignUpCubit>()
+                                    // cubit: context.read<SignUpCubit>(),
+                                    ),
                               );
                             }
                           : null,
@@ -148,16 +149,7 @@ class AddressPage extends StatelessWidget {
                                 ],
                               ),
                               SizedBox(height: 15.h),
-                              const Row(
-                                children: [
-                                  PrimaryTextStyle(
-                                    text: 'Country',
-                                    size: 12,
-                                    weight: FontWeight.w700,
-                                    color: Color(0xff187CD3),
-                                  ),
-                                ],
-                              ),
+                              const TextFieldTitle(title: 'Country'),
                               SizedBox(height: 8.h),
                               ValueListenableBuilder(
                                   valueListenable: selectedCountryId,
@@ -179,15 +171,14 @@ class AddressPage extends StatelessWidget {
 
                                     return const SizedBox.shrink();
                                   }
-                                  final country = data
-                                      .find((element) => element.id == id);
+                                  final country =
+                                      data.find((element) => element.id == id);
 
                                   final regionsData = country!.regions;
                                   if (regionsData == null ||
                                       regionsData.isEmpty) {
                                     selectedRegionId.value = -1;
-                                    Future.delayed(
-                                        const Duration(seconds: 10));
+                                    Future.delayed(const Duration(seconds: 10));
                                     return const SizedBox.shrink();
                                   }
 
@@ -201,16 +192,7 @@ class AddressPage extends StatelessWidget {
 
                                   return Column(
                                     children: [
-                                      const Row(
-                                        children: [
-                                          PrimaryTextStyle(
-                                            text: 'Region',
-                                            size: 12,
-                                            weight: FontWeight.w700,
-                                            color: Color(0xff187CD3),
-                                          ),
-                                        ],
-                                      ),
+                                      const TextFieldTitle(title: 'Region'),
                                       SizedBox(height: 8.h),
                                       AddressDropdownView(
                                         data: regionsForUI,
@@ -263,16 +245,7 @@ class AddressPage extends StatelessWidget {
                                         return Column(
                                           children: [
                                             SizedBox(height: 15.h),
-                                            const Row(
-                                              children: [
-                                                PrimaryTextStyle(
-                                                  text: 'City',
-                                                  size: 12,
-                                                  weight: FontWeight.w700,
-                                                  color: Color(0xff187CD3),
-                                                ),
-                                              ],
-                                            ),
+                                            const TextFieldTitle(title: 'City'),
                                             SizedBox(height: 8.h),
                                             AddressDropdownView(
                                               data: citiesForUI,
@@ -299,13 +272,11 @@ class AddressPage extends StatelessWidget {
                                                 selectedDistrictId.value = -1;
                                                 Future.delayed(const Duration(
                                                     seconds: 10));
-                                                return const SizedBox
-                                                    .shrink();
+                                                return const SizedBox.shrink();
                                               }
                                               final country = data.find(
                                                   (element) =>
-                                                      element.id ==
-                                                      countryID);
+                                                      element.id == countryID);
                                               final region = country!.regions!
                                                   .find((element) =>
                                                       element.id == regionId);
@@ -320,39 +291,25 @@ class AddressPage extends StatelessWidget {
                                                 selectedDistrictId.value = -1;
                                                 Future.delayed(const Duration(
                                                     seconds: 10));
-                                                return const SizedBox
-                                                    .shrink();
+                                                return const SizedBox.shrink();
                                               }
 
-                                              final districtForUI =
-                                                  districtData
-                                                      .map((e) => AddressInfo(
-                                                          id: e.id!,
-                                                          name: e.nameUz!))
-                                                      .toList();
+                                              final districtForUI = districtData
+                                                  .map((e) => AddressInfo(
+                                                      id: e.id!,
+                                                      name: e.nameUz!))
+                                                  .toList();
                                               selectedDistrictId.value =
                                                   districtForUI.first.id;
 
                                               context
                                                   .read<SignUpCubit>()
                                                   .setDistrictId(
-                                                      selectedDistrictId
-                                                          .value);
+                                                      selectedDistrictId.value);
                                               return Column(
                                                 children: [
                                                   SizedBox(height: 15.h),
-                                                  const Row(
-                                                    children: [
-                                                      PrimaryTextStyle(
-                                                        text: 'District',
-                                                        size: 12,
-                                                        weight:
-                                                            FontWeight.w700,
-                                                        color:
-                                                            Color(0xff187CD3),
-                                                      ),
-                                                    ],
-                                                  ),
+                                                  const TextFieldTitle(title: 'District'),
                                                   SizedBox(height: 8.h),
                                                   AddressDropdownView(
                                                     data: districtForUI,
@@ -373,16 +330,7 @@ class AddressPage extends StatelessWidget {
                                         });
                                   }),
                               SizedBox(height: 15.h),
-                              const Row(
-                                children: [
-                                  PrimaryTextStyle(
-                                    text: 'Address',
-                                    size: 12,
-                                    weight: FontWeight.w700,
-                                    color: Color(0xff187CD3),
-                                  ),
-                                ],
-                              ),
+                              const TextFieldTitle(title: 'Address'),
                               SizedBox(height: 8.h),
                               TextFormFieldCT(
                                 hintText: 'Type your address',
