@@ -5,6 +5,7 @@ class AppColors {
 
   // static const Color lightGrey = Color(0xffa4a6b3);
   static const Color lightGrey = Color(0xffEBEFF2);
+  static const Color bottomNavBarUnselectedColor = Color(0xffB8B8B8);
   static const Color primaryError = Color(0xffED665E);
   static const Color primaryBlue = Color(0xff005AA9);
   static const Color secondaryBlue = Color(0xff187CD3);

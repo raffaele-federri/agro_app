@@ -68,7 +68,7 @@ class MainScreen extends StatelessWidget {
                     painter: RPSCustomPainter(),
                     child: Container(
                       // color: Colors.red,
-                      padding: REdgeInsets.only(left: 34,right: 30 , top: 30),
+                      padding: REdgeInsets.only(left: 34, right: 30, top: 30),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -98,7 +98,6 @@ class MainScreen extends StatelessWidget {
                               //   ),
                               // );
                             },
-
                             child: SvgPicture.asset(
                               'assets/icons/add.svg',
                             ),
@@ -127,15 +126,21 @@ class MainScreen extends StatelessWidget {
         children: [
           SvgPicture.asset(
             'assets/icons/nav_ic_${index + 1}.svg',
-            color: state == index ? AppColors.primaryBlue : AppColors.lightGrey,
+            colorFilter: ColorFilter.mode(
+              state == index
+                  ? AppColors.primaryBlue
+                  : AppColors.bottomNavBarUnselectedColor,
+              BlendMode.srcIn,
+            ),
           ),
           SizedBox(height: 9.h),
           Text(
             title,
             style: TextStyle(
               fontSize: 12,
-              color:
-                  state == index ? AppColors.primaryBlue : AppColors.lightGrey,
+              color: state == index
+                  ? AppColors.primaryBlue
+                  : AppColors.bottomNavBarUnselectedColor,
             ),
           ),
         ],
