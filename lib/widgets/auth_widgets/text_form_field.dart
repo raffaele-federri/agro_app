@@ -13,6 +13,8 @@ class TextFormFieldCT extends StatelessWidget {
   final void Function(String)? onChanged;
   final String? Function(String?)? validator;
   final int? maxLenght;
+  static double? a;
+
 
   TextFormFieldCT({
     super.key,
@@ -35,7 +37,7 @@ class TextFormFieldCT extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      print('*** ${context.size}');
+      a = context.size!.height;
     });
 
     return TextFormField(

@@ -1,8 +1,12 @@
 import 'package:agro_app/constants/app_colors.dart';
+import 'package:agro_app/routes/app_router.gr.dart';
 import 'package:agro_app/widgets/custom_text.dart';
 import 'package:agro_app/widgets/other_widgets/general/300_hug_button.dart';
 import 'package:agro_app/widgets/other_widgets/home_page/profile_info_box.dart';
-import 'package:auto_route/annotations.dart';
+import 'package:agro_app/widgets/other_widgets/home_page/stadium_border_button.dart';
+import 'package:auto_route/auto_route.dart';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,7 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../widgets/other_widgets/general/text_field_title.dart';
 import '../../widgets/other_widgets/home_page/edit_information_bottom_sheet.dart';
 
-@RoutePage()
+
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
@@ -92,7 +96,7 @@ class ProfilePage extends StatelessWidget {
                   backgroundColor: Colors.transparent,
                   context: context,
                   builder: (context) {
-                    return  EditInformationBottomSheet();
+                    return EditInformationBottomSheet();
                   },
                 );
               },
@@ -157,29 +161,108 @@ class ProfilePage extends StatelessWidget {
               ],
             ),
             SizedBox(height: 15.r),
-            SizedBox(
-              width: 200.r,
-              height: 50.r,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: const ButtonStyle(
-                  shape: MaterialStatePropertyAll(
-                    StadiumBorder(),
-                  ),
-                  backgroundColor:
-                      MaterialStatePropertyAll(AppColors.primaryError),
-                  elevation: MaterialStatePropertyAll(0),
-                ),
-                child: const Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CustomText(
-                      text: 'Delete Account',
-                      size: 16,
-                      weight: FontWeight.w700,
+            StadiumBorderButton(
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  useSafeArea: true,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(20),
                     ),
-                  ],
-                ),
+                  ),
+                  builder: (context) {
+                    return Padding(
+                      padding: EdgeInsets.all(30.r),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CustomText(
+                                text: 'Delete Accunt',
+                                size: 26,
+                                weight: FontWeight.w900,
+                                color: AppColors.primaryBlue,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 30.r),
+                          const CustomText(
+                            text:
+                                'Are you sure , that want to delete your account?',
+                            color: AppColors.textGrey,
+                          ),
+                          SizedBox(height: 15.r),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(17),
+                                  ),
+                                  height: 50.r,
+                                  child: ElevatedButton(
+                                    style: const ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll(
+                                          AppColors.primaryBlue),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const CustomText(
+                                      text: 'No, not sure',
+                                      weight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 10.r),
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(17),
+                                  ),
+                                  height: 50.r,
+                                  child: ElevatedButton(
+                                    style: const ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll(
+                                          AppColors.primaryError),
+                                    ),
+                                    onPressed: () {
+                                      context.router.push(
+                                        const OnBoardingRoute()
+                                      );
+                                    },
+                                    child: const CustomText(
+                                      text: 'Yes, sure',
+                                      weight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              },
+              onLongPress: () {
+                showLicensePage(context: context);
+              },
+              child: const Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomText(
+                    text: 'Delete Account',
+                    size: 16,
+                    weight: FontWeight.w700,
+                  ),
+                ],
               ),
             ),
             SizedBox(height: 200.r),

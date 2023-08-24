@@ -1,5 +1,3 @@
-
-
 import 'package:auto_route/auto_route.dart';
 
 import 'app_router.gr.dart';
@@ -12,11 +10,10 @@ class AppRouter extends $AppRouter {
     AutoRoute(page: AgeRoute.page),
     AutoRoute(page: GenderAndNameRoute.page),
     AutoRoute(page: SignInWrapper.page),
-    AutoRoute(page: OnBoardingRoute.page ),
+    AutoRoute(page: OnBoardingRoute.page) ,
     AutoRoute(page: MyForm.page),
     AutoRoute(page: SignUpWrapper.page ),
     AutoRoute(page: WorkingStatusWrapper.page),
     AutoRoute(page: MainRoute.page,initial: true),
-    AutoRoute(page: ProfileRoute.page),
   ];
 }

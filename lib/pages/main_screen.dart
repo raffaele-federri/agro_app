@@ -1,6 +1,7 @@
 import 'package:agro_app/pages/main_pages/home_page.dart';
 import 'package:agro_app/pages/main_pages/profile_page.dart';
 import 'package:agro_app/pages/main_pages/rights_page.dart';
+import 'package:agro_app/widgets/other_widgets/home_page/create_complain_bottom_sheet.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -92,11 +93,14 @@ class MainScreen extends StatelessWidget {
                           child: FloatingActionButton(
                             backgroundColor: AppColors.mainTextColor,
                             onPressed: () {
-                              // Navigator.of(context).push(
-                              //   MaterialPageRoute(
-                              //     builder: (ctx) => BasketPage(),
-                              //   ),
-                              // );
+                              showModalBottomSheet(
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                context: context,
+                                builder: (context) {
+                                  return  const CreateComplainBottomSheet();
+                                },
+                              );
                             },
                             child: SvgPicture.asset(
                               'assets/icons/add.svg',

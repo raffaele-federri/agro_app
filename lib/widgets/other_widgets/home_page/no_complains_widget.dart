@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../constants/app_colors.dart';
 import '../../custom_text.dart';
 import '../general/300_hug_button.dart';
+import 'create_complain_bottom_sheet.dart';
 
 class NoComplainsWidget extends StatelessWidget {
   const NoComplainsWidget({super.key});
@@ -31,7 +32,19 @@ class NoComplainsWidget extends StatelessWidget {
             weight: FontWeight.w700,
             color: AppColors.activeColor,
           ),
-          const HugButton(title: 'New complain'),
+          HugButton(
+            title: 'New complain',
+            onPressed: () {
+              showModalBottomSheet(
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                context: context,
+                builder: (context) {
+                  return const CreateComplainBottomSheet();
+                },
+              );
+            },
+          ),
         ],
       ),
     );
