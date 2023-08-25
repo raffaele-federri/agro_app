@@ -32,11 +32,11 @@ class MainScreen extends StatelessWidget {
             extendBody: true,
             body: IndexedStack(
               index: state,
-              children: const [
-                HomePage(),
-                RightsPage(),
+              children:  [
+                const HomePage(),
+                const RightsPage(),
                 ContactsPage(),
-                ProfilePage(),
+                const ProfilePage(),
               ],
             ),
             // floatingActionButton:
