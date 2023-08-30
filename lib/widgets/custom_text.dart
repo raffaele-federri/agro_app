@@ -10,9 +10,13 @@ class CustomText extends StatelessWidget {
   final Color? color;
   final int? maxLines;
 
-
   const CustomText(
-      {super.key, required this.text, this.size, this.weight, this.color, this.maxLines});
+      {super.key,
+      required this.text,
+      this.size,
+      this.weight,
+      this.color,
+      this.maxLines});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +24,8 @@ class CustomText extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-
           text,
-
-          maxLines: maxLines ?? 1000,
+          maxLines: maxLines,
           overflow: TextOverflow.ellipsis,
           style: GoogleFonts.lato(
             fontSize: size?.h ?? 16,

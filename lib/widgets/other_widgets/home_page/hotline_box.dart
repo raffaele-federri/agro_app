@@ -19,57 +19,73 @@ class HotlineBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
-      margin: EdgeInsets.zero,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      height: 0.13368984.sh,
-      width: double.infinity,
-      child: Column(
-        children: [
-          Row(
-            children: [
-              CustomText(
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 15),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+        margin: EdgeInsets.zero,
+        decoration: BoxDecoration(
+          boxShadow: const [
+            BoxShadow(
+              color:  AppColors.lightGrey,
+              offset: Offset(0.0, 0.1), //(x,y)
+              blurRadius: 4.0,
+            ),
+          ],
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        // height: 0.13368984.sh,
+        width: double.infinity,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                CustomText(
+                  text: title,
+                  maxLines: 1,
+                  size: 14,
+                  color: AppColors.activeColor,
+                  weight: FontWeight.w700,
+                ),
+              ],
+            ),
+            SizedBox(height: 14.r),
+            Row(
+              children: [
+                SvgPicture.asset('assets/icons/hotline_phone.svg'),
+                SizedBox(width: 7.r),
+                CustomText(
+                  maxLines: 1,
+                  text: number,
+                  size: 12,
+                  weight: FontWeight.w400,
+                  color: AppColors.textGrey,
+                ),
+              ],
+            ),
+            SizedBox(height: 10.r),
+            Flexible(
+              child: Row(
+                children: [
+                  SvgPicture.asset('assets/icons/hotline_location.svg'),
+                  SizedBox(width: 7.r),
+                  Flexible(
+                    child: CustomText(
+                      maxLines: 3,
+                      text: address,
+                      size: 12,
+                      weight: FontWeight.w400,
+                      color: AppColors.textGrey,
+                    ),
+                  ),
+                ],
+              ),
+            ),
 
-                text: title,
-                size: 14,
-                color: AppColors.activeColor,
-                weight: FontWeight.w700,
-              ),
-            ],
-          ),
-          SizedBox(height: 14.r),
-          Row(
-            children: [
-              SvgPicture.asset('assets/icons/hotline_phone.svg'),
-              SizedBox(width: 7.r),
-              CustomText(
-                maxLines: 4,
-                text: number,
-                size: 12,
-                weight: FontWeight.w400,
-                color: AppColors.textGrey,
-              ),
-            ],
-          ),
-          SizedBox(height: 10.r),
-          Row(
-            children: [
-              SvgPicture.asset('assets/icons/hotline_location.svg'),
-              SizedBox(width: 7.r),
-              CustomText(
-                maxLines: 4,
-                text: address,
-                size: 12,
-                weight: FontWeight.w400,
-                color: AppColors.textGrey,
-              ),
-            ],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -2,10 +2,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'address_data.dart';
 
-
-
-
-
 part 'address_response.freezed.dart';
 part 'address_response.g.dart';
 
