@@ -1,23 +1,40 @@
 import 'dart:io';
 
-import 'package:agro_app/network/api/api_helper.dart';
 import 'package:agro_app/network/models/contacts/contact.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'contacts_fetch_state.dart';
+import '../../network/api/api_helper.dart';
 
-part 'contacts_fetch_cubit.freezed.dart';
+part 'contacts_event.dart';
 
-class ContactsFetchCubit extends Cubit<ContactsFetchState> {
-  ContactsFetchCubit() : super(const ContactsFetchState.initial());
+part 'contacts_state.dart';
+
+part 'contacts_bloc.freezed.dart';
+
+class ContactsBloc extends Bloc<ContactsEvent, ContactsState> {
   int page = 1;
   int totalContacts = 0;
-  final perPage = 6;
+  final perPage = 4;
   final List<Contact> _contact = [];
 
-  Future<void> loadData() async {
-    emit(const ContactsFetchState.loading());
+  ContactsBloc() : super(const ContactsState.initial()) {
+    on<_Fetch>(
+      (event, emit) async {
+        await _fetch(emit);
+      },
+    );
+    on<_FetchMore>(
+      (event, emit) async {
+        await _fetchMore(emit);
+      },
+      transformer: droppable(),
+    );
+  }
+
+  Future<void> _fetch(Emitter<ContactsState> emit) async {
+    emit(const ContactsState.loading());
 
     try {
       final response = await ApiHelper.getClient().getContact(page, perPage);
@@ -25,15 +42,15 @@ class ContactsFetchCubit extends Cubit<ContactsFetchState> {
         _contact.clear();
         _contact.addAll(response.data.items);
         totalContacts = response.data.total;
-        emit(ContactsFetchState.success(_contact));
+        emit(ContactsState.success(_contact));
       }
     } on SocketException {
-      emit(const ContactsFetchState.error('No Internet Connection'));
+      emit(const ContactsState.error('No Internet Connection'));
     } catch (e) {
       print(e.toString());
 
       emit(
-        ContactsFetchState.error(
+        ContactsState.error(
           e.toString().contains('401')
               ? 'Incorrect Password'
               : 'Your OTP code has expired',
@@ -42,12 +59,9 @@ class ContactsFetchCubit extends Cubit<ContactsFetchState> {
     }
   }
 
-  Future<void> loadMoreData() async {
-    print('Fuck: $page => ${page + 1 <= (totalContacts / perPage).ceil()}');
+  Future<void> _fetchMore(Emitter<ContactsState> emit) async {
     if (page + 1 <= (totalContacts / perPage).ceil()) {
-      print(
-          'Fuck suck: $page => ${page + 1 <= (totalContacts / perPage).ceil()}');
-      emit(const ContactsFetchState.loadingMore());
+      emit(const ContactsState.loadingMore());
       try {
         final response =
             await ApiHelper.getClient().getContact(page + 1, perPage);
@@ -55,18 +69,17 @@ class ContactsFetchCubit extends Cubit<ContactsFetchState> {
           page++;
           _contact.addAll(response.data.items);
 
-          emit(ContactsFetchState.success(_contact));
+          emit(ContactsState.success(_contact));
         } else {
-          emit(const ContactsFetchState.loadingMoreError('No more data'));
+          emit(const ContactsState.loadingMoreError('No more data'));
         }
       } on SocketException {
-        emit(const ContactsFetchState.loadingMoreError(
-            'No Internet Connection'));
+        emit(const ContactsState.loadingMoreError('No Internet Connection'));
       } catch (e) {
         print(e.toString());
 
         emit(
-          ContactsFetchState.loadingMoreError(
+          ContactsState.loadingMoreError(
             e.toString().contains('401')
                 ? 'Incorrect Password'
                 : 'Your OTP code has expired',

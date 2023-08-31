@@ -12,9 +12,9 @@ class Contact with _$Contact {
     required int id,
     required String phone,
     required String address,
-    @JsonKey(name: 'title_ru') required String titleRu,
-    @JsonKey(name: 'title_uz') required String titleUz,
-    @JsonKey(name: 'title_en') required String titleEn,
+    @JsonKey(name: 'title_ru') required String? titleRu,
+    @JsonKey(name: 'title_uz') required String? titleUz,
+    @JsonKey(name: 'title_en') required String? titleEn,
   }) = _Contact;
 
   factory Contact.fromJson(Map<String, Object?> json) => _$ContactFromJson(json);

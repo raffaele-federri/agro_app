@@ -25,7 +25,7 @@ class CustomText extends StatelessWidget {
       children: [
         Text(
           text,
-          maxLines: maxLines,
+          maxLines: maxLines ?? 1000,
           overflow: TextOverflow.ellipsis,
           style: GoogleFonts.lato(
             fontSize: size?.h ?? 16,

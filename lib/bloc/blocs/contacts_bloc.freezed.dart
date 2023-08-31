@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'contacts_fetch_cubit.dart';
+part of 'contacts_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,269 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ContactsFetchState {
+mixin _$ContactsEvent {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchMore,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchMore,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchMore,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchMore value) fetchMore,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchMore value)? fetchMore,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchMore value)? fetchMore,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ContactsEventCopyWith<$Res> {
+  factory $ContactsEventCopyWith(
+          ContactsEvent value, $Res Function(ContactsEvent) then) =
+      _$ContactsEventCopyWithImpl<$Res, ContactsEvent>;
+}
+
+/// @nodoc
+class _$ContactsEventCopyWithImpl<$Res, $Val extends ContactsEvent>
+    implements $ContactsEventCopyWith<$Res> {
+  _$ContactsEventCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$_FetchCopyWith<$Res> {
+  factory _$$_FetchCopyWith(_$_Fetch value, $Res Function(_$_Fetch) then) =
+      __$$_FetchCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_FetchCopyWithImpl<$Res>
+    extends _$ContactsEventCopyWithImpl<$Res, _$_Fetch>
+    implements _$$_FetchCopyWith<$Res> {
+  __$$_FetchCopyWithImpl(_$_Fetch _value, $Res Function(_$_Fetch) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Fetch implements _Fetch {
+  const _$_Fetch();
+
+  @override
+  String toString() {
+    return 'ContactsEvent.fetch()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Fetch);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchMore,
+  }) {
+    return fetch();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchMore,
+  }) {
+    return fetch?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchMore,
+    required TResult orElse(),
+  }) {
+    if (fetch != null) {
+      return fetch();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchMore value) fetchMore,
+  }) {
+    return fetch(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchMore value)? fetchMore,
+  }) {
+    return fetch?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchMore value)? fetchMore,
+    required TResult orElse(),
+  }) {
+    if (fetch != null) {
+      return fetch(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Fetch implements ContactsEvent {
+  const factory _Fetch() = _$_Fetch;
+}
+
+/// @nodoc
+abstract class _$$_FetchMoreCopyWith<$Res> {
+  factory _$$_FetchMoreCopyWith(
+          _$_FetchMore value, $Res Function(_$_FetchMore) then) =
+      __$$_FetchMoreCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_FetchMoreCopyWithImpl<$Res>
+    extends _$ContactsEventCopyWithImpl<$Res, _$_FetchMore>
+    implements _$$_FetchMoreCopyWith<$Res> {
+  __$$_FetchMoreCopyWithImpl(
+      _$_FetchMore _value, $Res Function(_$_FetchMore) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_FetchMore implements _FetchMore {
+  const _$_FetchMore();
+
+  @override
+  String toString() {
+    return 'ContactsEvent.fetchMore()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_FetchMore);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function() fetchMore,
+  }) {
+    return fetchMore();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function()? fetchMore,
+  }) {
+    return fetchMore?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function()? fetchMore,
+    required TResult orElse(),
+  }) {
+    if (fetchMore != null) {
+      return fetchMore();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchMore value) fetchMore,
+  }) {
+    return fetchMore(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchMore value)? fetchMore,
+  }) {
+    return fetchMore?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchMore value)? fetchMore,
+    required TResult orElse(),
+  }) {
+    if (fetchMore != null) {
+      return fetchMore(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchMore implements ContactsEvent {
+  const factory _FetchMore() = _$_FetchMore;
+}
+
+/// @nodoc
+mixin _$ContactsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -81,16 +343,16 @@ mixin _$ContactsFetchState {
 }
 
 /// @nodoc
-abstract class $ContactsFetchStateCopyWith<$Res> {
-  factory $ContactsFetchStateCopyWith(
-          ContactsFetchState value, $Res Function(ContactsFetchState) then) =
-      _$ContactsFetchStateCopyWithImpl<$Res, ContactsFetchState>;
+abstract class $ContactsStateCopyWith<$Res> {
+  factory $ContactsStateCopyWith(
+          ContactsState value, $Res Function(ContactsState) then) =
+      _$ContactsStateCopyWithImpl<$Res, ContactsState>;
 }
 
 /// @nodoc
-class _$ContactsFetchStateCopyWithImpl<$Res, $Val extends ContactsFetchState>
-    implements $ContactsFetchStateCopyWith<$Res> {
-  _$ContactsFetchStateCopyWithImpl(this._value, this._then);
+class _$ContactsStateCopyWithImpl<$Res, $Val extends ContactsState>
+    implements $ContactsStateCopyWith<$Res> {
+  _$ContactsStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -107,7 +369,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$ContactsFetchStateCopyWithImpl<$Res, _$_Initial>
+    extends _$ContactsStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -120,7 +382,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'ContactsFetchState.initial()';
+    return 'ContactsState.initial()';
   }
 
   @override
@@ -219,7 +481,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements ContactsFetchState {
+abstract class _Initial implements ContactsState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -232,7 +494,7 @@ abstract class _$$_loadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_loadingCopyWithImpl<$Res>
-    extends _$ContactsFetchStateCopyWithImpl<$Res, _$_loading>
+    extends _$ContactsStateCopyWithImpl<$Res, _$_loading>
     implements _$$_loadingCopyWith<$Res> {
   __$$_loadingCopyWithImpl(_$_loading _value, $Res Function(_$_loading) _then)
       : super(_value, _then);
@@ -245,7 +507,7 @@ class _$_loading implements _loading {
 
   @override
   String toString() {
-    return 'ContactsFetchState.loading()';
+    return 'ContactsState.loading()';
   }
 
   @override
@@ -344,7 +606,7 @@ class _$_loading implements _loading {
   }
 }
 
-abstract class _loading implements ContactsFetchState {
+abstract class _loading implements ContactsState {
   const factory _loading() = _$_loading;
 }
 
@@ -359,7 +621,7 @@ abstract class _$$_successCopyWith<$Res> {
 
 /// @nodoc
 class __$$_successCopyWithImpl<$Res>
-    extends _$ContactsFetchStateCopyWithImpl<$Res, _$_success>
+    extends _$ContactsStateCopyWithImpl<$Res, _$_success>
     implements _$$_successCopyWith<$Res> {
   __$$_successCopyWithImpl(_$_success _value, $Res Function(_$_success) _then)
       : super(_value, _then);
@@ -394,7 +656,7 @@ class _$_success implements _success {
 
   @override
   String toString() {
-    return 'ContactsFetchState.success(fetchedContacts: $fetchedContacts)';
+    return 'ContactsState.success(fetchedContacts: $fetchedContacts)';
   }
 
   @override
@@ -503,7 +765,7 @@ class _$_success implements _success {
   }
 }
 
-abstract class _success implements ContactsFetchState {
+abstract class _success implements ContactsState {
   const factory _success(final List<Contact> fetchedContacts) = _$_success;
 
   List<Contact> get fetchedContacts;
@@ -521,7 +783,7 @@ abstract class _$$_loadMoreLoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_loadMoreLoadingCopyWithImpl<$Res>
-    extends _$ContactsFetchStateCopyWithImpl<$Res, _$_loadMoreLoading>
+    extends _$ContactsStateCopyWithImpl<$Res, _$_loadMoreLoading>
     implements _$$_loadMoreLoadingCopyWith<$Res> {
   __$$_loadMoreLoadingCopyWithImpl(
       _$_loadMoreLoading _value, $Res Function(_$_loadMoreLoading) _then)
@@ -535,7 +797,7 @@ class _$_loadMoreLoading implements _loadMoreLoading {
 
   @override
   String toString() {
-    return 'ContactsFetchState.loadingMore()';
+    return 'ContactsState.loadingMore()';
   }
 
   @override
@@ -634,7 +896,7 @@ class _$_loadMoreLoading implements _loadMoreLoading {
   }
 }
 
-abstract class _loadMoreLoading implements ContactsFetchState {
+abstract class _loadMoreLoading implements ContactsState {
   const factory _loadMoreLoading() = _$_loadMoreLoading;
 }
 
@@ -649,7 +911,7 @@ abstract class _$$_loadingMoreErrorCopyWith<$Res> {
 
 /// @nodoc
 class __$$_loadingMoreErrorCopyWithImpl<$Res>
-    extends _$ContactsFetchStateCopyWithImpl<$Res, _$_loadingMoreError>
+    extends _$ContactsStateCopyWithImpl<$Res, _$_loadingMoreError>
     implements _$$_loadingMoreErrorCopyWith<$Res> {
   __$$_loadingMoreErrorCopyWithImpl(
       _$_loadingMoreError _value, $Res Function(_$_loadingMoreError) _then)
@@ -679,7 +941,7 @@ class _$_loadingMoreError implements _loadingMoreError {
 
   @override
   String toString() {
-    return 'ContactsFetchState.loadingMoreError(message: $message)';
+    return 'ContactsState.loadingMoreError(message: $message)';
   }
 
   @override
@@ -786,7 +1048,7 @@ class _$_loadingMoreError implements _loadingMoreError {
   }
 }
 
-abstract class _loadingMoreError implements ContactsFetchState {
+abstract class _loadingMoreError implements ContactsState {
   const factory _loadingMoreError(final String message) = _$_loadingMoreError;
 
   String get message;
@@ -805,7 +1067,7 @@ abstract class _$$_errorCopyWith<$Res> {
 
 /// @nodoc
 class __$$_errorCopyWithImpl<$Res>
-    extends _$ContactsFetchStateCopyWithImpl<$Res, _$_error>
+    extends _$ContactsStateCopyWithImpl<$Res, _$_error>
     implements _$$_errorCopyWith<$Res> {
   __$$_errorCopyWithImpl(_$_error _value, $Res Function(_$_error) _then)
       : super(_value, _then);
@@ -834,7 +1096,7 @@ class _$_error implements _error {
 
   @override
   String toString() {
-    return 'ContactsFetchState.error(message: $message)';
+    return 'ContactsState.error(message: $message)';
   }
 
   @override
@@ -941,7 +1203,7 @@ class _$_error implements _error {
   }
 }
 
-abstract class _error implements ContactsFetchState {
+abstract class _error implements ContactsState {
   const factory _error(final String message) = _$_error;
 
   String get message;

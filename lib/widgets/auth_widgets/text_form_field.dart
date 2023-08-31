@@ -51,7 +51,7 @@ class TextFormFieldCT extends StatelessWidget {
               ? [maskFormatter]
               : null,
       obscureText: isCodeField,
-      obscuringCharacter: '❤',
+      // obscuringCharacter: '❤',
       // obscuringCharacter: '⚫'️️️,
 
       style:  const TextStyle(fontSize: 16 , height: 1.185),

@@ -174,6 +174,7 @@ class WorkingStatusPage extends StatelessWidget {
                         ),
                         SizedBox(height: 8.h),
                         const CustomText(
+                          maxLines: null,
                           text:
                               "The list of professions associated with the agro-industrial sector allows us to offer specialized guidance and support based on the specific challenges and interests of different roles. It enables us to provide targeted information, such as agricultural best practices, legal regulations, market trends, or technological advancements that are most relevant to the user's field of work. \n \nBy collecting this information, we aim to enhance the user experience by offering customized recommendations, industry-specific updates, and networking opportunities that can foster collaboration and growth within the agricultural community. ",
                           color: AppColors.textGrey,

@@ -101,6 +101,7 @@ class HomePage extends StatelessWidget {
               ),
               SizedBox(height: 20.r),
               const HotlineBox(
+
                   title: 'Federation of professional associations',
                   number: '+ 998 93 553 07 17',
                   address: '77905 Block Highway, Hudsonland'),

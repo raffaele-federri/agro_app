@@ -21,15 +21,16 @@ class ApiHelper {
 
   static ApiClient _getClient(){
     final dio = Dio();
-    dio.interceptors.add(PrettyDioLogger(requestBody: true , requestHeader: true , responseHeader: true));
+    dio.interceptors.add(PrettyDioLogger(requestBody: true , requestHeader: true));
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTMyOTU4NTIsImV4cCI6MTY5NTg4Nzg1MiwidXNlcl9pZCI6MTIsInBlcm1pc3Npb25zIjpbInJlYWRfdXNlciIsInVwZGF0ZV91c2VyIiwiZGVsZXRlX3VzZXIiLCJyZWFkX2NhdGVnb3J5IiwicmVhZF9yaWdodCIsInJlYWRfZGVwYXJ0bWVudCIsInJlYWRfZ3VpZGUiXX0.jy9Hd473iGTaJeSFVNcqHypoa0Gg9-DmZUegGB9300c';
+          const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTM0Nzk0MDAsImV4cCI6MTY5NjA3MTQwMCwidXNlcl9pZCI6MTIsInBlcm1pc3Npb25zIjpbInJlYWRfdXNlciIsInVwZGF0ZV91c2VyIiwiZGVsZXRlX3VzZXIiLCJyZWFkX2NhdGVnb3J5IiwicmVhZF9yaWdodCIsInJlYWRfZGVwYXJ0bWVudCIsInJlYWRfZ3VpZGUiXX0.FZ1SsGxvR5Zzghe2Ls4Lx-IB9i5LXO4LatwZL2fbQeo';
           options.headers['Authorization'] = 'Bearer $token';
           return handler.next(options);
         },
         onError: (error, handler) async {
+          print('ERROR ON API HELPER ++++++++++++++++++++++++++++++++++++++++++++++++++++==');
           return handler.next(error);
         },
       ),

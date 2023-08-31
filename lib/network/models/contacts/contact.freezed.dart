@@ -24,11 +24,11 @@ mixin _$Contact {
   String get phone => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   @JsonKey(name: 'title_ru')
-  String get titleRu => throw _privateConstructorUsedError;
+  String? get titleRu => throw _privateConstructorUsedError;
   @JsonKey(name: 'title_uz')
-  String get titleUz => throw _privateConstructorUsedError;
+  String? get titleUz => throw _privateConstructorUsedError;
   @JsonKey(name: 'title_en')
-  String get titleEn => throw _privateConstructorUsedError;
+  String? get titleEn => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,9 +44,9 @@ abstract class $ContactCopyWith<$Res> {
       {int id,
       String phone,
       String address,
-      @JsonKey(name: 'title_ru') String titleRu,
-      @JsonKey(name: 'title_uz') String titleUz,
-      @JsonKey(name: 'title_en') String titleEn});
+      @JsonKey(name: 'title_ru') String? titleRu,
+      @JsonKey(name: 'title_uz') String? titleUz,
+      @JsonKey(name: 'title_en') String? titleEn});
 }
 
 /// @nodoc
@@ -65,9 +65,9 @@ class _$ContactCopyWithImpl<$Res, $Val extends Contact>
     Object? id = null,
     Object? phone = null,
     Object? address = null,
-    Object? titleRu = null,
-    Object? titleUz = null,
-    Object? titleEn = null,
+    Object? titleRu = freezed,
+    Object? titleUz = freezed,
+    Object? titleEn = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -82,18 +82,18 @@ class _$ContactCopyWithImpl<$Res, $Val extends Contact>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      titleRu: null == titleRu
+      titleRu: freezed == titleRu
           ? _value.titleRu
           : titleRu // ignore: cast_nullable_to_non_nullable
-              as String,
-      titleUz: null == titleUz
+              as String?,
+      titleUz: freezed == titleUz
           ? _value.titleUz
           : titleUz // ignore: cast_nullable_to_non_nullable
-              as String,
-      titleEn: null == titleEn
+              as String?,
+      titleEn: freezed == titleEn
           ? _value.titleEn
           : titleEn // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -109,9 +109,9 @@ abstract class _$$_ContactCopyWith<$Res> implements $ContactCopyWith<$Res> {
       {int id,
       String phone,
       String address,
-      @JsonKey(name: 'title_ru') String titleRu,
-      @JsonKey(name: 'title_uz') String titleUz,
-      @JsonKey(name: 'title_en') String titleEn});
+      @JsonKey(name: 'title_ru') String? titleRu,
+      @JsonKey(name: 'title_uz') String? titleUz,
+      @JsonKey(name: 'title_en') String? titleEn});
 }
 
 /// @nodoc
@@ -127,9 +127,9 @@ class __$$_ContactCopyWithImpl<$Res>
     Object? id = null,
     Object? phone = null,
     Object? address = null,
-    Object? titleRu = null,
-    Object? titleUz = null,
-    Object? titleEn = null,
+    Object? titleRu = freezed,
+    Object? titleUz = freezed,
+    Object? titleEn = freezed,
   }) {
     return _then(_$_Contact(
       id: null == id
@@ -144,18 +144,18 @@ class __$$_ContactCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      titleRu: null == titleRu
+      titleRu: freezed == titleRu
           ? _value.titleRu
           : titleRu // ignore: cast_nullable_to_non_nullable
-              as String,
-      titleUz: null == titleUz
+              as String?,
+      titleUz: freezed == titleUz
           ? _value.titleUz
           : titleUz // ignore: cast_nullable_to_non_nullable
-              as String,
-      titleEn: null == titleEn
+              as String?,
+      titleEn: freezed == titleEn
           ? _value.titleEn
           : titleEn // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -182,13 +182,13 @@ class _$_Contact implements _Contact {
   final String address;
   @override
   @JsonKey(name: 'title_ru')
-  final String titleRu;
+  final String? titleRu;
   @override
   @JsonKey(name: 'title_uz')
-  final String titleUz;
+  final String? titleUz;
   @override
   @JsonKey(name: 'title_en')
-  final String titleEn;
+  final String? titleEn;
 
   @override
   String toString() {
@@ -232,9 +232,9 @@ abstract class _Contact implements Contact {
       {required final int id,
       required final String phone,
       required final String address,
-      @JsonKey(name: 'title_ru') required final String titleRu,
-      @JsonKey(name: 'title_uz') required final String titleUz,
-      @JsonKey(name: 'title_en') required final String titleEn}) = _$_Contact;
+      @JsonKey(name: 'title_ru') required final String? titleRu,
+      @JsonKey(name: 'title_uz') required final String? titleUz,
+      @JsonKey(name: 'title_en') required final String? titleEn}) = _$_Contact;
 
   factory _Contact.fromJson(Map<String, dynamic> json) = _$_Contact.fromJson;
 
@@ -246,13 +246,13 @@ abstract class _Contact implements Contact {
   String get address;
   @override
   @JsonKey(name: 'title_ru')
-  String get titleRu;
+  String? get titleRu;
   @override
   @JsonKey(name: 'title_uz')
-  String get titleUz;
+  String? get titleUz;
   @override
   @JsonKey(name: 'title_en')
-  String get titleEn;
+  String? get titleEn;
   @override
   @JsonKey(ignore: true)
   _$$_ContactCopyWith<_$_Contact> get copyWith =>
