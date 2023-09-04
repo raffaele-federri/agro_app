@@ -9,7 +9,6 @@ class TextFormFieldMain extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
-
         filled: true,
         fillColor: Colors.white,
         hintText: 'Search for manuals, contacts',

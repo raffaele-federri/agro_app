@@ -14,9 +14,14 @@ import '../core/custom_shape.dart';
 import 'main_pages/contacts_page.dart';
 
 @RoutePage()
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -32,10 +37,10 @@ class MainScreen extends StatelessWidget {
             extendBody: true,
             body: IndexedStack(
               index: state,
-              children: const [
+              children:  const [
                 HomePage(),
                 RightsPage(),
-                ContactsPage(),
+                ContactsWrapper(),
                 ProfilePage(),
               ],
             ),
@@ -87,8 +92,9 @@ class MainScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        padding: const EdgeInsets.only(top: 4),
+                        padding: const EdgeInsets.only(top: 4).h,
                         height: 60.h,
+                        width: 60.r,
                         child: FittedBox(
                           child: FloatingActionButton(
                             backgroundColor: AppColors.mainTextColor,
@@ -104,6 +110,8 @@ class MainScreen extends StatelessWidget {
                             },
                             child: SvgPicture.asset(
                               'assets/icons/add.svg',
+                              height: 30.h,
+                              width: 30.r,
                             ),
                           ),
                         ),

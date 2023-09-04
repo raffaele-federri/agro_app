@@ -1,3 +1,4 @@
+import 'package:agro_app/network/models/contacts/contacts_response.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
 
@@ -16,6 +17,12 @@ abstract class ApiClient {
 
   @GET("statuses/")
   Future<WorkingStatusResponse> getWorkingStatuses();
+
+  @GET("departments/")
+  Future<ContactsResponse> getContact(
+    @Query('page') int page,
+    @Query('per_page') int perPage,
+  );
 
   @POST("users/")
   Future<SignUpResponse> signUp(@Body() Map<String , dynamic> requestBody);

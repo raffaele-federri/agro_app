@@ -20,7 +20,7 @@ class RightsDetailPage extends StatelessWidget {
         title: const CustomBackButton(),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.r, vertical: 20.r),
+        padding: EdgeInsets.symmetric(horizontal: 15.r),
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Column(
@@ -45,6 +45,7 @@ class RightsDetailPage extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(height: 20.r),
             ],
           ),
         ),
