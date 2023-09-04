@@ -1,6 +1,10 @@
 import 'package:agro_app/user_data.dart';
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+
+import '../../../network/api/api_client.dart';
 
 part 'sign_up_state.dart';
 
@@ -50,6 +54,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     _data = _data.copyWith(districtId: districtId);
     _emitter();
   }
+
   void setRegionId(int regionId) {
     _data = _data.copyWith(regionId: regionId);
     _emitter();
@@ -60,11 +65,41 @@ class SignUpCubit extends Cubit<SignUpState> {
     _emitter();
   }
 
+  Future<bool> requestToApi() async {
+    final dio = Dio();
+    dio.interceptors.add(PrettyDioLogger());
+    final client = ApiClient(dio);
+
+    try {
+      final response = await client.signUp({
+        'username': _data.username,
+        'phone_number': _data.phoneNumber,
+        'password': _data.password,
+        'age': _data.age,
+        'address': _data.address ?? '',
+        'gender_id': _data.genderId,
+        'status_id': _data.statusId,
+        'city_id': _data.regionId,
+        'district_id': _data.districtId,
+      });
+      if (response.status == 'success') {
+        emit(const SignUpState.success());
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      emit(
+        const SignUpState.error('Something went wrong ..)'),
+      );
+      return false;
+    }
+  }
+
   // void setStatusId(int statusId) {
   //   _data = _data.copyWith(statusId: statusId);
   //   _emitter();
   // }
-
 
   void _emitter() {
     if (_data.isAllSet) {

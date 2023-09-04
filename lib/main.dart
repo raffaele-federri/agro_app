@@ -15,6 +15,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  static AppRouter appRouter = AppRouter();
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -23,7 +24,6 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (builder, child) {
-        AppRouter appRouter = AppRouter();
         return MaterialApp.router(
           routerConfig: appRouter.config(),
           debugShowCheckedModeBanner: false,

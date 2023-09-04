@@ -2,6 +2,7 @@ import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
 
 import '../models/address/address_response.dart';
+import '../models/sign_up/sign_up_response.dart';
 import '../models/working_status/working_status_response.dart';
 
 part 'api_client.g.dart';
@@ -15,4 +16,7 @@ abstract class ApiClient {
 
   @GET("statuses/")
   Future<WorkingStatusResponse> getWorkingStatuses();
+
+  @POST("users/")
+  Future<SignUpResponse> signUp(@Body() Map<String , dynamic> requestBody);
 }

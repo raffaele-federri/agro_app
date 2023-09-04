@@ -16,9 +16,9 @@ class GenderPicker extends StatelessWidget {
       create: (context) => GenderChooser(),
       child: BlocBuilder<GenderChooser, int?>(
         builder: (context, state) {
-          if(state != null) {
-            context.read<SignUpCubit>().setGenderId(state!);
-            print("GENDER ID IS : $state");
+          if (state != null) {
+            context.read<SignUpCubit>().setGenderId(state);
+            debugPrint("GENDER ID IS : $state");
           }
           return Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -30,8 +30,9 @@ class GenderPicker extends StatelessWidget {
                 child: GenderWidget(
                   text: 'Male',
                   asset: 'assets/images/male.png',
-                  color:
-                      state == 0 ? AppColors.activeColor : AppColors.lightGrey,
+                  color: state == 0
+                      ? AppColors.mainTextColor
+                      : AppColors.lightGrey,
                 ),
               ),
               SizedBox(width: 20.w),
@@ -42,8 +43,9 @@ class GenderPicker extends StatelessWidget {
                 child: GenderWidget(
                   text: 'Female',
                   asset: 'assets/images/female.png',
-                  color:
-                      state == 1 ? AppColors.activeColor : AppColors.lightGrey,
+                  color: state == 1
+                      ? AppColors.mainTextColor
+                      : AppColors.lightGrey,
                 ),
               ),
             ],

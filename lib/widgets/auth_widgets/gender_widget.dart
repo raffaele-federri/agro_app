@@ -8,7 +8,12 @@ class GenderWidget extends StatelessWidget {
   final String asset;
   final Color color;
 
-  const GenderWidget({super.key, required this.text, required this.asset, required this.color});
+  const GenderWidget({
+    super.key,
+    required this.text,
+    required this.asset,
+    required this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +35,7 @@ class GenderWidget extends StatelessWidget {
             weight: FontWeight.w700,
           ),
           SizedBox(height: 14.h),
-          Image.asset(asset)
+          Image.asset(asset, color: color)
         ],
       ),
     );

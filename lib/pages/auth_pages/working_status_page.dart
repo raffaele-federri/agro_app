@@ -16,6 +16,7 @@ import '../../widgets/auth_widgets/working_status_drop.dart';
 @RoutePage()
 class WorkingStatusWrapper extends StatelessWidget {
   final SignUpCubit cubit;
+
   const WorkingStatusWrapper({super.key, required this.cubit});
 
   @override
@@ -25,9 +26,7 @@ class WorkingStatusWrapper extends StatelessWidget {
         BlocProvider(
           create: (context) => WorkingStatusCubit()..getData(),
         ),
-        BlocProvider.value(
-            value: cubit
-        ),
+        BlocProvider.value(value: cubit),
       ],
       child: WorkingStatusPage(),
     );
@@ -93,12 +92,14 @@ class WorkingStatusPage extends StatelessWidget {
               ),
               bottomNavigationBar: BottomNavBarAuth(
                 index: 4,
-                onPressed: () {
-                     // if( context.read<SignUpCubit>()
-                     //
-                     // ) {}
-                  print(" SIGN UP ===============> ${context.read<SignUpCubit>().state}");
-                  context.router.push(const MainRoute());
+                onPressed: () async {
+                  final result =
+                      await context.read<SignUpCubit>().requestToApi();
+                  // print(
+                  //     " SIGN UP ===============> ${context.read<SignUpCubit>().state}");
+                  if (result && context.mounted) {
+                    context.router.push(const MainRoute());
+                  }
                 },
               ),
               body: SafeArea(

@@ -52,7 +52,7 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bottomS = MediaQuery.of(context).viewInsets.bottom;
-    print("---> bottom $bottomS");
+    debugPrint("---> bottom $bottomS");
     return Scaffold(
       // endDrawerEnableOpenDragGesture: false,
       appBar: AppBar(
@@ -73,7 +73,7 @@ class SignUpPage extends StatelessWidget {
             builder: (context, state) {
               return FocusScope(
                 onFocusChange: (value) {
-                  print("Clear up[ $value");
+                  debugPrint("Clear up[ $value");
                 },
                 child: KeyboardVisibilityBuilder(builder: (context, isOpened) {
                   return SingleChildScrollView(
@@ -103,7 +103,7 @@ class SignUpPage extends StatelessWidget {
                         SizedBox(height: 34.h),
                         Column(
                           children: [
-                            const TextFieldTitle(title:'Phone Number'),
+                            const TextFieldTitle(title: 'Phone Number'),
                             SizedBox(height: 8.h),
                             Form(
                               key: _numberKey,
@@ -112,6 +112,7 @@ class SignUpPage extends StatelessWidget {
                                   if (!val!.isValidPhone) {
                                     return 'Enter valid number';
                                   }
+                                  return null;
                                 },
                                 state: state,
                                 textInputType: TextInputType.number,
@@ -151,7 +152,9 @@ class SignUpPage extends StatelessWidget {
                                       Text(
                                         state.dialCode,
                                         style: const TextStyle(
-                                            fontSize: 16, color: Colors.black),
+                                          fontSize: 16,
+                                          color: Colors.black,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -170,35 +173,38 @@ class SignUpPage extends StatelessWidget {
                         const SizedBox(height: 15),
                         Column(
                           children: [
-                         const TextFieldTitle(title: 'Password'),
+                            const TextFieldTitle(title: 'Password'),
                             SizedBox(height: 8.h),
                             Form(
                               key: _passwordKey,
                               child: ValueListenableBuilder(
-                                valueListenable: codeVisible,
-                                builder: (context  , isVisible , _) {
-                                  return TextFormFieldCT(
-                                    controller: controllerPassword,
-                                    hintText: 'Enter your password',
-                                    textInputType: TextInputType.text,
-                                    validator: (value) {
-                                      if (!value!.isValidPassword) {
-                                        return 'At least 8 characters and one number or symbol';
-                                      }
-                                    },
-                                    isCodeField: !codeVisible.value,
-                                    suffixRow: InkWell(
-                                      onTap: (){
-                                        codeVisible.value = !codeVisible.value;
+                                  valueListenable: codeVisible,
+                                  builder: (context, isVisible, _) {
+                                    return TextFormFieldCT(
+                                      controller: controllerPassword,
+                                      hintText: 'Enter your password',
+                                      textInputType: TextInputType.text,
+                                      validator: (value) {
+                                        if (!value!.isValidPassword) {
+                                          return 'At least 8 characters and one number or symbol';
+                                        }
+                                        return null;
                                       },
-                                      child: Icon(isVisible ? Icons.visibility_off : Icons.visibility),
-                                    ),
-                                    onChanged: (text) {
-                                      _passwordKey.currentState!.validate();
-                                    },
-                                  );
-                                }
-                              ),
+                                      isCodeField: !codeVisible.value,
+                                      suffixRow: InkWell(
+                                        onTap: () {
+                                          codeVisible.value =
+                                              !codeVisible.value;
+                                        },
+                                        child: Icon(isVisible
+                                            ? Icons.visibility_off
+                                            : Icons.visibility),
+                                      ),
+                                      onChanged: (text) {
+                                        _passwordKey.currentState!.validate();
+                                      },
+                                    );
+                                  }),
                             ),
                           ],
                         ),
@@ -210,36 +216,43 @@ class SignUpPage extends StatelessWidget {
                             Form(
                               key: _passwordCheckKey,
                               child: ValueListenableBuilder(
-                                valueListenable: codeVerifyVisible,
-                                builder: (context , isVisible , _) {
-                                  return TextFormFieldCT(
-                                    validator: (val) {
-                                      if (val != controllerPassword.text) {
-                                        return 'Password did not match';
-                                      }
-                                    },
-                                    hintText: 'Confirm your password',
-                                    textInputType: TextInputType.text,
-                                    isCodeField: !isVisible,
-                                    suffixRow: GestureDetector(
-                                      onTap: (){
-                                        codeVerifyVisible.value = !codeVerifyVisible.value;
+                                  valueListenable: codeVerifyVisible,
+                                  builder: (context, isVisible, _) {
+                                    return TextFormFieldCT(
+                                      validator: (val) {
+                                        if (val != controllerPassword.text) {
+                                          return 'Password did not match';
+                                        }
+                                        return null;
                                       },
-                                      child: Icon(isVisible ? Icons.visibility_off : Icons.visibility),
-                                    ),
-                                    onChanged: (text) {
-                                      if (_passwordCheckKey.currentState!
-                                          .validate()) {
-                                        context
-                                            .read<SignUpCubit>()
-                                            .setPassword(text);
-                                      } else {
-                                        context.read<SignUpCubit>().setPassword('');
-                                      }
-                                    },
-                                  );
-                                }
-                              ),
+                                      hintText: 'Confirm your password',
+                                      textInputType: TextInputType.text,
+                                      isCodeField: !isVisible,
+                                      suffixRow: GestureDetector(
+                                        onTap: () {
+                                          codeVerifyVisible.value =
+                                              !codeVerifyVisible.value;
+                                        },
+                                        child: Icon(
+                                          isVisible
+                                              ? Icons.visibility_off
+                                              : Icons.visibility,
+                                        ),
+                                      ),
+                                      onChanged: (text) {
+                                        if (_passwordCheckKey.currentState!
+                                            .validate()) {
+                                          context
+                                              .read<SignUpCubit>()
+                                              .setPassword(text);
+                                        } else {
+                                          context
+                                              .read<SignUpCubit>()
+                                              .setPassword('');
+                                        }
+                                      },
+                                    );
+                                  }),
                             ),
                           ],
                         ),

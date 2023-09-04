@@ -83,11 +83,9 @@ abstract class $AppRouter extends _i11.RootStackRouter {
       );
     },
     SignInWrapper.name: (routeData) {
-      final args = routeData.argsAs<SignInWrapperArgs>(
-          orElse: () => const SignInWrapperArgs());
       return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i8.SignInWrapper(key: args.key),
+        child: const _i8.SignInWrapper(),
       );
     },
     SignUpWrapper.name: (routeData) {
@@ -281,31 +279,16 @@ class SelectTheRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.SignInWrapper]
-class SignInWrapper extends _i11.PageRouteInfo<SignInWrapperArgs> {
-  SignInWrapper({
-    _i12.Key? key,
-    List<_i11.PageRouteInfo>? children,
-  }) : super(
+class SignInWrapper extends _i11.PageRouteInfo<void> {
+  const SignInWrapper({List<_i11.PageRouteInfo>? children})
+      : super(
           SignInWrapper.name,
-          args: SignInWrapperArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'SignInWrapper';
 
-  static const _i11.PageInfo<SignInWrapperArgs> page =
-      _i11.PageInfo<SignInWrapperArgs>(name);
-}
-
-class SignInWrapperArgs {
-  const SignInWrapperArgs({this.key});
-
-  final _i12.Key? key;
-
-  @override
-  String toString() {
-    return 'SignInWrapperArgs{key: $key}';
-  }
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
