@@ -39,7 +39,7 @@ class _MainScreenState extends State<MainScreen> {
               index: state,
               children:  const [
                 HomePage(),
-                RightsPage(),
+                RightsWrapper(),
                 ContactsWrapper(),
                 ProfilePage(),
               ],

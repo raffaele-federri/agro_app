@@ -5,7 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../network/api/api_helper.dart';
+import '../../../network/api/api_helper.dart';
 
 part 'contacts_event.dart';
 
@@ -16,7 +16,7 @@ part 'contacts_bloc.freezed.dart';
 class ContactsBloc extends Bloc<ContactsEvent, ContactsState> {
   int page = 1;
   int totalContacts = 0;
-  final perPage = 4;
+  final perPage = 6;
   final List<Contact> _contact = [];
 
   ContactsBloc() : super(const ContactsState.initial()) {

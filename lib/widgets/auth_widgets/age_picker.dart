@@ -145,7 +145,8 @@ class _NumberPickerState extends State<NumberPicker> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      // color: Colors.cyan,
       width: widget.axis == Axis.vertical
           ? widget.itemWidth
           : widget.itemCount * widget.itemWidth,
@@ -159,6 +160,7 @@ class _NumberPickerState extends State<NumberPicker> {
           }
           return true;
         },
+
         child: Stack(
           children: [
               ListView.builder(
@@ -264,6 +266,7 @@ class _NumberPickerSelectedItemDecoration extends StatelessWidget {
           width: isVertical ? double.infinity : itemExtent,
           height: isVertical ? itemExtent + 16 : double.infinity,
           decoration: decoration,
+
         ),
       ),
     );

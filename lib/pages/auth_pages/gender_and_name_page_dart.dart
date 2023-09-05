@@ -68,7 +68,8 @@ class GenderAndNamePage extends StatelessWidget {
                         children: [
                           const PrimaryTextStyle(
                             text: 'Who are you ?',
-                            size: 40,
+                            maxLines: 1,
+                            size: 38,
                             weight: FontWeight.w800,
                           ),
                           SizedBox(

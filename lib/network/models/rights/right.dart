@@ -10,12 +10,12 @@ part 'right.g.dart';
 class Right with _$Right {
   const factory Right({
     required int id,
-    @JsonKey(name: 'title_ru') required String titleRu,
-    @JsonKey(name: 'title_uz') required String titleUz,
-    @JsonKey(name: 'title_en') required String titleEn,
-    @JsonKey(name: 'short_description_ru') required String shortDescriptionRu,
-    @JsonKey(name: 'short_description_uz') required String shortDescriptionUz,
-    @JsonKey(name: 'short_description_en') required String shortDescriptionEn,
+    @JsonKey(name: 'title_ru') required String? titleRu,
+    @JsonKey(name: 'title_uz') required String? titleUz,
+    @JsonKey(name: 'title_en') required String? titleEn,
+    @JsonKey(name: 'short_description_ru') required String? shortDescriptionRu,
+    @JsonKey(name: 'short_description_uz') required String? shortDescriptionUz,
+    @JsonKey(name: 'short_description_en') required String? shortDescriptionEn,
     required List<Category> categories,
   }) = _Right;
 

@@ -108,7 +108,7 @@ class ProfilePage extends StatelessWidget {
                   children: [
                     const TextFieldTitle(title: 'Age', inactive: true),
                     SizedBox(height: 8.r),
-                    const InfoBox(title: '+998 90 123 45 67', width: 145),
+                     InfoBox(title: '+998 90 123 45 67'),
                   ],
                 ),
                 SizedBox(width: 10.r),
@@ -118,7 +118,7 @@ class ProfilePage extends StatelessWidget {
                     const TextFieldTitle(title: 'Gender', inactive: true),
                     SizedBox(height: 8.r),
                     InfoBox(
-                      width: 44,
+
                       child: SvgPicture.asset('assets/icons/male_symbol.svg'),
                     ),
                   ],

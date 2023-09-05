@@ -22,17 +22,17 @@ Category _$CategoryFromJson(Map<String, dynamic> json) {
 mixin _$Category {
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'title_ru')
-  String get titleRu => throw _privateConstructorUsedError;
+  String? get titleRu => throw _privateConstructorUsedError;
   @JsonKey(name: 'title_uz')
-  String get titleUz => throw _privateConstructorUsedError;
+  String? get titleUz => throw _privateConstructorUsedError;
   @JsonKey(name: 'title_en')
-  String get titleEn => throw _privateConstructorUsedError;
+  String? get titleEn => throw _privateConstructorUsedError;
   @JsonKey(name: 'short_description_ru')
-  String get shortDescriptionRu => throw _privateConstructorUsedError;
+  String? get shortDescriptionRu => throw _privateConstructorUsedError;
   @JsonKey(name: 'short_description_uz')
-  String get shortDescriptionUz => throw _privateConstructorUsedError;
+  String? get shortDescriptionUz => throw _privateConstructorUsedError;
   @JsonKey(name: 'short_description_en')
-  String get shortDescriptionEn => throw _privateConstructorUsedError;
+  String? get shortDescriptionEn => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,12 +47,12 @@ abstract class $CategoryCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'title_ru') String titleRu,
-      @JsonKey(name: 'title_uz') String titleUz,
-      @JsonKey(name: 'title_en') String titleEn,
-      @JsonKey(name: 'short_description_ru') String shortDescriptionRu,
-      @JsonKey(name: 'short_description_uz') String shortDescriptionUz,
-      @JsonKey(name: 'short_description_en') String shortDescriptionEn});
+      @JsonKey(name: 'title_ru') String? titleRu,
+      @JsonKey(name: 'title_uz') String? titleUz,
+      @JsonKey(name: 'title_en') String? titleEn,
+      @JsonKey(name: 'short_description_ru') String? shortDescriptionRu,
+      @JsonKey(name: 'short_description_uz') String? shortDescriptionUz,
+      @JsonKey(name: 'short_description_en') String? shortDescriptionEn});
 }
 
 /// @nodoc
@@ -69,42 +69,42 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
   @override
   $Res call({
     Object? id = null,
-    Object? titleRu = null,
-    Object? titleUz = null,
-    Object? titleEn = null,
-    Object? shortDescriptionRu = null,
-    Object? shortDescriptionUz = null,
-    Object? shortDescriptionEn = null,
+    Object? titleRu = freezed,
+    Object? titleUz = freezed,
+    Object? titleEn = freezed,
+    Object? shortDescriptionRu = freezed,
+    Object? shortDescriptionUz = freezed,
+    Object? shortDescriptionEn = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      titleRu: null == titleRu
+      titleRu: freezed == titleRu
           ? _value.titleRu
           : titleRu // ignore: cast_nullable_to_non_nullable
-              as String,
-      titleUz: null == titleUz
+              as String?,
+      titleUz: freezed == titleUz
           ? _value.titleUz
           : titleUz // ignore: cast_nullable_to_non_nullable
-              as String,
-      titleEn: null == titleEn
+              as String?,
+      titleEn: freezed == titleEn
           ? _value.titleEn
           : titleEn // ignore: cast_nullable_to_non_nullable
-              as String,
-      shortDescriptionRu: null == shortDescriptionRu
+              as String?,
+      shortDescriptionRu: freezed == shortDescriptionRu
           ? _value.shortDescriptionRu
           : shortDescriptionRu // ignore: cast_nullable_to_non_nullable
-              as String,
-      shortDescriptionUz: null == shortDescriptionUz
+              as String?,
+      shortDescriptionUz: freezed == shortDescriptionUz
           ? _value.shortDescriptionUz
           : shortDescriptionUz // ignore: cast_nullable_to_non_nullable
-              as String,
-      shortDescriptionEn: null == shortDescriptionEn
+              as String?,
+      shortDescriptionEn: freezed == shortDescriptionEn
           ? _value.shortDescriptionEn
           : shortDescriptionEn // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -118,12 +118,12 @@ abstract class _$$_CategoryCopyWith<$Res> implements $CategoryCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'title_ru') String titleRu,
-      @JsonKey(name: 'title_uz') String titleUz,
-      @JsonKey(name: 'title_en') String titleEn,
-      @JsonKey(name: 'short_description_ru') String shortDescriptionRu,
-      @JsonKey(name: 'short_description_uz') String shortDescriptionUz,
-      @JsonKey(name: 'short_description_en') String shortDescriptionEn});
+      @JsonKey(name: 'title_ru') String? titleRu,
+      @JsonKey(name: 'title_uz') String? titleUz,
+      @JsonKey(name: 'title_en') String? titleEn,
+      @JsonKey(name: 'short_description_ru') String? shortDescriptionRu,
+      @JsonKey(name: 'short_description_uz') String? shortDescriptionUz,
+      @JsonKey(name: 'short_description_en') String? shortDescriptionEn});
 }
 
 /// @nodoc
@@ -138,42 +138,42 @@ class __$$_CategoryCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? titleRu = null,
-    Object? titleUz = null,
-    Object? titleEn = null,
-    Object? shortDescriptionRu = null,
-    Object? shortDescriptionUz = null,
-    Object? shortDescriptionEn = null,
+    Object? titleRu = freezed,
+    Object? titleUz = freezed,
+    Object? titleEn = freezed,
+    Object? shortDescriptionRu = freezed,
+    Object? shortDescriptionUz = freezed,
+    Object? shortDescriptionEn = freezed,
   }) {
     return _then(_$_Category(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      titleRu: null == titleRu
+      titleRu: freezed == titleRu
           ? _value.titleRu
           : titleRu // ignore: cast_nullable_to_non_nullable
-              as String,
-      titleUz: null == titleUz
+              as String?,
+      titleUz: freezed == titleUz
           ? _value.titleUz
           : titleUz // ignore: cast_nullable_to_non_nullable
-              as String,
-      titleEn: null == titleEn
+              as String?,
+      titleEn: freezed == titleEn
           ? _value.titleEn
           : titleEn // ignore: cast_nullable_to_non_nullable
-              as String,
-      shortDescriptionRu: null == shortDescriptionRu
+              as String?,
+      shortDescriptionRu: freezed == shortDescriptionRu
           ? _value.shortDescriptionRu
           : shortDescriptionRu // ignore: cast_nullable_to_non_nullable
-              as String,
-      shortDescriptionUz: null == shortDescriptionUz
+              as String?,
+      shortDescriptionUz: freezed == shortDescriptionUz
           ? _value.shortDescriptionUz
           : shortDescriptionUz // ignore: cast_nullable_to_non_nullable
-              as String,
-      shortDescriptionEn: null == shortDescriptionEn
+              as String?,
+      shortDescriptionEn: freezed == shortDescriptionEn
           ? _value.shortDescriptionEn
           : shortDescriptionEn // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -197,22 +197,22 @@ class _$_Category implements _Category {
   final int id;
   @override
   @JsonKey(name: 'title_ru')
-  final String titleRu;
+  final String? titleRu;
   @override
   @JsonKey(name: 'title_uz')
-  final String titleUz;
+  final String? titleUz;
   @override
   @JsonKey(name: 'title_en')
-  final String titleEn;
+  final String? titleEn;
   @override
   @JsonKey(name: 'short_description_ru')
-  final String shortDescriptionRu;
+  final String? shortDescriptionRu;
   @override
   @JsonKey(name: 'short_description_uz')
-  final String shortDescriptionUz;
+  final String? shortDescriptionUz;
   @override
   @JsonKey(name: 'short_description_en')
-  final String shortDescriptionEn;
+  final String? shortDescriptionEn;
 
   @override
   String toString() {
@@ -258,15 +258,15 @@ class _$_Category implements _Category {
 abstract class _Category implements Category {
   const factory _Category(
       {required final int id,
-      @JsonKey(name: 'title_ru') required final String titleRu,
-      @JsonKey(name: 'title_uz') required final String titleUz,
-      @JsonKey(name: 'title_en') required final String titleEn,
+      @JsonKey(name: 'title_ru') required final String? titleRu,
+      @JsonKey(name: 'title_uz') required final String? titleUz,
+      @JsonKey(name: 'title_en') required final String? titleEn,
       @JsonKey(name: 'short_description_ru')
-      required final String shortDescriptionRu,
+      required final String? shortDescriptionRu,
       @JsonKey(name: 'short_description_uz')
-      required final String shortDescriptionUz,
+      required final String? shortDescriptionUz,
       @JsonKey(name: 'short_description_en')
-      required final String shortDescriptionEn}) = _$_Category;
+      required final String? shortDescriptionEn}) = _$_Category;
 
   factory _Category.fromJson(Map<String, dynamic> json) = _$_Category.fromJson;
 
@@ -274,22 +274,22 @@ abstract class _Category implements Category {
   int get id;
   @override
   @JsonKey(name: 'title_ru')
-  String get titleRu;
+  String? get titleRu;
   @override
   @JsonKey(name: 'title_uz')
-  String get titleUz;
+  String? get titleUz;
   @override
   @JsonKey(name: 'title_en')
-  String get titleEn;
+  String? get titleEn;
   @override
   @JsonKey(name: 'short_description_ru')
-  String get shortDescriptionRu;
+  String? get shortDescriptionRu;
   @override
   @JsonKey(name: 'short_description_uz')
-  String get shortDescriptionUz;
+  String? get shortDescriptionUz;
   @override
   @JsonKey(name: 'short_description_en')
-  String get shortDescriptionEn;
+  String? get shortDescriptionEn;
   @override
   @JsonKey(ignore: true)
   _$$_CategoryCopyWith<_$_Category> get copyWith =>

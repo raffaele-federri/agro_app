@@ -179,6 +179,7 @@ class _SignInPageState extends State<SignInPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const PrimaryTextStyle(
+                          size: 16,
                           text: 'Do\'nt have an accaunt ?',
                           color: Color(0xff818E9B),
                         ),
@@ -187,6 +188,7 @@ class _SignInPageState extends State<SignInPage> {
                             context.router.push(const SignUpWrapper());
                           },
                           child: const PrimaryTextStyle(
+                            size: 16,
                             text: 'Sign up',
                             color: AppColors.mainTextColor,
                           ),

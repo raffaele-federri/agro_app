@@ -8,12 +8,12 @@ part of 'category.dart';
 
 _$_Category _$$_CategoryFromJson(Map<String, dynamic> json) => _$_Category(
       id: json['id'] as int,
-      titleRu: json['title_ru'] as String,
-      titleUz: json['title_uz'] as String,
-      titleEn: json['title_en'] as String,
-      shortDescriptionRu: json['short_description_ru'] as String,
-      shortDescriptionUz: json['short_description_uz'] as String,
-      shortDescriptionEn: json['short_description_en'] as String,
+      titleRu: json['title_ru'] as String?,
+      titleUz: json['title_uz'] as String?,
+      titleEn: json['title_en'] as String?,
+      shortDescriptionRu: json['short_description_ru'] as String?,
+      shortDescriptionUz: json['short_description_uz'] as String?,
+      shortDescriptionEn: json['short_description_en'] as String?,
     );
 
 Map<String, dynamic> _$$_CategoryToJson(_$_Category instance) =>

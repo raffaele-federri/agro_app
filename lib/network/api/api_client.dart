@@ -1,4 +1,5 @@
 import 'package:agro_app/network/models/contacts/contacts_response.dart';
+import 'package:agro_app/network/models/rights/rights_response.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
 
@@ -22,6 +23,12 @@ abstract class ApiClient {
   Future<ContactsResponse> getContact(
     @Query('page') int page,
     @Query('per_page') int perPage,
+  );
+
+  @GET("rights/")
+  Future<RightsResponse> getRight(
+    @Query('page') int page,
+    @Query('limit') int perPage,
   );
 
   @POST("users/")

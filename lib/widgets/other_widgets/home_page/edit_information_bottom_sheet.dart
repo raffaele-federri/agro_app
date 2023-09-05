@@ -2,7 +2,6 @@ import 'package:agro_app/bloc/cubit/simple_cubits/update_dial.dart';
 import 'package:agro_app/core/extensions.dart';
 import 'package:agro_app/widgets/other_widgets/general/300_hug_button.dart';
 import 'package:agro_app/widgets/other_widgets/home_page/profile_info_box.dart';
-import 'package:auto_route/annotations.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +17,6 @@ import '../../auth_widgets/working_status_drop.dart';
 import '../../custom_text.dart';
 import '../general/text_field_title.dart';
 import 'edit_info_item.dart';
-
 
 class EditInformationBottomSheet extends StatelessWidget {
   EditInformationBottomSheet({super.key});
@@ -179,7 +177,6 @@ class EditInformationBottomSheet extends StatelessWidget {
                                               .changeTab(0);
                                         },
                                         child: InfoBox(
-                                          width: 44,
                                           height: 48.r,
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -205,7 +202,6 @@ class EditInformationBottomSheet extends StatelessWidget {
                                         child: InfoBox(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
-                                          width: 44,
                                           height: 48.r,
                                           color: state == 1
                                               ? Colors.black45
@@ -250,11 +246,13 @@ class EditInformationBottomSheet extends StatelessWidget {
                                 children: [
                                   Image.asset(
                                     'assets/images/setting.png',
+                                    height: 40.r,
+                                    width: 40.r,
                                     color: AppColors.lightGrey,
                                   ),
                                   const CustomText(
-                                    text: 'Someting went wrong',
-                                    size: 32,
+                                    text: 'Something went wrong',
+                                    size: 22,
                                     color: AppColors.primaryBlue,
                                     // wight: FontWeight.w500,
                                   ),

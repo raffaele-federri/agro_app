@@ -75,34 +75,6 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<SignUpResponse> signUp(Map<String, dynamic> requestBody) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(requestBody);
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<SignUpResponse>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              'users/',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = SignUpResponse.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
   Future<ContactsResponse> getContact(
     int page,
     int perPage,
@@ -132,6 +104,67 @@ class _ApiClient implements ApiClient {
               baseUrl,
             ))));
     final value = ContactsResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<RightsResponse> getRight(
+    int page,
+    int perPage,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'page': page,
+      r'limit': perPage,
+    };
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<RightsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'rights/',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = RightsResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SignUpResponse> signUp(Map<String, dynamic> requestBody) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(requestBody);
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<SignUpResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'users/',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SignUpResponse.fromJson(_result.data!);
     return value;
   }
 

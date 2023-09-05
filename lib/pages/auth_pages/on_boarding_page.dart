@@ -17,18 +17,25 @@ class OnBoardingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('❤ ⚫️'.length);
+    // print('❤ ⚫️'.length);
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: Column(
-            children: [
-              Row(
+        child: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
+          slivers: [
+              SliverAppBar(
+              elevation: 0,
+              automaticallyImplyLeading: false,
+              backgroundColor: Colors.transparent,
+              title: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.router.push(
+                        const SignInWrapper()
+                      );
+                    },
                     child: Text(
                       'SKIP',
                       style: GoogleFonts.openSans(
@@ -39,64 +46,72 @@ class OnBoardingPage extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+            ),
+            SliverToBoxAdapter(
+
+              child: Column(
                 children: [
-                  Image.asset('assets/images/logo.png'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/logo.png'),
+                    ],
+                  ),
+                  SizedBox(height: 138.r),
+                  const CustomText(
+                    text: 'Main Title',
+                    size: 40,
+                    weight: FontWeight.w800,
+                    color: AppColors.mainTextColor,
+                  ),
+                  const SizedBox(height: 16),
+                  const CustomText(
+                    text: 'Some text about product goes here',
+                    size: 16,
+                    color: AppColors.mainTextColor,
+                  ),
+                  SizedBox(height: 50.h),
+                  SizedBox(
+                    height: 18.38.h,
+                    width: 69.69.w,
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        PageIndicatorContainer(rotate: 0.76),
+                        PageIndicatorContainer(),
+                        PageIndicatorContainer(),
+                        PageIndicatorContainer(),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 40.h),
+                  Container(
+                    height: 76.h,
+                    width: 76,
+                    decoration: BoxDecoration(
+                      border:
+                          Border.all(color: const Color(0xffCCE5FF), width: 2),
+                      borderRadius: BorderRadius.circular(38),
+                      // color: Colors.amber,
+                    ),
+                    padding: const EdgeInsets.all(6),
+                    child: FloatingActionButton(
+                      highlightElevation: 0,
+                      elevation: 0,
+                      onPressed: () {
+                        context.router.push(SignInWrapper());
+                      },
+                      child: Image.asset(
+                        'assets/icons/play.png',
+                        height: 22.h,
+                        color: Colors.white,
+                      ),
+                    ),
+                  )
                 ],
               ),
-              SizedBox(height: 138.h),
-              const CustomText(
-                text: 'Main Title',
-                size: 40,
-                weight: FontWeight.w800,
-                color: AppColors.mainTextColor,
-              ),
-              const SizedBox(height: 16),
-              const CustomText(
-                text: 'Some text about product goes here',
-                size: 16,
-                color: AppColors.mainTextColor,
-              ),
-              SizedBox(height: 50.h),
-              SizedBox(
-                height: 18.38.h,
-                width: 69.69.w,
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    PageIndicatorContainer(rotate: 0.76),
-                    PageIndicatorContainer(),
-                    PageIndicatorContainer(),
-                    PageIndicatorContainer(),
-                  ],
-                ),
-              ),
-              SizedBox(height: 40.h),
-              Container(
-                height: 76.h,
-                width: 76,
-                decoration: BoxDecoration(
-                  border: Border.all(color: const Color(0xffCCE5FF), width: 2),
-                  borderRadius: BorderRadius.circular(38),
-                  // color: Colors.amber,
-                ),
-                padding: const EdgeInsets.all(6),
-                child: FloatingActionButton(
-                  highlightElevation: 0,
-                  elevation: 0,
-                  onPressed: () {
-                    context.router.push(SignInWrapper());
-                  },
-                  child: Image.asset(
-                    'assets/icons/play.png',
-                    height: 22.h,
-                    color: Colors.white,
-                  ),
-                ),
-              )
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

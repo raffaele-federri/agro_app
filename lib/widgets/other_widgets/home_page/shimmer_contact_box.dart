@@ -12,7 +12,8 @@ class ShimmerContactBox extends StatelessWidget {
     return  Container(
       padding: const EdgeInsets.symmetric(
           horizontal: 12, vertical: 9),
-      margin: EdgeInsets.zero,
+
+      margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
         boxShadow:  const [
           BoxShadow(
@@ -24,7 +25,7 @@ class ShimmerContactBox extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
       ),
-      height: 0.13368984.sh,
+      height: 105.r,
       width: double.infinity,
       child:  Column(
         crossAxisAlignment: CrossAxisAlignment.start,

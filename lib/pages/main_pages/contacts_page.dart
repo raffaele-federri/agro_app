@@ -1,8 +1,7 @@
-import 'package:agro_app/bloc/blocs/contacts_bloc.dart';
+import 'package:agro_app/bloc/blocs/contacts_fetch/contacts_bloc.dart';
 import 'package:agro_app/widgets/custom_text.dart';
 import 'package:agro_app/widgets/other_widgets/home_page/shimmer_contact_box.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -120,10 +119,7 @@ class _ContactsPageState extends State<ContactsPage> {
                           );
                         },
                         success: (fetchedContacts) {
-                          if (kDebugMode) {
-                            print(
-                              'FETCHED CONTACTS ==========> $fetchedContacts');
-                          }
+
                           return Flexible(
                             child: ListView.separated(
                               shrinkWrap: true,

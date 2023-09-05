@@ -34,19 +34,21 @@ class InfoBox extends StatelessWidget {
       ),
       // height: 0.053475936.sh,
       height: height ?? 48.r,
-      width: width?.r ?? double.infinity,
+      width: width?.r ,
       child: Row(
         mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
         children: [
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              child ??
-                  CustomText(
-                    text: title ?? '',
-                    size: 12,
-                    color: AppColors.textGrey,
-                  ),
+              Flexible(
+                child: child ??
+                    CustomText(
+                      text: title ?? '',
+                      size: 12,
+                      color: AppColors.textGrey,
+                    ),
+              ),
             ],
           ),
         ],

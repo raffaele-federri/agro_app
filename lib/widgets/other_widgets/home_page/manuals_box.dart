@@ -24,10 +24,19 @@ class ManualsBox extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
 
         decoration: BoxDecoration(
+          boxShadow: const [
+            BoxShadow(
+              color: AppColors.lightGrey,
+              offset: Offset(0.0, 0.1), //(x,y)
+              blurRadius: 4.0,
+            ),
+          ],
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
         ),
-        height: 0.199197861.sh,
+        // height: 149,
+        // width: 160,
+        // height: 0.199197861.sh,
         width: 0.444444444.sw,
         child: Column(
           children: [
@@ -37,7 +46,7 @@ class ManualsBox extends StatelessWidget {
                 TitleInManuals(title: title),
               ],
             ),
-            SizedBox(height: 14.r),
+            SizedBox(height: 8.r),
              CustomText(
               maxLines: 4,
               text: text,

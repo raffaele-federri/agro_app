@@ -28,7 +28,7 @@ class CustomText extends StatelessWidget {
           maxLines: maxLines ?? 1000,
           overflow: TextOverflow.ellipsis,
           style: GoogleFonts.lato(
-            fontSize: size?.h ?? 16,
+            fontSize: size?.r ?? 16.r,
             fontWeight: weight ?? FontWeight.w400,
             color: color,
           ),

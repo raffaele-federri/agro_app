@@ -25,27 +25,32 @@ class HomePage extends StatelessWidget {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Row(
-          children: [
-            const CustomText(
-              text: 'Good day,',
-              size: 30,
-              weight: FontWeight.w900,
-              color: AppColors.activeColor,
-            ),
-            SizedBox(width: 8.r),
-            const CustomText(
-              text: 'Raffaele',
-              size: 30,
-              weight: FontWeight.w500,
-              color: AppColors.primaryBlue,
-            ),
-            SizedBox(
-              width: 12.r,
-            ),
-            SvgPicture.asset('assets/images/hello.svg'),
-          ],
-        ),
+        title: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+
+          return Row(
+            children: [
+              const CustomText(
+                text: 'Good day,',
+                size: 30,
+                weight: FontWeight.w900,
+                color: AppColors.activeColor,
+              ),
+              SizedBox(width: 8.r),
+              const CustomText(
+                text: 'Raffaele',
+                maxLines: 1,
+                size: 30,
+                weight: FontWeight.w500,
+                color: AppColors.primaryBlue,
+              ),
+              SizedBox(width: 12.r),
+              constraints.maxWidth < 330
+                  ? const SizedBox()
+                  : SvgPicture.asset('assets/images/hello.svg'),
+            ],
+          );
+        }),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.zero,
@@ -101,11 +106,10 @@ class HomePage extends StatelessWidget {
               ),
               SizedBox(height: 20.r),
               const HotlineBox(
-
                   title: 'Federation of professional associations',
                   number: '+ 998 93 553 07 17',
                   address: '77905 Block Highway, Hudsonland'),
-
+              SizedBox(height: 15.r),
               const HotlineBox(
                   title: 'Labor exchange',
                   number: '+ 998 93 553 07 17',
