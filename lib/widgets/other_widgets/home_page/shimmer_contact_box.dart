@@ -9,13 +9,11 @@ class ShimmerContactBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
-      padding: const EdgeInsets.symmetric(
-          horizontal: 12, vertical: 9),
-
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
       margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
-        boxShadow:  const [
+        boxShadow: const [
           BoxShadow(
             color: AppColors.lightGrey,
             offset: Offset(0.0, 0.1), //(x,y)
@@ -27,16 +25,17 @@ class ShimmerContactBox extends StatelessWidget {
       ),
       height: 105.r,
       width: double.infinity,
-      child:  Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Shimmer.fromColors(
             baseColor: Colors.grey[100]!,
             highlightColor: Colors.white,
             child: Container(
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), color: Colors.white,),
               width: 110,
               height: 18,
-              color: Colors.white,
+
             ),
           ),
           SizedBox(height: 14.r),
@@ -44,9 +43,10 @@ class ShimmerContactBox extends StatelessWidget {
             baseColor: Colors.grey[100]!,
             highlightColor: Colors.white,
             child: Container(
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(4),  color: Colors.white,),
               width: 140,
               height: 14,
-              color: Colors.white,
+
             ),
           ),
           SizedBox(height: 10.r),
@@ -54,9 +54,10 @@ class ShimmerContactBox extends StatelessWidget {
             baseColor: Colors.grey[100]!,
             highlightColor: Colors.white,
             child: Container(
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(4),  color: Colors.white,),
               width: 180,
               height: 14,
-              color: Colors.white,
+
             ),
           ),
         ],

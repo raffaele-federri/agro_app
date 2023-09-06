@@ -1,7 +1,6 @@
 import 'package:agro_app/bloc/blocs/contacts_fetch/contacts_bloc.dart';
 import 'package:agro_app/widgets/custom_text.dart';
 import 'package:agro_app/widgets/other_widgets/home_page/shimmer_contact_box.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,22 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../constants/app_colors.dart';
 import '../../widgets/other_widgets/home_page/hotline_box.dart';
 
-@RoutePage()
-class ContactsWrapper extends StatelessWidget {
-  const ContactsWrapper({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => ContactsBloc()..add(const ContactsEvent.fetch()),
-        ),
-      ],
-      child: const ContactsPage(),
-    );
-  }
-}
 
 class ContactsPage extends StatefulWidget {
   const ContactsPage({super.key});
@@ -48,7 +32,7 @@ class _ContactsPageState extends State<ContactsPage> {
     if (scrollController.position.userScrollDirection ==
             ScrollDirection.reverse &&
         scrollController.offset >=
-            scrollController.position.maxScrollExtent + 50) {
+            scrollController.position.maxScrollExtent + 15) {
       context.read<ContactsBloc>().add(const ContactsEvent.fetchMore());
     }
   }

@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   static AppRouter appRouter = AppRouter();
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -45,3 +46,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+//  WidgetsBinding.instance.addPostFrameCallback((_) {
+//       print(' SIZE : ${context.size!.height}, ${context.size!.width}');
+//     });

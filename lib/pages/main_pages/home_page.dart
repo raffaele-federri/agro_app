@@ -8,11 +8,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../bloc/blocs/contacts_fetch/contacts_bloc.dart';
+import '../../bloc/blocs/rights_fetch/rights_bloc.dart';
 import '../../bloc/cubit/simple_cubits/bottom_nav_bar_cubit.dart';
 
 import '../../widgets/other_widgets/home_page/home_page_title_row.dart';
 import '../../widgets/other_widgets/general/text_form_field.dart';
 import '../../widgets/other_widgets/home_page/no_complains_widget.dart';
+import '../../widgets/other_widgets/home_page/shimmer_contact_box.dart';
+import '../../widgets/other_widgets/home_page/shimmer_rights_box.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -21,102 +25,195 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.mainScreenBackgroundColor,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
-
-          return Row(
-            children: [
-              const CustomText(
-                text: 'Good day,',
-                size: 30,
-                weight: FontWeight.w900,
-                color: AppColors.activeColor,
-              ),
-              SizedBox(width: 8.r),
-              const CustomText(
-                text: 'Raffaele',
-                maxLines: 1,
-                size: 30,
-                weight: FontWeight.w500,
-                color: AppColors.primaryBlue,
-              ),
-              SizedBox(width: 12.r),
-              constraints.maxWidth < 330
-                  ? const SizedBox()
-                  : SvgPicture.asset('assets/images/hello.svg'),
-            ],
-          );
-        }),
-      ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.zero,
-        physics: const BouncingScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            children: [
-              SizedBox(height: 20.r),
-              const TextFormFieldMain(),
-              SizedBox(
-                height: 32.r,
-              ),
-              TitleRow(
-                asset: 'assets/icons/manuals.svg',
-                title: 'Manuals',
-                onPressed: () {
-                  context.read<BottomNavBarCubit>().changeTab(1);
-                },
-                see: true,
-              ),
-              SizedBox(height: 20.r),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 15.r),
+        child: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
+          slivers: [
+            SliverAppBar(
+              backgroundColor: Colors.transparent,
+              // centerTitle: true,
+              expandedHeight: 140,
+              collapsedHeight: 140,
+              flexibleSpace: LayoutBuilder(
+                  builder: (BuildContext context, BoxConstraints constraints) {
+                    print(constraints.maxWidth);
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                         const CustomText(
+                          text: 'Good day,',
+                          size:  30,
+                          weight: FontWeight.w900,
+                          color: AppColors.activeColor,
+                        ),
+                        SizedBox(width: 8.r),
+                        const CustomText(
+                          text: 'Raffaele',
+                          maxLines: 1,
+                          size: 30,
+                          weight: FontWeight.w500,
+                          color: AppColors.primaryBlue,
+                        ),
+                        SizedBox(width: 12.r),
+                        constraints.maxWidth < 340
+                            ? const SizedBox()
+                            : SvgPicture.asset('assets/images/hello.svg'),
+                      ],
+                    ),
+                    SizedBox(height: 20.r),
+                    const TextFormFieldMain(),
+                  ],
+                );
+              }),
+            ),
+            SliverToBoxAdapter(
+              child: Column(
                 children: [
-                  ManualsBox(
-                    title: 'Farmers\' Rights',
-                    text:
-                        'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.',
+                  TitleRow(
+                    asset: 'assets/icons/manuals.svg',
+                    title: 'Manuals',
+                    onPressed: () {
+                      context.read<BottomNavBarCubit>().changeTab(1);
+                    },
+                    see: true,
                   ),
-                  ManualsBox(
-                    title: 'Rights Violations',
-                    text:
-                        'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.',
+                  SizedBox(height: 20.r),
+                  BlocBuilder<RightsBloc, RightsState>(
+                    buildWhen: (previous, current) {
+                      return current.maybeWhen(
+                        loadingMore: () => false,
+                        loadingMoreError: (_) => false,
+                        orElse: () => true,
+                      );
+                    },
+                    builder: (context, state) {
+                      return state.maybeWhen(
+                        orElse: () {
+                          return const SizedBox.shrink();
+                        },
+                        loading: () {
+                          return const ShimmerRightsBox(itemCount: 2);
+                        },
+                        error: (message) {
+                          return Column(
+                            children: [
+                              CustomText(
+                                text: message,
+                                size: 28,
+                                color: AppColors.primaryError,
+                                weight: FontWeight.w700,
+                              ),
+                              SizedBox(height: 15.r),
+                            ],
+                          );
+                        },
+                        success: (fetchedRights) {
+                          return GridView.builder(
+                            shrinkWrap: true,
+                            padding: EdgeInsets.zero,
+                            physics: const NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 10,
+                            ),
+                            itemCount: 2,
+                            itemBuilder: (context, index) {
+                              final right = fetchedRights[index];
+                              return ManualsBox(
+                                  title: right.titleRu ?? '',
+                                  text: right.shortDescriptionRu ?? '');
+                            },
+                          );
+                        },
+                      );
+                    },
                   ),
+                  SizedBox(height: 25.r),
+                  const TitleRow(
+                      asset: 'assets/icons/complains.svg',
+                      title: 'My complains',
+                      see: false),
+                  SizedBox(height: 20.r),
+                  const NoComplainsWidget(),
+                  SizedBox(height: 20.r),
+                  TitleRow(
+                    asset: 'assets/icons/hotline.svg',
+                    title: 'Hotline contacts',
+                    onPressed: () {
+                      context.read<BottomNavBarCubit>().changeTab(2);
+                    },
+                    see: true,
+                  ),
+                  SizedBox(height: 20.r),
+                  BlocBuilder<ContactsBloc, ContactsState>(
+                    buildWhen: (previous, current) {
+                      return current.maybeWhen(
+                        loadingMore: () => false,
+                        loadingMoreError: (_) => false,
+                        orElse: () => true,
+                      );
+                    },
+                    builder: (context, state) {
+                      return state.maybeWhen(
+                        loading: () {
+                          return Column(
+                            children: List.generate(
+                              2,
+                                  (index) => const ShimmerContactBox(),
+                            ),
+                          );
+                        },
+                        error: (message) {
+                          return Column(
+                            children: [
+                              CustomText(
+                                text: message,
+                                size: 28,
+                                color: AppColors.primaryError,
+                                weight: FontWeight.w700,
+                              ),
+                              SizedBox(height: 15.r),
+                              IconButton(
+                                onPressed: () {
+                                  context.read<ContactsBloc>().add(const ContactsEvent.fetch());
+                                },
+                                icon: const Icon(Icons.cached),
+                              ),
+                            ],
+                          );
+                        },
+                        success: (fetchedContacts) {
+
+                          return ListView.separated(
+                            shrinkWrap: true,
+                            padding: EdgeInsets.zero,
+                            physics: const NeverScrollableScrollPhysics(),
+                            separatorBuilder: (_, __) => SizedBox(height: 15.r),
+                            itemBuilder: (context, index) {
+                              final contact = fetchedContacts[index];
+
+                              return HotlineBox(
+                                title: contact.titleUz ?? 'No data )',
+                                number: ('+${contact.phone}'),
+                                address: contact.address,
+                              );
+                            },
+                            itemCount: 2,
+                          );
+                        },
+                        orElse: () => const SizedBox.shrink(),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 120),
                 ],
               ),
-              SizedBox(height: 25.r),
-              const TitleRow(
-                  asset: 'assets/icons/complains.svg',
-                  title: 'My complains',
-                  see: false),
-              SizedBox(height: 20.r),
-              const NoComplainsWidget(),
-              SizedBox(height: 20.r),
-              TitleRow(
-                asset: 'assets/icons/hotline.svg',
-                title: 'Hotline contacts',
-                onPressed: () {
-                  context.read<BottomNavBarCubit>().changeTab(2);
-                },
-                see: true,
-              ),
-              SizedBox(height: 20.r),
-              const HotlineBox(
-                  title: 'Federation of professional associations',
-                  number: '+ 998 93 553 07 17',
-                  address: '77905 Block Highway, Hudsonland'),
-              SizedBox(height: 15.r),
-              const HotlineBox(
-                  title: 'Labor exchange',
-                  number: '+ 998 93 553 07 17',
-                  address: '77905 Block Highway, Hudsonland'),
-              const SizedBox(height: 120),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -99,7 +99,7 @@ class OnBoardingPage extends StatelessWidget {
                       highlightElevation: 0,
                       elevation: 0,
                       onPressed: () {
-                        context.router.push(SignInWrapper());
+                        context.router.push(const SignInWrapper());
                       },
                       child: Image.asset(
                         'assets/icons/play.png',

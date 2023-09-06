@@ -1,10 +1,11 @@
 import 'package:agro_app/constants/app_colors.dart';
+import 'package:agro_app/routes/app_router.gr.dart';
 import 'package:agro_app/widgets/custom_text.dart';
 import 'package:agro_app/widgets/other_widgets/home_page/title_in_manual.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../pages/rights_detail_page.dart';
 
 class ManualsBox extends StatelessWidget {
   final String title;
@@ -14,11 +15,10 @@ class ManualsBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const RightsDetailPage()),);
+      context.router.push( RightsDetailRoute(text: text));
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
@@ -27,8 +27,8 @@ class ManualsBox extends StatelessWidget {
           boxShadow: const [
             BoxShadow(
               color: AppColors.lightGrey,
-              offset: Offset(0.0, 0.1), //(x,y)
-              blurRadius: 4.0,
+              offset: Offset(0.2, 0.2), //(x,y)
+              blurRadius: 9.0,
             ),
           ],
           color: Colors.white,
@@ -36,7 +36,7 @@ class ManualsBox extends StatelessWidget {
         ),
         // height: 149,
         // width: 160,
-        // height: 0.199197861.sh,
+        height: 0.199197861.sh,
         width: 0.444444444.sw,
         child: Column(
           children: [

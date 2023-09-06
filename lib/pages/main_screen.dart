@@ -8,6 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../bloc/blocs/contacts_fetch/contacts_bloc.dart';
+import '../bloc/blocs/rights_fetch/rights_bloc.dart';
 import '../bloc/cubit/simple_cubits/bottom_nav_bar_cubit.dart';
 import '../constants/app_colors.dart';
 import '../core/custom_shape.dart';
@@ -29,6 +31,12 @@ class _MainScreenState extends State<MainScreen> {
         BlocProvider(
           create: (context) => BottomNavBarCubit(),
         ),
+        BlocProvider(
+          create: (context) => RightsBloc()..add(const RightsEvent.fetch()),
+        ),
+        BlocProvider(
+          create: (context) => ContactsBloc()..add(const ContactsEvent.fetch()),
+        ),
       ],
       child: BlocBuilder<BottomNavBarCubit, int>(
         builder: (context, int state) {
@@ -37,10 +45,10 @@ class _MainScreenState extends State<MainScreen> {
             extendBody: true,
             body: IndexedStack(
               index: state,
-              children:  const [
+              children:   const [
                 HomePage(),
-                RightsWrapper(),
-                ContactsWrapper(),
+                RightsPage(),
+                ContactsPage(),
                 ProfilePage(),
               ],
             ),

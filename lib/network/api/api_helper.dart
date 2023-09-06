@@ -21,7 +21,7 @@ class ApiHelper {
 
   static ApiClient _getClient(){
     final dio = Dio();
-    dio.interceptors.add(PrettyDioLogger(requestBody: true , requestHeader: true));
+    dio.interceptors.add(PrettyDioLogger());
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {

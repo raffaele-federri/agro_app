@@ -1,34 +1,15 @@
 import 'package:agro_app/bloc/blocs/rights_fetch/rights_bloc.dart';
 import 'package:agro_app/constants/app_colors.dart';
 import 'package:agro_app/widgets/custom_text.dart';
-import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../bloc/blocs/contacts_fetch/contacts_bloc.dart';
 import '../../widgets/other_widgets/general/text_form_field.dart';
 import '../../widgets/other_widgets/home_page/manuals_box.dart';
-import '../../widgets/other_widgets/home_page/shimmer_contact_box.dart';
-
-@RoutePage()
-class RightsWrapper extends StatelessWidget {
-  const RightsWrapper({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => RightsBloc()..add(const RightsEvent.fetch()),
-        ),
-      ],
-      child: const RightsPage(),
-    );
-  }
-}
+import '../../widgets/other_widgets/home_page/shimmer_rights_box.dart';
 
 class RightsPage extends StatefulWidget {
   const RightsPage({super.key});
@@ -50,7 +31,7 @@ class _RightsPageState extends State<RightsPage> {
     if (scrollController.position.userScrollDirection ==
             ScrollDirection.reverse &&
         scrollController.offset >=
-            scrollController.position.maxScrollExtent + 50) {
+            scrollController.position.maxScrollExtent + 10) {
       context.read<RightsBloc>().add(const RightsEvent.fetchMore());
     }
   }
@@ -91,7 +72,7 @@ class _RightsPageState extends State<RightsPage> {
               ),
               SliverToBoxAdapter(
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
+                  // mainAxisSize: MainAxisSize.min,
                   children: [
                     BlocBuilder<RightsBloc, RightsState>(
                       buildWhen: (previous, current) {
@@ -107,12 +88,7 @@ class _RightsPageState extends State<RightsPage> {
                             return const SizedBox.shrink();
                           },
                           loading: () {
-                            return Column(
-                              children: List.generate(
-                                5,
-                                (index) => const ShimmerContactBox(),
-                              ),
-                            );
+                            return const ShimmerRightsBox(itemCount: 6);
                           },
                           error: (message) {
                             return Column(
@@ -127,8 +103,8 @@ class _RightsPageState extends State<RightsPage> {
                                 IconButton(
                                   onPressed: () {
                                     context
-                                        .read<ContactsBloc>()
-                                        .add(const ContactsEvent.fetch());
+                                        .read<RightsBloc>()
+                                        .add(const RightsEvent.fetch());
                                   },
                                   icon: const Icon(Icons.cached),
                                 ),
@@ -137,24 +113,50 @@ class _RightsPageState extends State<RightsPage> {
                           },
                           success: (fetchedRights) {
                             return GridView.builder(
+                              padding: EdgeInsets.zero,
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
-                                    crossAxisSpacing: 10,
-                                    mainAxisSpacing: 10,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 10,
                               ),
                               itemCount: fetchedRights.length,
                               itemBuilder: (context, index) {
                                 final right = fetchedRights[index];
-                                return ManualsBox(title: right.titleRu ?? '', text: right.shortDescriptionRu ?? '');
+                                return ManualsBox(
+                                    title: right.titleRu ?? '',
+                                    text: right.shortDescriptionRu ?? '');
                               },
                             );
                           },
                         );
                       },
                     ),
+                    SizedBox(height: 10.r),
+                    BlocBuilder<RightsBloc, RightsState>(
+                      buildWhen: (previous, current) {
+                        return current.maybeWhen(
+                          loadingMore: () => true,
+                          loadingMoreError: (_) => true,
+                          success: (_) => true,
+                          orElse: () => false,
+                        );
+                      },
+                      builder: (context, state) {
+                        return state.maybeWhen(
+                          loadingMore: () {
+                            return const ShimmerRightsBox(itemCount: 2);
+                          },
+                          loadingMoreError: (message) {
+                            return Text(message);
+                          },
+                          orElse: () => const SizedBox.shrink(),
+                        );
+                      },
+                    ),
+                    SizedBox(height: 150.r),
                   ],
                 ),
               ),
