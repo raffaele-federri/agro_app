@@ -168,6 +168,69 @@ class _ApiClient implements ApiClient {
     return value;
   }
 
+  @override
+  Future<String> uploadMedia(File file) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.files.add(MapEntry(
+      'file',
+      MultipartFile.fromFileSync(
+        file.path,
+        filename: file.path.split(Platform.pathSeparator).last,
+      ),
+    ));
+    final _result = await _dio.fetch<String>(_setStreamType<String>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'multipart/form-data',
+    )
+        .compose(
+          _dio.options,
+          'complains/upload/media',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+    final value = _result.data!;
+    return value;
+  }
+
+  @override
+  Future<CreateComplainResponse> createComplain(
+      Map<String, dynamic> request) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(request);
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<CreateComplainResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'complains/',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = CreateComplainResponse.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

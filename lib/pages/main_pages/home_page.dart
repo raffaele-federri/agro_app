@@ -37,15 +37,15 @@ class HomePage extends StatelessWidget {
               collapsedHeight: 140,
               flexibleSpace: LayoutBuilder(
                   builder: (BuildContext context, BoxConstraints constraints) {
-                    print(constraints.maxWidth);
+                print(constraints.maxWidth);
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Row(
                       children: [
-                         const CustomText(
+                        const CustomText(
                           text: 'Good day,',
-                          size:  30,
+                          size: 30,
                           weight: FontWeight.w900,
                           color: AppColors.activeColor,
                         ),
@@ -163,7 +163,7 @@ class HomePage extends StatelessWidget {
                           return Column(
                             children: List.generate(
                               2,
-                                  (index) => const ShimmerContactBox(),
+                              (index) => const ShimmerContactBox(),
                             ),
                           );
                         },
@@ -179,7 +179,9 @@ class HomePage extends StatelessWidget {
                               SizedBox(height: 15.r),
                               IconButton(
                                 onPressed: () {
-                                  context.read<ContactsBloc>().add(const ContactsEvent.fetch());
+                                  context
+                                      .read<ContactsBloc>()
+                                      .add(const ContactsEvent.fetch());
                                 },
                                 icon: const Icon(Icons.cached),
                               ),
@@ -187,7 +189,6 @@ class HomePage extends StatelessWidget {
                           );
                         },
                         success: (fetchedContacts) {
-
                           return ListView.separated(
                             shrinkWrap: true,
                             padding: EdgeInsets.zero,

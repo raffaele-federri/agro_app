@@ -1,3 +1,4 @@
+import 'package:agro_app/bloc/blocs/create_complain/create_complain_bloc.dart';
 import 'package:agro_app/pages/main_pages/home_page.dart';
 import 'package:agro_app/pages/main_pages/profile_page.dart';
 import 'package:agro_app/pages/main_pages/rights_page.dart';
@@ -36,6 +37,9 @@ class _MainScreenState extends State<MainScreen> {
         ),
         BlocProvider(
           create: (context) => ContactsBloc()..add(const ContactsEvent.fetch()),
+        ),
+        BlocProvider(
+          create: (context) => CreateComplainBloc(),
         ),
       ],
       child: BlocBuilder<BottomNavBarCubit, int>(
@@ -112,7 +116,7 @@ class _MainScreenState extends State<MainScreen> {
                                 backgroundColor: Colors.transparent,
                                 context: context,
                                 builder: (context) {
-                                  return  const CreateComplainBottomSheet();
+                                  return   const CreateComplainBottomSheet();
                                 },
                               );
                             },

@@ -25,7 +25,7 @@ class ApiHelper {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTM0Nzk0MDAsImV4cCI6MTY5NjA3MTQwMCwidXNlcl9pZCI6MTIsInBlcm1pc3Npb25zIjpbInJlYWRfdXNlciIsInVwZGF0ZV91c2VyIiwiZGVsZXRlX3VzZXIiLCJyZWFkX2NhdGVnb3J5IiwicmVhZF9yaWdodCIsInJlYWRfZGVwYXJ0bWVudCIsInJlYWRfZ3VpZGUiXX0.FZ1SsGxvR5Zzghe2Ls4Lx-IB9i5LXO4LatwZL2fbQeo';
+          const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQxNjc1NTYsImV4cCI6MTY5Njc1OTU1NiwidXNlcl9pZCI6MTIsInBlcm1pc3Npb25zIjpbInJlYWRfdXNlciIsInVwZGF0ZV91c2VyIiwiZGVsZXRlX3VzZXIiLCJyZWFkX2NhdGVnb3J5IiwicmVhZF9yaWdodCIsInJlYWRfZGVwYXJ0bWVudCIsInJlYWRfZ3VpZGUiLCJjcmVhdGVfY29tcGxhaW4iLCJyZWFkX2NvbXBsYWluIiwidXBkYXRlX2NvbXBsYWluIl19.tVwnXx-FksPNZwzXuRdPZSBOAM-VRGh-6IyadXbKAWM';
           options.headers['Authorization'] = 'Bearer $token';
           return handler.next(options);
         },
